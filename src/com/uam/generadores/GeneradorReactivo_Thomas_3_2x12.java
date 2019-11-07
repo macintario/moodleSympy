@@ -1,0 +1,139 @@
+package com.uam.generadores;
+
+import com.uam.auxiliar.GeneradorReactivoCloze;
+import com.uam.data.DatosReactivos;
+import com.uam.executor.EjecutadorGeneradorXML;
+import com.uam.utilidades.Utilidades;
+import static com.uam.constantes.Constantes.XML_PREFIJO;
+import static com.uam.constantes.Constantes.XML_SUFIJO;
+
+
+/*
+ * Esta clase genrera reactivos moodle tipo cloze aleatorios bassados en el ejercicio 12
+ * del libro Cálculo Una Variable, George B. Thomas Jr. Decimasegunda edición.
+ *
+ * @author Iván Gutiérrez Rodríguez
+ */
+public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
+     /**
+     * El número de dígitos para el número de reactivo que se pondrá como
+     * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
+     * comentario que tendrá el primer reactivo será
+     * "<!--Reactivo Thomas_3_2x12_000-->"
+     */
+    private static final int POSICIONES_CONTADOR_REACTIVO = 3;
+     /**
+     * El número de reactivos que se generarán y vaciarán al archivo de texto.
+     */
+    private static final int NUMERO_DE_REACTIVOS = 10;
+
+    /**
+     * El nombre o ruta absoluta del archivo de salida.
+     */
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_2x12.xml";
+    
+    /**
+     * El texto, símbolo o caracter que separará cada reactivo generado en el
+     * archivo de salida.
+     */
+//    private static final String SEPARADOR_REACTIVOS = "\r\n";
+    private static final String SEPARADOR_REACTIVOS = "\r\n\r\n";
+
+
+    /**
+     * El texto del reactivo, las variables se encuentran en mayúsculas y
+     * encerradas entre signos $. La tildes deben ser colocadas con código utf8.
+     */
+    private static final String PLANTILLA_REACTIVO
+            ="$COMENTARIO$ Considere la funcion: <br/>"
+            +"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
+            +"Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: <br/>"
+            +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{a}{2(b$VARIABLE_INDEPENDIENTE$-c)^{\\frac{d}{e}}}$$ <br/>"
+            +"Usted deberá calcular la derivada indicando en papel todos los pasos. "
+            +"Utilíce la respuesta parcial que ofrecemos, cada letra representa un dígito"
+            +" en tu respuesta Llene únicamente los cuadros apropiados <br/>"
+            +" a={:NUMERICAL:=$RESPUESTA_A$} <br/> b={:NUMERICAL:=$RESPUESTA_B$} <br/> c={:NUMERICAL:=$RESPUESTA_C$} <br/> d={:NUMERICAL:=$RESPUESTA_D$} <br/> e={:NUMERICAL:=$RESPUESTA_E$}"
+              ;
+            
+
+    /**
+     * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
+     * sera el número de reactivo. Éste se insertará como un comentario html
+     * para que no sea visible para el usuario. El lugar de inserción de este
+     * comentario dentro del texto del reactivo esta dado por la variable
+     * $COMENTARIO$ en la plantilla del reactivo.
+     */
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.2_Ej_12_";
+
+    /**
+     * Los límites (inclusivos) inferior y superior del dominio de la variable
+     * $MINUTOS_PARTIDA$. El primer dígito es el inferior y el segundo el
+     * superior.
+     */
+    private static final int[] COTA_NUMERADOR = {1, 5};
+
+    /**
+     * Los límites (inclusivos) inferior y superior del dominio de la variable
+     * $HORA_PARTIDA$. El primer dígito es el inferior y el segundo el superior.
+     */
+    private static final int[] COTA_COEFICIENTE = {2, 9};
+
+    /**
+     * Los límites (inclusivos) inferior y superior del dominio de la variable
+     * $MINUTOS_VIAJE$. El primer dígito es el inferior y el segundo el
+     * superior.
+     */
+    private static final int[] COTA_INDEPENDIENTE = {1, 20};
+
+    /**
+     * ******************TERMINA CONFIGURACIÓN DE EJECUCIÓN*****************
+     * @param numeroReactivo 
+     * @return  
+     */
+    
+    
+    @Override
+    public String generarReactivoCloze(int numeroReactivo) {
+
+        //Generación de variables aleatorias con parámetros de ejecución
+        Integer numerador = Utilidades.obtenerEnteroAleatorio(COTA_NUMERADOR[0],COTA_NUMERADOR[1]);
+        Integer coeficiente = Utilidades.obtenerEnteroAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1]);
+        Integer independiente = Utilidades.obtenerEnteroAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
+        String comentarioReactivo
+                = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
+        Integer respuestaA = -numerador*coeficiente;
+        Integer respuestaB = coeficiente;
+        Integer respuestaC = independiente;
+        Integer respuestaD = 3;
+        Integer respuestaE = 2;
+        String  parVariables=DatosReactivos.obtenerParesVariables();
+        String  variableIndependiente=parVariables.substring(0, 1);
+        String  variableDependiente=parVariables.substring(1, 2);
+
+        //Sustitución de las variables por sus valores en el texto del reactivo
+//        String reactivo = PLANTILLA_REACTIVO.replace("$NUMERADOR$",numerador.toString());
+        String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
+        reactivo = reactivo.replace("$NUMERADOR$",numerador.toString());
+        
+        reactivo = reactivo.replace("$COEFICIENTE$", coeficiente.toString());
+        reactivo = reactivo.replace("$INDEPENDIENTE$", independiente.toString());
+        reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
+        reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
+        reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);
+        reactivo = reactivo.replace("$RESPUESTA_A$", respuestaA.toString());
+        reactivo = reactivo.replace("$RESPUESTA_B$", respuestaB.toString());
+        reactivo = reactivo.replace("$RESPUESTA_C$", respuestaC.toString());
+        reactivo = reactivo.replace("$RESPUESTA_D$", respuestaD.toString());
+        reactivo = reactivo.replace("$RESPUESTA_E$", respuestaE.toString());
+        
+        //Concatenando el separador de reactivos
+        reactivo = reactivo.concat(SEPARADOR_REACTIVOS);
+        return reactivo;
+    }
+
+    public static void main(String[] args) {
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_2x12());
+    }
+
+    
+}
