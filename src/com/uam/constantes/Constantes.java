@@ -32,7 +32,7 @@ public class Constantes {
 +"Si requieres revisión en algún punto de tu desarrollo en papel, muestra tu procedimiento detallado a algún profesor de galoisenlinea y con mucho gusto aclararemos tus dudas."
 +"Click en cada fórmula en azul y copia el texto:"
 +"La derivada de la función $$f(x)$$ es:"
-+"\frac{d}{dx}\left(\frac{2 x+4}{-7 x^2+2 x-4} \right)"
++"\\frac{d}{dx}\\left(\\frac{2 x+4}{-7 x^2+2 x-4} \\right)"
 +"Click en icono de Symbolab:     c. Pega en la ventana de entrada de datos de Symbolab tu texto copiado. Allí obtendrás la solución del ejercicio paso a paso."
 +"Biblioteca en galoisenlinea:"
 +"Detalles paso a paso para resolver el ejercicio del libro de Thomas en página y número de ejercicio: Thomas147-9, Click.... en imagen   c"
