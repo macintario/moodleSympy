@@ -36,9 +36,10 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
      * El texto, símbolo o caracter que separará cada reactivo generado en el
      * archivo de salida.
      */
-//    private static final String SEPARADOR_REACTIVOS = "\r\n";
-    private static final String SEPARADOR_REACTIVOS = "\r\n\r\n";
+    private static final String SEPARADOR_REACTIVOS = "\r\n";
 
+
+    private static final String EXPRESION="$$\\displaystyle y=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$x-$INDEPENDIENTE$}}$$";
 
     /**
      * El texto del reactivo, las variables se encuentran en mayúsculas y
@@ -54,7 +55,8 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
             +"</strong></span>"
             + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
             +"Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
+            //+"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
+            +"$EXPRESION$ <br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{A}{2(B$VARIABLE_INDEPENDIENTE$-C)^{\\frac{D}{E}}}$$ <br/>"
@@ -63,7 +65,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
             +"Usted deberá calcular la derivada $$f(x)$$ indicando en papel todos los pasos. "
             +"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito"
             +" en su respuesta. Llene únicamente los cuadros apropiados:<br/></strong></span>"
-            +" A={:NUMERICAL:=$RESPUESTA_A$} <br/> B={:NUMERICAL:=$RESPUESTA_B$} <br/> C={:NUMERICAL:=$RESPUESTA_C$} <br/> D={:NUMERICAL:=$RESPUESTA_D$} <br/> E={:NUMERICAL:=$RESPUESTA_E$}"
+            +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:NUMERICAL:=$RESPUESTA_B$} <br/> C={:NUMERICAL:=$RESPUESTA_C$} <br/> D={:NUMERICAL:=$RESPUESTA_D$} <br/> E={:NUMERICAL:=$RESPUESTA_E$}"
             +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
@@ -129,6 +131,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
         //Sustitución de las variables por sus valores en el texto del reactivo
 //        String reactivo = PLANTILLA_REACTIVO.replace("$NUMERADOR$",numerador.toString());
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
+        reactivo = reactivo.replace("$EXPRESION$",EXPRESION);
         reactivo = reactivo.replace("$NUMERADOR$",numerador.toString());
         
         reactivo = reactivo.replace("$COEFICIENTE$", coeficiente.toString());
