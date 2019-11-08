@@ -25,7 +25,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
      /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
      */
-    private static final int NUMERO_DE_REACTIVOS = 10;
+    private static final int NUMERO_DE_REACTIVOS = 3;
 
     /**
      * El nombre o ruta absoluta del archivo de salida.
@@ -45,14 +45,30 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
      * encerradas entre signos $. La tildes deben ser colocadas con código utf8.
      */
     private static final String PLANTILLA_REACTIVO
-            ="$COMENTARIO$ Considere la funcion: <br/>"
+            = "<span style=\"color: #ff0000,2E8B57; font-size: large;\"><strong>\n" +
+            "galoisenlinea&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; http://galois.azc.uam.mx </strong></span>\n" +
+            "<span style=\"color: #E38E03; font-size: large;\"><strong>\n" +
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calculará la derivada de una función racional $$f(x)$$ </span> <br><br>"
+            +"<span style=\"color: #ff0000; font-size: xx-large;\"><strong>\n"
+            +"PROBLEMA:\n"
+            +"</strong></span>"
+            + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
+            +"Considere la funcion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>"
             +"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
-            +"Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: <br/>"
+            +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
+            +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{a}{2(b$VARIABLE_INDEPENDIENTE$-c)^{\\frac{d}{e}}}$$ <br/>"
-            +"Usted deberá calcular la derivada indicando en papel todos los pasos. "
-            +"Utilíce la respuesta parcial que ofrecemos, cada letra representa un dígito"
-            +" en tu respuesta Llene únicamente los cuadros apropiados <br/>"
+            +"</strong></span>"
+            +"<span style=\"color: #000000; font-size: x-large;\"><strong>"
+            +"Usted deberá calcular la derivada $$f(x)$$ indicando en papel todos los pasos. "
+            +"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito"
+            +" en su respuesta. Llene únicamente los cuadros apropiados:<br/>"
             +" a={:NUMERICAL:=$RESPUESTA_A$} <br/> b={:NUMERICAL:=$RESPUESTA_B$} <br/> c={:NUMERICAL:=$RESPUESTA_C$} <br/> d={:NUMERICAL:=$RESPUESTA_D$} <br/> e={:NUMERICAL:=$RESPUESTA_E$}"
+            +"</strong></span>\n"
+            +"</center>"
+            +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
+            "¿ Revisión de tu ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
+            "</strong></span>"
               ;
             
 
