@@ -53,21 +53,21 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
             +"PROBLEMA:\n"
             +"</strong></span>"
             + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
-            +"Considere la funcion: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>"
+            +"Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{a}{2(b$VARIABLE_INDEPENDIENTE$-c)^{\\frac{d}{e}}}$$ <br/>"
-            +"</strong></span>"
-            +"<span style=\"color: #000000; font-size: x-large;\"><strong>"
+            +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{A}{2(B$VARIABLE_INDEPENDIENTE$-C)^{\\frac{D}{E}}}$$ <br/>"
+            +"</strong></span><br/>"
+            +"<span style=\"color: #000000; font-size: medium;\"\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ indicando en papel todos los pasos. "
             +"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito"
-            +" en su respuesta. Llene únicamente los cuadros apropiados:<br/>"
-            +" a={:NUMERICAL:=$RESPUESTA_A$} <br/> b={:NUMERICAL:=$RESPUESTA_B$} <br/> c={:NUMERICAL:=$RESPUESTA_C$} <br/> d={:NUMERICAL:=$RESPUESTA_D$} <br/> e={:NUMERICAL:=$RESPUESTA_E$}"
-            +"</strong></span>\n"
+            +" en su respuesta. Llene únicamente los cuadros apropiados:<br/></strong></span>"
+            +" A={:NUMERICAL:=$RESPUESTA_A$} <br/> B={:NUMERICAL:=$RESPUESTA_B$} <br/> C={:NUMERICAL:=$RESPUESTA_C$} <br/> D={:NUMERICAL:=$RESPUESTA_D$} <br/> E={:NUMERICAL:=$RESPUESTA_E$}"
+            +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
-            "¿ Revisión de tu ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
+            "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>"
               ;
             
