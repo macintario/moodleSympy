@@ -30,7 +30,7 @@ public class Constantes {
             +"<span style=\"color: #000000; font-size: large\"><strong>PROCEDIMIENTO DE SOLUCION PASO A PASO</strong></span>"
             +"<br/><br/>En este ejercicio y con objeto de que uses uno de los mejores Sistemas Algebraicos Computacionales (CAS) llamado "
             +"<span style=\"color: #ff0000\"><strong>Symbolab</strong></span>, obtendrás el procedimiento de solución de este ejercicio paso a paso."
-+"Es importante que analices el procedimiento dado por Symbolab; en examen tendrás que hacer el procedimiento detallado de algún ejercicio similar."
++"Es importante que analice el procedimiento dado por Symbolab; en examen tendrás que hacer el procedimiento detallado de algún ejercicio similar."
 +"Si requieres revisión en algún punto de tu desarrollo en papel, muestra tu procedimiento detallado a algún profesor de galoisenlinea y con mucho gusto aclararemos tus dudas."
 +"Click en cada fórmula en azul y copia el texto:"
 +"La derivada de la función $$f(x)$$ es:"
