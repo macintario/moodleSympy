@@ -115,9 +115,9 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
     public String generarReactivoCloze(int numeroReactivo) {
 
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer numerador = Utilidades.obtenerEnteroAleatorio(COTA_NUMERADOR[0],COTA_NUMERADOR[1]);
-        Integer coeficiente = Utilidades.obtenerEnteroAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1]);
-        Integer independiente = Utilidades.obtenerEnteroAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
+        Integer numerador = Utilidades.obtenerImparAleatorio(COTA_NUMERADOR[0],COTA_NUMERADOR[1]);
+        Integer coeficiente = Utilidades.obtenerImparAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1]);
+        Integer independiente = Utilidades.obtenerParAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = -numerador*coeficiente;
@@ -136,9 +136,9 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
         expresion = expresion.replace("$NUMERADOR$",numerador.toString());
         expresion = expresion.replace("$COEFICIENTE$", coeficiente.toString());
         expresion = expresion.replace("$INDEPENDIENTE$", independiente.toString());
-        reactivo = reactivo.replace("$EXPRESION$",expresion);
         String solucion = solucionaSimbolico.Incremento(expresion);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
+        reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
         reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
         reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);

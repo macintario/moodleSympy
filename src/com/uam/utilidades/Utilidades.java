@@ -59,7 +59,21 @@ public class Utilidades {
     public static int obtenerEnteroAleatorio(int inferior, int superior) {
         return (int) (RANDOM.nextDouble() * ((superior - inferior) + 1) + inferior);
     }
-    
+    public static int obtenerParAleatorio(int inferior, int superior) {
+        int candidato=(int) (RANDOM.nextDouble() * ((superior - inferior) + 1) + inferior);
+        if(candidato%2==1){
+            candidato++;
+        }
+        return candidato;
+    }
+    public static int obtenerImparAleatorio(int inferior, int superior) {
+        int candidato=(int) (RANDOM.nextDouble() * ((superior - inferior) + 1) + inferior);
+        if(candidato%2==0){
+            candidato++;
+        }
+        return candidato;
+    }
+
     public static int obtenerEnteroAleatorioDistintoDe(int inferior, int superior, int distintoDe){
         int intentos = MAXIMOS_INTENTOS_GENERACION_CON_CRITERIO;
         int aleatorio = 0;
