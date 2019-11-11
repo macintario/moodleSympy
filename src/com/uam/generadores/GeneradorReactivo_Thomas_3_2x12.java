@@ -1,6 +1,7 @@
 package com.uam.generadores;
 
 import com.uam.auxiliar.GeneradorReactivoCloze;
+import com.uam.auxiliar.solucionaSimbolico;
 import com.uam.data.DatosReactivos;
 import com.uam.executor.EjecutadorGeneradorXML;
 import com.uam.utilidades.Utilidades;
@@ -39,7 +40,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
 
-    private static final String EXPRESION="$$\\displaystyle y=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$x-$INDEPENDIENTE$}}$$";
+    private static final String EXPRESION="\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$x-$INDEPENDIENTE$}}";
 
     /**
      * El texto del reactivo, las variables se encuentran en mayúsculas y
@@ -56,7 +57,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
             + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
             +"Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             //+"$$\\displaystyle $VARIABLE_DEPENDIENTE$=\\frac{$NUMERADOR$}{\\sqrt{$COEFICIENTE$$VARIABLE_INDEPENDIENTE$-$INDEPENDIENTE$}}$$ <br/>"
-            +"$EXPRESION$ <br/>"
+            +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{A}{2(B$VARIABLE_INDEPENDIENTE$-C)^{\\frac{D}{E}}}$$ <br/>"
@@ -72,7 +73,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>"
               ;
-            
+
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -131,11 +132,13 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
         //Sustitución de las variables por sus valores en el texto del reactivo
 //        String reactivo = PLANTILLA_REACTIVO.replace("$NUMERADOR$",numerador.toString());
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
-        reactivo = reactivo.replace("$EXPRESION$",EXPRESION);
-        reactivo = reactivo.replace("$NUMERADOR$",numerador.toString());
-        
-        reactivo = reactivo.replace("$COEFICIENTE$", coeficiente.toString());
-        reactivo = reactivo.replace("$INDEPENDIENTE$", independiente.toString());
+        String expresion = EXPRESION;
+        expresion = expresion.replace("$NUMERADOR$",numerador.toString());
+        expresion = expresion.replace("$COEFICIENTE$", coeficiente.toString());
+        expresion = expresion.replace("$INDEPENDIENTE$", independiente.toString());
+        reactivo = reactivo.replace("$EXPRESION$",expresion);
+        String solucion = solucionaSimbolico.Incremento(expresion);
+        reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
         reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
         reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);
