@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GenClozeMoodle.iml" filepath="$PROJECT_DIR$/GenClozeMoodle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GeneradorDeReactivosCloze.iml" filepath="$PROJECT_DIR$/GeneradorDeReactivosCloze.iml" />
     </modules>
   </component>
 </project>
