@@ -1,6 +1,7 @@
 package com.uam.auxiliar;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,11 +18,11 @@ public class solucionaSimbolico {
                     "f = parse_latex(r\" $EXPRESION$ \")\n" +
                     "fh=f.subs(x,x+h)\n" +
                     "drv=(fh-f)/h\n" +
-                    "salida.write(\"$$\\displaystyle f(x)=%s$$<br/><br/>\\n\" %(latex(f)))\n" +
-                    "salida.write(\"$$\\displaystyle f(x+h)=%s$$<br/><br/>\\n\" %latex(fh))\n" +
-                    "salida.write(\"$$\\displaystyle \\frac{f(x+h)-f(x)}{h}=%s=%s$$<br/><br/>\n\" % (latex(drv),latex(drv.simplify())))\n" +
+                    "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/><br/>\\n\" %(latex(f)))\n" +
+                    "salida.write(\"$$\\\\displaystyle f(x+h)=%s$$<br/><br/>\\n\" %latex(fh))\n" +
+                    "salida.write(\"$$\\\\displaystyle \\\\frac{f(x+h)-f(x)}{h}=%s=%s $$ <br/><br/>\" % (latex(drv),latex(drv.simplify())))\n" +
                     "drv=limit(drv,h,0)\n" +
-                    "salida.write(\"$$\\displaystyle f'(x)\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}=%s=%s$$<br/><br/>\\n\" % (latex(drv),latex(drv.simplify())))\n";
+                    "salida.write(\"$$\\\\displaystyle f'(x)=\\\\lim_{h\\\\to 0} \\\\frac{f(x+h)-f(x)}{h}=%s=%s$$<br/><br/>\\n\" % (latex(drv),latex(drv.simplify())))\n";
     public static String Incremento(String expresion) {
         String script = PLANTILLA_SYMPY;
         String solucion="";
@@ -29,7 +30,6 @@ public class solucionaSimbolico {
         try(FileWriter scriptFile = new FileWriter("/tmp/script.py");
             BufferedWriter bw = new BufferedWriter(scriptFile)){
             bw.write(script);
-
         }catch (IOException e){
             System.err.format("Escribiendo Script IOException: %s%n", e);
         }
@@ -45,6 +45,8 @@ public class solucionaSimbolico {
         }
         try {
             solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion.txt")));
+            //File f = new File("/tmp/solucion.txt");
+            //f.delete();
         }catch(java.io.IOException e){
             System.err.format("Leyendo Solucion IOException: %s%n", e);
         }
