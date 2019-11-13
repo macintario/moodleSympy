@@ -1,5 +1,7 @@
 package com.uam.auxiliar;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -37,6 +39,7 @@ public class solucionaSimbolico {
         try{
             Process p = Runtime.getRuntime().exec(cmd);
             int exitVal = p.waitFor();
+            System.out.println(exitVal);
         }catch(java.io.IOException e){
             System.err.format("Ejecutando Python IOException: %s%n", e);
         }catch (Throwable t)
