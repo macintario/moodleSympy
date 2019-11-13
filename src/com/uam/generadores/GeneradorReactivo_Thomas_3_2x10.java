@@ -25,7 +25,7 @@ public class GeneradorReactivo_Thomas_3_2x10 implements GeneradorReactivoCloze {
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_2x12.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_2x10.xml";
 
     /**
      * El texto, símbolo o caracter que separará cada reactivo generado en el
@@ -77,7 +77,7 @@ public class GeneradorReactivo_Thomas_3_2x10 implements GeneradorReactivoCloze {
      * comentario dentro del texto del reactivo esta dado por la variable
      * $COMENTARIO$ en la plantilla del reactivo.
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.2_Ej_12_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.2_Ej_10_";
 
     /**
      * Los límites (inclusivos) inferior y superior del dominio de la variable
