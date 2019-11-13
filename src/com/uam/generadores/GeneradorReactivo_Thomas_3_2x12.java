@@ -136,7 +136,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
         expresion = expresion.replace("$NUMERADOR$",numerador.toString());
         expresion = expresion.replace("$COEFICIENTE$", coeficiente.toString());
         expresion = expresion.replace("$INDEPENDIENTE$", independiente.toString());
-        String solucion = solucionaSimbolico.Incremento(expresion);
+        String solucion = solucionaSimbolico.solucionaSimbolicoConjugados(expresion);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
