@@ -116,7 +116,7 @@ public class GeneradorReactivo_Thomas_3_2x12 implements GeneradorReactivoCloze{
 
         //Generación de variables aleatorias con parámetros de ejecución
         Integer numerador = Utilidades.obtenerImparAleatorio(COTA_NUMERADOR[0],COTA_NUMERADOR[1]);
-        Integer coeficiente = Utilidades.obtenerImparAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1]);
+        Integer coeficiente = Utilidades.obtenerImparAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1])*numerador+1;
         Integer independiente = Utilidades.obtenerParAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
