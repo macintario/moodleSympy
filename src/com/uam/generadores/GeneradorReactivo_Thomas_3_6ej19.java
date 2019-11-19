@@ -14,7 +14,7 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_2x12_000-->"
+     * "<!--Reactivo Thomas_3_6x19_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
@@ -50,13 +50,14 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{d$VARIABLE_DEPENDIENTE$}{d$VARIABLE_INDEPENDIENTE$}=\\frac{A}{2(B$VARIABLE_INDEPENDIENTE$-C)^{\\frac{D}{E}}}$$ <br/>"
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{B}}{2\\sqrt{C+Dx}}$$ <br/>"
             +"</strong></span><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
-            +"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito"
-            +" en su respuesta. Llene únicamente los cuadros apropiados:<br/></strong></span>"
-            +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:NUMERICAL:=$RESPUESTA_B$} <br/> C={:NUMERICAL:=$RESPUESTA_C$} <br/> D={:NUMERICAL:=$RESPUESTA_D$} <br/> E={:NUMERICAL:=$RESPUESTA_E$}"
+            //+"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito en su respuesta."
+            //+" Llene únicamente los cuadros apropiados:"
+            +"<br/></strong></span>"
+            +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}"
             +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
@@ -65,6 +66,8 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             ;
 
     private static final String EXPRESION="\\sqrt{\\frac{$CONSTANTEA$}{$CONSTANTEB$}-\\frac{$CONSTANTEC$x}{$CONSTANTED$}}";
+    private static  String FU="\\sqrt{u}";
+    private static  String GX="\\frac{$CONSTANTEA$}{$CONSTANTEB$}-\\frac{$CONSTANTEC$x}{$CONSTANTED$}}";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -73,33 +76,42 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
      * comentario dentro del texto del reactivo esta dado por la variable
      * $COMENTARIO$ en la plantilla del reactivo.
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.2_Ej_12_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_19_";
+    private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
 
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_COEFICIENTE[0],COTA_COEFICIENTE[1])*numerador+1;
-        Integer constanteC = Utilidades.obtenerParAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
-        Integer constanteD = Utilidades.obtenerParAleatorio(COTA_INDEPENDIENTE[0],COTA_INDEPENDIENTE[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1]);
+        Integer constanteC = Utilidades.obtenerParAleatorio(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1]);
+        Integer constanteD = Utilidades.obtenerParAleatorio(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1]);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        String respuestaA = -numerador*coeficiente;
-        Integer respuestaB = coeficiente;
-        Integer respuestaC = independiente;
+        Integer respuestaA = -constanteC;
+        Integer respuestaB = constanteB*constanteD;
+        Integer respuestaC = constanteA*constanteD;
+        Integer respuestaD = -constanteB*constanteC;
         String  parVariables= DatosReactivos.obtenerParesVariables();
         String  variableIndependiente=parVariables.substring(0, 1);
         String  variableDependiente=parVariables.substring(1, 2);
 
         //Sustitución de las variables por sus valores en el texto del reactivo
-//        String reactivo = PLANTILLA_REACTIVO.replace("$NUMERADOR$",numerador.toString());
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
         String expresion = EXPRESION;
-        expresion = expresion.replace("$NUMERADOR$",numerador.toString());
-        expresion = expresion.replace("$COEFICIENTE$", coeficiente.toString());
-        expresion = expresion.replace("$INDEPENDIENTE$", independiente.toString());
-        String solucion = solucionaSimbolico.solucionaSimbolicoConjugados(expresion);
+        expresion = expresion.replace("$CONSTANTEA$",constanteA.toString());
+        expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
+        expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
+        expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
+
+        GX = GX.replace("$CONSTANTEA$", constanteA.toString());
+        GX = GX.replace("$CONSTANTEB$", constanteB.toString());
+        GX = GX.replace("$CONSTANTEC$", constanteC.toString());
+        GX = GX.replace("$CONSTANTED$", constanteD.toString());
+
+
+        String solucion = solucionaSimbolico.reglaCadena(FU,GX);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
@@ -109,7 +121,6 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_B$", respuestaB.toString());
         reactivo = reactivo.replace("$RESPUESTA_C$", respuestaC.toString());
         reactivo = reactivo.replace("$RESPUESTA_D$", respuestaD.toString());
-        reactivo = reactivo.replace("$RESPUESTA_E$", respuestaE.toString());
 
         //Concatenando el separador de reactivos
         reactivo = reactivo.concat(SEPARADOR_REACTIVOS);

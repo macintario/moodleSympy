@@ -120,4 +120,60 @@ public class solucionaSimbolico {
             }
             return solucion;
         }
+    public static String reglaCadena(String fu, String gx)  {
+        String PLANTILLA_SYMPY= "from sympy import *\n" +
+                "from sympy.parsing.latex import parse_latex\n" +
+                "\n" +
+                "\n" +
+                "salida = open(\"/tmp/salida.txt\",\"w\")\n" +
+                "init_printing()\n" +
+                "x = var('x')\n" +
+                "u = var('u')\n" +
+                "f = parse_latex(r\"$FU$\")\n" +
+                "g = parse_latex(r\"$GX$\")\n" +
+                "salida.write(\"$$f(x)=%s$$<br/>\\n\" % latex(f.subs(u,g)))\n"+
+                "salida.write(\"$$f(u)=%s$$<br/>\\n\" % latex(f))\n" +
+                "salida.write(\"$$g(x)=%s$$<br/>\\n\" % latex(g))\n" +
+                "df = diff(f)\n" +
+                "dg = diff(g)\n" +
+                "salida.write(\"$$\\\\frac{df}{du}=%s$$<br/>\\n\" % latex(df))\n" +
+                "salida.write(\"$$g(x)=%s$$<br/>\\n\" %latex(dg))\n" +
+                "result = df*dg\n" +
+                "salida.write(\"$$\\\\frac{df}{du}\\\\frac{du}{dx}=%s$$<br/>\\n\" % latex(result))\n" +
+                "result = result.subs(u,g)\n" +
+                "salida.write(\"$$\\\\frac{df}{dx}=%s=%s$$<br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
+                "#salida.write(sp.latex(result))\n" +
+                "salida.close()"
+                ;
+        String script = PLANTILLA_SYMPY;
+        String solucion="";
+        script = script.replace("$FU$",fu);
+        script = script.replace("$GX$",gx);
+        try(FileWriter scriptFile = new FileWriter("/tmp/script.py");
+            BufferedWriter bw = new BufferedWriter(scriptFile)){
+            bw.write(script);
+        }catch (IOException e){
+            System.err.format("Escribiendo Script IOException: %s%n", e);
+        }
+        String cmd = "python3 /tmp/script.py";
+        try{
+            Process p = Runtime.getRuntime().exec(cmd);
+            int exitVal = p.waitFor();
+            System.out.println(exitVal);
+        }catch(java.io.IOException e){
+            System.err.format("Ejecutando Python IOException: %s%n", e);
+        }catch (Throwable t)
+        {
+            t.printStackTrace();
+        }
+        try {
+            solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion.txt")));
+            //File f = new File("/tmp/solucion.txt");
+            //f.delete();
+        }catch(java.io.IOException e){
+            System.err.format("Leyendo Solucion IOException: %s%n", e);
+        }
+        return solucion;
+    }
+
 }
