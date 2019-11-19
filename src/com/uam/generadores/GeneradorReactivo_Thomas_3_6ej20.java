@@ -50,7 +50,7 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
             +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{B}}{C\\sqrt{D+Ex}}$$ <br/>"
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A+Bx}{3(Cx+Dx^2)^E}$$ <br/>"
             +"</strong></span><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
@@ -65,9 +65,9 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="\\sqrt{$CONSTANTEA$x-$CONSTANTEB$x^2}";
-    private static  String FU="\\sqrt{u}";
-    private static  String GX="$CONSTANTEA$x-$CONSTANTEB$x^2";
+    private static final String EXPRESION="\\sqrt[3]{$CONSTANTEA$x-$CONSTANTEB$x^2}";
+    private   String FU="\\sqrt[3]{u}";
+    private   String GX="$CONSTANTEA$x-$CONSTANTEB$x^2";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -76,25 +76,26 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
      * comentario dentro del texto del reactivo esta dado por la variable
      * $COMENTARIO$ en la plantilla del reactivo.
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_19_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_20_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
-
+        String solucion="";
+        String f = FU;
+        String g = GX;
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
-        Integer constanteC = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], constanteC);
-
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1], constanteA);
+//        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], constanteC);
 //        Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1],constanteC);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = -constanteB;
-        Integer respuestaB = constanteC;
-        Integer respuestaC = 2*constanteC;
-        Integer respuestaD = constanteA*constanteC;
-        Integer respuestaE = -constanteB;
+        Integer respuestaA = constanteA;
+        Integer respuestaB = -2*constanteB;
+        Integer respuestaC = constanteA;
+        Integer respuestaD = -constanteB;
+        String  respuestaE = "2/3";
         String  parVariables= DatosReactivos.obtenerParesVariables();
         String  variableIndependiente=parVariables.substring(0, 1);
         String  variableDependiente=parVariables.substring(1, 2);
@@ -104,16 +105,16 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
         String expresion = EXPRESION;
         expresion = expresion.replace("$CONSTANTEA$",constanteA.toString());
         expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
-        expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
+//        expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
 //        expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
 
-        GX = GX.replace("$CONSTANTEA$", constanteA.toString());
-        GX = GX.replace("$CONSTANTEB$", constanteB.toString());
-        GX = GX.replace("$CONSTANTEC$", constanteC.toString());
+        g = g.replace("$CONSTANTEA$", constanteA.toString());
+        g = g.replace("$CONSTANTEB$", constanteB.toString());
+        //GX = GX.replace("$CONSTANTEC$", constanteC.toString());
         //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
 
 
-        String solucion = solucionaSimbolico.reglaCadena(FU,GX);
+        solucion = solucionaSimbolico.reglaCadena(f,g);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);

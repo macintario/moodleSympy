@@ -27,9 +27,9 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
      */
     private static final int NUMERO_DE_REACTIVOS = 3;
 
-    private static final int[] COTA_CONSTANTE_A = {2, 9};
-    private static final int[] COTA_CONSTANTE_B = {2, 9};
-    private static final int[] COTA_CONSTANTE_C = {5, 8};
+    private static final int[] COTA_CONSTANTE_A = {2, 8};
+    private static final int[] COTA_CONSTANTE_B = {2, 8};
+    private static final int[] COTA_CONSTANTE_C = {5, 9};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
 
@@ -65,9 +65,9 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="\\sqrt{$CONSTANTEA$-\\frac{$CONSTANTEB$x}{$CONSTANTEC$}}";
+    private static final String EXPRESION="\\sqrt{$CONSTANTEA$-\\frac{$CONSTANTEB$}{$CONSTANTEC$} x}";
     private static  String FU="\\sqrt{u}";
-    private static  String GX="$CONSTANTEA$-\\frac{$CONSTANTEB$x}{$CONSTANTEC$}}";
+    private static  String GX="$CONSTANTEA$-\\frac{$CONSTANTEB$}{$CONSTANTEC$} x}";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -81,11 +81,11 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
-
+        String f,g,solucion;
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
         Integer constanteC = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], constanteC);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], 3);
 
 //        Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1],constanteC);
         String comentarioReactivo
@@ -106,14 +106,15 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
         expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
         expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
 //        expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
-
-        GX = GX.replace("$CONSTANTEA$", constanteA.toString());
-        GX = GX.replace("$CONSTANTEB$", constanteB.toString());
-        GX = GX.replace("$CONSTANTEC$", constanteC.toString());
+        g=GX;
+        f=FU;
+        g = g.replace("$CONSTANTEA$", constanteA.toString());
+        g = g.replace("$CONSTANTEB$", constanteB.toString());
+        g = g.replace("$CONSTANTEC$", constanteC.toString());
   //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
 
 
-        String solucion = solucionaSimbolico.reglaCadena(FU,GX);
+        solucion = solucionaSimbolico.reglaCadena(f,g);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);

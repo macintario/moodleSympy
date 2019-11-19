@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 
 public class solucionaSimbolico {
@@ -121,41 +122,41 @@ public class solucionaSimbolico {
             return solucion;
         }
     public static String reglaCadena(String fu, String gx)  {
+        String archivo = String.valueOf(UUID.randomUUID());
         String PLANTILLA_SYMPY= "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
                 "\n" +
-                "salida = open(\"/tmp/solucion.txt\",\"w\")\n" +
+                "salida = open(\"/tmp/solucion_"+archivo+".txt\",\"w\")\n" +
                 "init_printing()\n" +
                 "x = var('x')\n" +
                 "u = var('u')\n" +
                 "f = parse_latex(r\"$FU$\")\n" +
                 "g = parse_latex(r\"$GX$\")\n" +
-                "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/>\\n\" % latex(f.subs(u,g)))\n"+
-                "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/>\\n\" % latex(f))\n" +
-                "salida.write(\"$$\\\\displaystyle g(x)=%s$$<br/>\\n\" % latex(g))\n" +
+                "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/><br/>\\n\" % latex(f.subs(u,g)))\n"+
+                "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/><br/>\\n\" % latex(f))\n" +
+                "salida.write(\"$$\\\\displaystyle g(x)=%s$$<br/><br/>\\n\" % latex(g))\n" +
                 "df = diff(f)\n" +
                 "dg = diff(g)\n" +
-                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s$$<br/>\\n\" % latex(df))\n" +
-                "salida.write(\"$$g(x)=%s$$<br/>\\n\" %latex(dg))\n" +
+                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s $$<br/><br/>\\n\" % latex(df))\n" +
+                "salida.write(\"$$\\\\displaystyle g(x)=%s$$<br/><br/>\\n\" %latex(dg))\n" +
                 "result = df*dg\n" +
-                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}\\\\frac{du}{dx}=%s$$<br/>\\n\" % latex(result))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{du}{dx} = %s$$<br/><br/>\\n\" % latex(result))\n" +
                 "result = result.subs(u,g)\n" +
-                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{dx}=%s=%s$$<br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
-                "#salida.write(sp.latex(result))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{dx}=%s=%s$$<br/><br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
                 "salida.close()"
                 ;
         String script = PLANTILLA_SYMPY;
         String solucion="";
         script = script.replace("$FU$",fu);
         script = script.replace("$GX$",gx);
-        try(FileWriter scriptFile = new FileWriter("/tmp/script.py");
+        try(FileWriter scriptFile = new FileWriter("/tmp/script_"+archivo+".py");
             BufferedWriter bw = new BufferedWriter(scriptFile)){
             bw.write(script);
         }catch (IOException e){
             System.err.format("Escribiendo Script IOException: %s%n", e);
         }
-        String cmd = "python3 /tmp/script.py";
+        String cmd = "python3 /tmp/script_"+archivo+".py";
         try{
             Process p = Runtime.getRuntime().exec(cmd);
             int exitVal = p.waitFor();
@@ -167,9 +168,11 @@ public class solucionaSimbolico {
             t.printStackTrace();
         }
         try {
-            solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion.txt")));
-            //File f = new File("/tmp/solucion.txt");
-            //f.delete();
+            solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion_"+archivo+".txt")));
+            File f = new File("/tmp/solucion_"+archivo+".txt");
+            f.delete();
+            File g = new File("/tmp/script_"+archivo+".py");
+            g.delete();
         }catch(java.io.IOException e){
             System.err.format("Leyendo Solucion IOException: %s%n", e);
         }

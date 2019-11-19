@@ -23,12 +23,17 @@ public class Constantes {
             + "    <generalfeedback format=\"html\">\n"
             + "      <text><![CDATA["
             + "<span style=\"color: #000000; font-size: large;\"><strong>Instrucciones para hacer autoevaluaciones y poder presentar examen de unidad.</strong></span><br/><br/>"
-            + "$$ a_2).$$ Nos interesa que usted domine el ejercicio aquí mostrado; para ello tendrá que seguir el procedimiento detallado que ofrece Symbolab."
-            + " "
-            +"(Cualquier duda con Symbolab, consulta a cualquier profesor de galoisenlinea, para ello acude a Sala SAV-01 en horarios de clase.) <br/>"
-            +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$$ a_3).$$ Realice tantas autoevaluaciones como usted lo necesite."
+            + "<p><span class=\"nolink\"><span class=\"MathJax_Preview\" style=\"color: inherit;\"></span><span class=\"MathJax\" id=\"MathJax-Element-13-Frame\" tabindex=\"0\" data-mathml=\"<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>a</mi><mo stretchy=&quot;false&quot;>)</mo><mo>.</mo><mo>&amp;#x2212;</mo></math>\" role=\"presentation\" style=\"position: relative;\"><nobr aria-hidden=\"true\"><span class=\"math\" id=\"MathJax-Span-116\" role=\"math\" style=\"width: 2.638em; display: inline-block;\"><span style=\"display: inline-block; position: relative; width: 2.169em; height: 0px; font-size: 122%;\"><span style=\"position: absolute; clip: rect(1.232em, 1002.11em, 2.579em, -999.997em); top: -2.163em; left: 0.003em;\"><span class=\"mrow\" id=\"MathJax-Span-117\"><span class=\"mi\" id=\"MathJax-Span-118\" style=\"font-family: MathJax_Math-italic;\">a</span><span class=\"mo\" id=\"MathJax-Span-119\" style=\"font-family: MathJax_Main;\">)</span><span class=\"mo\" id=\"MathJax-Span-120\" style=\"font-family: MathJax_Main;\">.</span><span class=\"mo\" id=\"MathJax-Span-121\" style=\"font-family: MathJax_Main; padding-left: 0.179em;\">−</span></span><span style=\"display: inline-block; width: 0px; height: 2.169em;\"></span></span></span><span style=\"display: inline-block; overflow: hidden; vertical-align: -0.354em; border-left: 0px solid; width: 0px; height: 1.361em;\"></span></span></nobr><span class=\"MJX_Assistive_MathML\" role=\"presentation\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>a</mi><mo stretchy=\"false\">)</mo><mo>.</mo><mo>−</mo></math></span></span><script type=\"math/tex\" id=\"MathJax-Element-13\"> </script></span>"
+            + " Nos interesa que usted domine el\n"
+            + "ejercicio aquí mostrado; para ello tendrá que seguir un procedimiento\n"
+            + "detallado, similar al que ofrece Symbolab. Cualquier duda, consulte a cualquier\n"
+            + "profesor de galoisenlinea, en los siguientes lugares y horarios:&nbsp; "
+            + "<a href=\"http://galois.azc.uam.mx/mate/propaganda/horarios.pdf\" target=\"_blank\"><img src=\"http://galois.azc.uam.mx/mate/imagenes/entrar.gif\" alt=\"\" width=\"80\" height=\"64\" role=\"presentation\" class=\"img-responsive atto_image_button_middle\"></a>"
+            +"</p>"
+            + "<p><span class=\"nolink\"><span class=\"MathJax_Preview\" style=\"color: inherit;\"></span><span class=\"MathJax\" id=\"MathJax-Element-14-Frame\" tabindex=\"0\" data-mathml=\"<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>b</mi><mo stretchy=&quot;false&quot;>)</mo><mo>.</mo><mo>&amp;#x2212;</mo></math>\" role=\"presentation\" style=\"position: relative;\"><nobr aria-hidden=\"true\"><span class=\"math\" id=\"MathJax-Span-122\" role=\"math\" style=\"width: 2.52em; display: inline-block;\"><span style=\"display: inline-block; position: relative; width: 2.052em; height: 0px; font-size: 122%;\"><span style=\"position: absolute; clip: rect(1.232em, 1001.99em, 2.579em, -999.997em); top: -2.163em; left: 0.003em;\"><span class=\"mrow\" id=\"MathJax-Span-123\"><span class=\"mi\" id=\"MathJax-Span-124\" style=\"font-family: MathJax_Math-italic;\">b</span><span class=\"mo\" id=\"MathJax-Span-125\" style=\"font-family: MathJax_Main;\">)</span><span class=\"mo\" id=\"MathJax-Span-126\" style=\"font-family: MathJax_Main;\">.</span><span class=\"mo\" id=\"MathJax-Span-127\" style=\"font-family: MathJax_Main; padding-left: 0.179em;\">−</span></span><span style=\"display: inline-block; width: 0px; height: 2.169em;\"></span></span></span><span style=\"display: inline-block; overflow: hidden; vertical-align: -0.354em; border-left: 0px solid; width: 0px; height: 1.361em;\"></span></span></nobr><span class=\"MJX_Assistive_MathML\" role=\"presentation\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mi>b</mi><mo stretchy=\"false\">)</mo><mo>.</mo><mo>−</mo></math></span></span><script type=\"math/tex\" id=\"MathJax-Element-14\"> </script></span> \n" +
+            "Realiza tantas autoevaluaciones como tú lo necesites. Entre más mejor !!!</p>"
             +"<br/><br/><span style=\"color: #000000; font-size: x-large\"><strong>SOLUCIÓN:</strong></span><br/>"
-            +"<center>$SOLUCION$</center>"
+            +"<center><br/>$SOLUCION$</center>"
             +"<span style=\"color: #ff0000; font-size: large\"><strong>PROCEDIMIENTO DE SOLUCION PASO A PASO</strong></span>"
             +"<br/><br/>En este ejercicio y con objeto de que uses uno de los mejores Sistemas Algebraicos Computacionales (CAS) llamado "
             +"<span style=\"color: #ff0000\"><strong>Symbolab</strong></span>, obtendrás el procedimiento de solución de este ejercicio paso a paso.<br/>"
@@ -43,24 +48,27 @@ public class Constantes {
             +"<li>Click en icono de Symbolab:<a title=\"Symbolab\" href=\"https://www.symbolab.com/solver\" target=\"_blank\">"
             +"<img title=\"Symbolab\" style=\"width: 100px; height: 70px;\" alt=\"c\" src=\"http://galois.azc.uam.mx/mate/propaganda/symbolab.jpg\" border=\"0\" height=\"40\" hspace=\"0\" width=\"40\"></a></li>"
             +"<li>Pega en la ventana de entrada de datos de Symbolab tu texto copiado. Allí obtendrás la solución del ejercicio paso a paso.</li></ul>"
-            +"<span style=\"color: #ff0000; font-size:x-large; \"><strong>Biblioteca en galoisenlinea:</strong></span><br/><br/><br/>"
-            +"<center>\n" +
-            "<span style=\"color: #000000; font-size: x-large;\"><strong>\n" +
-            "Detalles paso a paso para resolver  el ejercicio del libro de Thomas en página y número de ejercicio: Thomas147-9, Click....  en imagen \n" +
-            "<a title=\" matematicas en galoisenlinea\" href=\" http://galois.azc.uam.mx/mate/INTEGRAL/thomas147-9.pdf\" target=\" _blank\"><img title=\" Desigualdad cuadratica\" style=\" width:50px;height:50px;\" alt=\" c\" src=\" http://galois.azc.uam.mx/mate/imagenes/pdf.png\" border=\" 0\" height=\" 50\" hspace=\" 0\" width=\" 50\"></a>&nbsp;\n" +
-            "\n" +
-            "</strong></span></center>"
-            +"<strong>\n" +
-            "\n" +
-            "\t\n" +
-            "<br>\n" +
-            "<br>\n" +
-            "<br>\n" +
-            "\n" +
-            "<span style=\"color: #ff0000; font-size: large;\"><strong>\n" +
-            "LIBRO DE TEXTO Y SOLUCIONARIO AL LIBRO DE TEXTO:</strong></span><br>\n" +
-            "\t<br>\n" +
-            "TEXTO: Para teoría y ejercicios consulta el capítulo 3, página 102, 105, 115, 135  del libro: George B. Thomas, Jr. Decimosegunda edición \n" +
+            //+"<span style=\"color: #ff0000; font-size:x-large; \"><strong>Biblioteca en galoisenlinea:</strong></span><br/><br/><br/>"
+            +"<p style=\"text-align: left;\"><span style=\"color: rgb(255, 0, 0); font-size: x-large;\"><strong>Biblioteca en galoisenlinea:</strong></span>&nbsp; &nbsp;&nbsp;<strong style=\"text-align: center; color: rgb(0, 0, 0); font-size: x-large;\">Consulta material relacionado a este ejercicio aquí:&nbsp;&nbsp;<a href=\"http://galois.azc.uam.mx/mate/DIFERENCIAL/autoevaluacion1/index.html\" target=\"_blank\"><img src=\"http://galois.azc.uam.mx/mate/imagenes/folder3.webp\" alt=\"\" width=\"100\" height=\"75\" role=\"presentation\" class=\"img-responsive atto_image_button_text-bottom\"></a>&nbsp; &nbsp;&nbsp;</strong></p>"
+            +"<center>\n"
+            //+"<span style=\"color: #000000; font-size: x-large;\"><strong>\n"
+            //+"Detalles paso a paso para resolver  el ejercicio del libro de Thomas en página y número de ejercicio: Thomas147-9, Click....  en imagen \n"
+            //+"<a title=\" matematicas en galoisenlinea\" href=\" http://galois.azc.uam.mx/mate/INTEGRAL/thomas147-9.pdf\" target=\" _blank\"><img title=\" Desigualdad cuadratica\" style=\" width:50px;height:50px;\" alt=\" c\" src=\" http://galois.azc.uam.mx/mate/imagenes/pdf.png\" border=\" 0\" height=\" 50\" hspace=\" 0\" width=\" 50\"></a>&nbsp;\n"
+            //+"\n"
+            //+"</strong></span>"
+            +"</center>"
+            +"<strong>\n"
+            +"\n"
+            +"\t\n"
+            +"<br>\n"
+            +"<br>\n"
+            +"<br>\n"
+            +"\n"
+            +"<span style=\"color: #ff0000; font-size: large;\"><strong>\n"
+            +"LIBRO DE TEXTO Y SOLUCIONARIO AL LIBRO DE TEXTO:</strong></span><br>\n"
+            +"\t<br>\n"
+//          +  "TEXTO: Para teoría y ejercicios consulta el capítulo 3, página 102, 105, 115, 135  del libro: George B. Thomas, Jr. Decimosegunda edición \n"
+            +"TEXTO: Para teoría y ejercicios consulta el libro: George B. Thomas, Jr. Decimosegunda edición \n" +
             "Massachusetts Institute of Technology.\n" +
             "<a title=\"matematicas en galoisenlinea \" href=\"http://galois.azc.uam.mx/mate/diferencial/thomas.jpg\" target=\"_blank\"><img title=\"c\" style=\"width: 90px; height: 100px;\" alt=\"c\" src=\"http://galois.azc.uam.mx/mate/diferencial/thomas.jpg\" border=\"0\" height=\"50\" hspace=\"0\" width=\"50\"></a>\n" +
             "<br><br>&nbsp;\n" +
