@@ -9,18 +9,18 @@ import com.uam.utilidades.Utilidades;
 import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 
-public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_6x19_000-->"
+     * "<!--Reactivo Thomas_3_6x20_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej19.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej20.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -65,9 +65,9 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="\\sqrt{$CONSTANTEA$-\\frac{$CONSTANTEB$x}{$CONSTANTEC$}}";
+    private static final String EXPRESION="\\sqrt{$CONSTANTEA$x-$CONSTANTEB$x^2}";
     private static  String FU="\\sqrt{u}";
-    private static  String GX="$CONSTANTEA$-\\frac{$CONSTANTEB$x}{$CONSTANTEC$}}";
+    private static  String GX="$CONSTANTEA$x-$CONSTANTEB$x^2";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -110,7 +110,7 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
         GX = GX.replace("$CONSTANTEA$", constanteA.toString());
         GX = GX.replace("$CONSTANTEB$", constanteB.toString());
         GX = GX.replace("$CONSTANTEC$", constanteC.toString());
-  //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
+        //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
 
 
         String solucion = solucionaSimbolico.reglaCadena(FU,GX);
@@ -131,7 +131,8 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej19());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej20());
     }
+
 
 }

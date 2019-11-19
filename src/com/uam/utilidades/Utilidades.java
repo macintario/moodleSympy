@@ -74,6 +74,20 @@ public class Utilidades {
         return candidato;
     }
 
+    public static int obtenerImparAleatorioDistintoDe(int inferior, int superior, int distintoDe){
+        int intentos = MAXIMOS_INTENTOS_GENERACION_CON_CRITERIO;
+        int aleatorio = 0;
+        do{
+            aleatorio = obtenerImparAleatorio(inferior, superior);
+            intentos--;
+        }while(intentos>=0 && aleatorio == distintoDe);
+        if(intentos<0){
+            throw new RuntimeException("No se ha podido encontrar un numero aleatorio distinto de "+distintoDe+
+                    " usando la cota ["+inferior+"-"+superior+"]");
+        }
+        return aleatorio;
+    }
+
     public static int obtenerEnteroAleatorioDistintoDe(int inferior, int superior, int distintoDe){
         int intentos = MAXIMOS_INTENTOS_GENERACION_CON_CRITERIO;
         int aleatorio = 0;

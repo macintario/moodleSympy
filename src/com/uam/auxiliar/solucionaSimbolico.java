@@ -125,23 +125,23 @@ public class solucionaSimbolico {
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
                 "\n" +
-                "salida = open(\"/tmp/salida.txt\",\"w\")\n" +
+                "salida = open(\"/tmp/solucion.txt\",\"w\")\n" +
                 "init_printing()\n" +
                 "x = var('x')\n" +
                 "u = var('u')\n" +
                 "f = parse_latex(r\"$FU$\")\n" +
                 "g = parse_latex(r\"$GX$\")\n" +
-                "salida.write(\"$$f(x)=%s$$<br/>\\n\" % latex(f.subs(u,g)))\n"+
-                "salida.write(\"$$f(u)=%s$$<br/>\\n\" % latex(f))\n" +
-                "salida.write(\"$$g(x)=%s$$<br/>\\n\" % latex(g))\n" +
+                "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/>\\n\" % latex(f.subs(u,g)))\n"+
+                "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/>\\n\" % latex(f))\n" +
+                "salida.write(\"$$\\\\displaystyle g(x)=%s$$<br/>\\n\" % latex(g))\n" +
                 "df = diff(f)\n" +
                 "dg = diff(g)\n" +
-                "salida.write(\"$$\\\\frac{df}{du}=%s$$<br/>\\n\" % latex(df))\n" +
+                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s$$<br/>\\n\" % latex(df))\n" +
                 "salida.write(\"$$g(x)=%s$$<br/>\\n\" %latex(dg))\n" +
                 "result = df*dg\n" +
-                "salida.write(\"$$\\\\frac{df}{du}\\\\frac{du}{dx}=%s$$<br/>\\n\" % latex(result))\n" +
+                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}\\\\frac{du}{dx}=%s$$<br/>\\n\" % latex(result))\n" +
                 "result = result.subs(u,g)\n" +
-                "salida.write(\"$$\\\\frac{df}{dx}=%s=%s$$<br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{dx}=%s=%s$$<br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
                 "#salida.write(sp.latex(result))\n" +
                 "salida.close()"
                 ;
