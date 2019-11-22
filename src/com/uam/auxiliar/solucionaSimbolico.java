@@ -136,8 +136,8 @@ public class solucionaSimbolico {
                 "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/><br/>\\n\" % latex(f.subs(u,g)))\n"+
                 "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/><br/>\\n\" % latex(f))\n" +
                 "salida.write(\"$$\\\\displaystyle u(x)=%s$$<br/><br/>\\n\" % latex(g))\n" +
-                "df = diff(f)\n" +
-                "dg = diff(g)\n" +
+                "df = diff(f,u)\n" +
+                "dg = diff(g,x)\n" +
 //                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
 //                "salida.write(\"$$ $$\\n\")\n" +
                 "salida.write(\"$$\\\\displaystyle \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
@@ -172,9 +172,9 @@ public class solucionaSimbolico {
         try {
             solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion_"+archivo+".txt")));
             File f = new File("/tmp/solucion_"+archivo+".txt");
-            //f.delete();
+            f.delete();
             File g = new File("/tmp/script_"+archivo+".py");
-            //g.delete();
+            g.delete();
         }catch(java.io.IOException e){
             System.err.format("Leyendo Solucion IOException: %s%n", e);
         }
