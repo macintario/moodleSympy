@@ -135,15 +135,15 @@ public class solucionaSimbolico {
                 "g = parse_latex(r\"$GX$\")\n" +
                 "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/><br/>\\n\" % latex(f.subs(u,g)))\n"+
                 "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/><br/>\\n\" % latex(f))\n" +
-                "salida.write(\"$$\\\\displaystyle g(x)=%s$$<br/><br/>\\n\" % latex(g))\n" +
+                "salida.write(\"$$\\\\displaystyle u(x)=%s$$<br/><br/>\\n\" % latex(g))\n" +
                 "df = diff(f)\n" +
                 "dg = diff(g)\n" +
 //                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
-                "salida.write(\"$$ $$\\n\")\n" +
-//                "salida.write(\"$$\\\\displaystyle f'(u)=%s$$<br/><br/>\\n\" % latex(df))\n" +
-                "salida.write(\"$$\\\\displaystyle g'(x)=%s$$<br/><br/>\\n\" % latex(dg))\n" +
+//                "salida.write(\"$$ $$\\n\")\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{du}{dx}=%s$$<br/><br/>\\n\" % latex(dg))\n" +
                 "result = df*dg\n" +
-                "salida.write(\"$$\\\\displaystyle \\\\frac{du}{dx} = %s$$<br/><br/>\\n\" % latex(result))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{du}\\\\frac{du}{dx} = %s$$<br/><br/>\\n\" % latex(result))\n" +
                 "result = result.subs(u,g)\n" +
                 "salida.write(\"$$\\\\displaystyle \\\\frac{df}{dx}=%s=%s$$<br/><br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
                 "salida.close()"

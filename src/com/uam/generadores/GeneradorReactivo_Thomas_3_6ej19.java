@@ -28,8 +28,8 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
     private static final int NUMERO_DE_REACTIVOS = 3;
 
     private static final int[] COTA_CONSTANTE_A = {2, 8};
-    private static final int[] COTA_CONSTANTE_B = {2, 8};
-    private static final int[] COTA_CONSTANTE_C = {5, 9};
+    private static final int[] COTA_CONSTANTE_B = {2, 5};
+    private static final int[] COTA_CONSTANTE_C = {6, 9};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
 
@@ -41,28 +41,28 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             = "<span style=\"color: #ff0000,2E8B57; font-size: large;\"><strong>\n" +
             "galoisenlinea&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; http://galois.azc.uam.mx </strong></span>\n" +
             "<span style=\"color: #E38E03; font-size: large;\"><strong>\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla de la cadena </span> <br><br>"
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla de la cadena</strong></span> <br><br>\n"
             +"<span style=\"color: #ff0000; font-size: xx-large;\"><strong>\n"
             +"PROBLEMA:\n"
-            +"</strong></span>"
-            + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
+            +"</strong></span>\n"
+            + "<span style=\"color: #0000ff; font-size: x-large;\"><strong>"
             +"Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
-            +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
+            +"$$\\displaystyle y=$EXPRESION$ $$<br/>\n"
+            +"</strong><br/><br/>\n</span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{B}}{C\\sqrt{D+Ex}}$$ <br/>"
-            +"</strong></span><br/>"
-            +"<span style=\"color: #000000; font-size: medium;\"\"><strong>"
-            +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{B}}{C\\sqrt{D+Ex}}$$ <br/>\n"
+            +"</span><br/>\n"
+            +"<span style=\"color: #000000; font-size: medium;\"><strong>"
+            +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos.\n"
             //+"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito en su respuesta."
             //+" Llene únicamente los cuadros apropiados:"
-            +"<br/></strong></span>"
+            +"<br/></strong></span>\n"
             +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}<br/> E={:SHORTANSWER:=$RESPUESTA_E$}"
-            +"<br/>"
-            +"</center>"
+            +"<br/>\n"
+            +" "
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
-            "</strong></span>"
+            "</strong>\n"
             ;
 
     private static final String EXPRESION="\\sqrt{$CONSTANTEA$-\\frac{$CONSTANTEB$}{$CONSTANTEC$} x}";

@@ -41,7 +41,7 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
             = "<span style=\"color: #ff0000,2E8B57; font-size: large;\"><strong>\n" +
             "galoisenlinea&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; http://galois.azc.uam.mx </strong></span>\n" +
             "<span style=\"color: #E38E03; font-size: large;\"><strong>\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla de la cadena </span> <br><br>"
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla de la cadena</strong></span> <br><br>"
             +"<span style=\"color: #ff0000; font-size: xx-large;\"><strong>\n"
             +"PROBLEMA:\n"
             +"</strong></span>"
@@ -52,7 +52,7 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             +"$$\\displaystyle\\frac{df}{dx}=\\frac{A+Bx}{3(Cx+Dx^2)^E}$$ <br/>"
             +"</strong></span><br/>"
-            +"<span style=\"color: #000000; font-size: medium;\"\"><strong>"
+            +"<span style=\"color: #000000; font-size: medium;\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
             //+"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito en su respuesta."
             //+" Llene únicamente los cuadros apropiados:"
