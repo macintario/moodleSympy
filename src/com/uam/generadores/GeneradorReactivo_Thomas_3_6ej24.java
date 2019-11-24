@@ -9,18 +9,18 @@ import com.uam.utilidades.Utilidades;
 import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 
-public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_6x23_000-->"
+     * "<!--Reactivo Thomas_3_6x24_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej23.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej24.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -65,9 +65,9 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="(\\csc{$CONSTANTEA$x}-\\cot{$CONSTANTEB$x})^{-1}";
-    private   String FU="{u}^{-1}";
-    private   String GX="\\csc{$CONSTANTEA$x}-\\cot{$CONSTANTEB$x}";
+    private static final String EXPRESION="(\\sec{x}-\\tan{x})^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
+    private   String FU="{u}^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
+    private   String GX="\\sec{x}-\\tan{x}";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -76,7 +76,7 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
      * comentario dentro del texto del reactivo esta dado por la variable
      * $COMENTARIO$ en la plantilla del reactivo.
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_23_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_24_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
@@ -110,6 +110,8 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
 
         g = g.replace("$CONSTANTEA$", constanteA.toString());
         g = g.replace("$CONSTANTEB$", constanteB.toString());
+        f = f.replace("$CONSTANTEA$", constanteA.toString());
+        f = f.replace("$CONSTANTEB$", constanteB.toString());
         //GX = GX.replace("$CONSTANTEC$", constanteC.toString());
         //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
 
@@ -132,7 +134,7 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej23());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej24());
     }
 
 
