@@ -65,9 +65,12 @@ public class GeneradorReactivo_Thomas_3_6ej21 implements GeneradorReactivoCloze 
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{$CONSTANTEB$x}+\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{$CONSTANTED$x}";
+    private static final String EXPRESION="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{$CONSTANTEB$x}+" +
+            "\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{$CONSTANTED$x}";
     private   String FU="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{u}";
     private   String GX="$CONSTANTEB$x";
+    private   String HV="\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{v}";
+    private   String JX="$CONSTANTED$x";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -84,6 +87,8 @@ public class GeneradorReactivo_Thomas_3_6ej21 implements GeneradorReactivoCloze 
         String solucion="";
         String f = FU;
         String g = GX;
+        String h = HV;
+        String j = JX;
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1], constanteA);
@@ -118,7 +123,17 @@ public class GeneradorReactivo_Thomas_3_6ej21 implements GeneradorReactivoCloze 
         g = g.replace("$CONSTANTEC$", constanteC.toString());
         g = g.replace("$CONSTANTED$", constanteD.toString());
 
-        solucion = solucionaSimbolico.reglaCadena(f,g);
+        h = h.replace("$CONSTANTEA$", constanteA.toString());
+        h = h.replace("$CONSTANTEB$", constanteB.toString());
+        h = h.replace("$CONSTANTEC$", constanteC.toString());
+        h = h.replace("$CONSTANTED$", constanteD.toString());
+
+        j = j.replace("$CONSTANTEA$", constanteA.toString());
+        j = j.replace("$CONSTANTEB$", constanteB.toString());
+        j = j.replace("$CONSTANTEC$", constanteC.toString());
+        j = j.replace("$CONSTANTED$", constanteD.toString());
+
+        solucion = solucionaSimbolico.sumaReglaCadena(f,g,h,j);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);

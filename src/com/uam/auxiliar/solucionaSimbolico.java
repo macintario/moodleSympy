@@ -180,5 +180,76 @@ public class solucionaSimbolico {
         }
         return solucion;
     }
+    public static String sumaReglaCadena(String fu, String gx, String hv, String jx)  {
+        String archivo = String.valueOf(UUID.randomUUID());
+        String PLANTILLA_SYMPY= "from sympy import *\n" +
+                "from sympy.parsing.latex import parse_latex\n" +
+                "\n" +
+                "\n" +
+                "salida = open(\"/tmp/solucion_"+archivo+".txt\",\"w\")\n" +
+                "init_printing()\n" +
+                "x = var('x')\n" +
+                "u = var('u')\n" +
+                "v = var('v')\n" +
+                "f = parse_latex(r\"$FU$\")\n" +
+                "g = parse_latex(r\"$GX$\")\n" +
+                "h = parse_latex(r\"$HV$\")\n" +
+                "j = parse_latex(r\"$JX$\")\n" +
+                "salida.write(\"$$\\\\displaystyle f(x)=%s$$<br/><br/>\\n\" % latex(f.subs(u,g)+h.subs(v,j)))\n"+
+                "salida.write(\"$$\\\\displaystyle f(u)=%s$$<br/><br/>\\n\" % latex(f))\n" +
+                "salida.write(\"$$\\\\displaystyle u(x)=%s$$<br/><br/>\\n\" % latex(g))\n" +
+                "salida.write(\"$$\\\\displaystyle g(v)=%s$$<br/><br/>\\n\" % latex(h))\n" +
+                "salida.write(\"$$\\\\displaystyle v(x)=%s$$<br/><br/>\\n\" % latex(j))\n" +
+                "df = diff(f,u)\n" +
+                "dg = diff(g,x)\n" +
+                "dh = diff(h,v)\n" +
+                "dj = diff(j,x)\n" +
+//                "salida.write(\"$$\\\\displaystyle  \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
+//                "salida.write(\"$$ $$\\n\")\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{du}=%s$$<br/><br/>\\n\" % latex(df))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{du}{dx}=%s$$<br/><br/>\\n\" % latex(dg))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{dg}{dv}=%s$$<br/><br/>\\n\" % latex(dh))\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{dv}{dx}=%s$$<br/><br/>\\n\" % latex(dj))\n" +
+                "result = df*dg+dh*dj\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{du}\\\\frac{du}{dx}+ \\\\frac{dg}{dv}\\\\frac{dv}{dx} = %s$$<br/><br/>\\n\" % latex(result))\n" +
+                "result = result.subs(u,g)\n" +
+                "result = result.subs(v,j)\n" +
+                "salida.write(\"$$\\\\displaystyle \\\\frac{df}{dx}=%s=%s$$<br/><br/>\\n\" % (latex(result), latex(result.cancel())))\n" +
+                "salida.close()"
+                ;
+        String script = PLANTILLA_SYMPY;
+        String solucion="";
+        script = script.replace("$FU$",fu);
+        script = script.replace("$GX$",gx);
+        script = script.replace("$HV$",hv);
+        script = script.replace("$JX$",jx);
+        try(FileWriter scriptFile = new FileWriter("/tmp/script_"+archivo+".py");
+            BufferedWriter bw = new BufferedWriter(scriptFile)){
+            bw.write(script);
+        }catch (IOException e){
+            System.err.format("Escribiendo Script IOException: %s%n", e);
+        }
+        String cmd = "python3 /tmp/script_"+archivo+".py";
+        try{
+            Process p = Runtime.getRuntime().exec(cmd);
+            int exitVal = p.waitFor();
+            System.out.println(exitVal);
+        }catch(java.io.IOException e){
+            System.err.format("Ejecutando Python IOException: %s%n", e);
+        }catch (Throwable t)
+        {
+            t.printStackTrace();
+        }
+        try {
+            solucion = new String(Files.readAllBytes(Paths.get("/tmp/solucion_"+archivo+".txt")));
+            File f = new File("/tmp/solucion_"+archivo+".txt");
+            //f.delete();
+            File g = new File("/tmp/script_"+archivo+".py");
+            g.delete();
+        }catch(java.io.IOException e){
+            System.err.format("Leyendo Solucion IOException: %s%n", e);
+        }
+        return solucion;
+    }
 
 }
