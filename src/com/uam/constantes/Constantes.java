@@ -45,7 +45,7 @@ public class Constantes {
             +"<center><span style=\"color:#ff0000; fontsize:medium;\"><strong>La derivada de la función $$f(x)$$ es:</strong></span><br/><br/>"
             +"<span style=\"color: #0000ff; font-size:x-large;\"><strong> "
             +"\\frac{d}{dx}\\left($EXPRESION$ \\right)"
-            + "</strong></span></center></li>"
+            + "</strong></span></center></li><br/>"
             +"<li>Click en icono de Symbolab:<a title=\"Symbolab\" href=\"https://www.symbolab.com/solver\" target=\"_blank\">"
             +"<img title=\"Symbolab\" style=\"width: 100px; height: 70px;\" alt=\"c\" src=\"http://galois.azc.uam.mx/mate/propaganda/symbolab.jpg\" border=\"0\" height=\"40\" hspace=\"0\" width=\"40\"></a></li>"
             +"<li>Pega en la ventana de entrada de datos de Symbolab tu texto copiado. Allí obtendrás la solución del ejercicio paso a paso.</li></ul>"
