@@ -27,11 +27,6 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
      */
     private static final int NUMERO_DE_REACTIVOS = 3;
 
-    private static final int[] COTA_CONSTANTE_A = {2, 8};
-    private static final int[] COTA_CONSTANTE_B = {2, 5};
-    private static final int[] COTA_CONSTANTE_C = {6, 9};
-    private static final int[] COTA_CONSTANTE_D = {2, 9};
-
 
     /**
      * El texto del reactivo, las variables se encuentran en mayúsculas y
@@ -51,19 +46,26 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
             +"</strong><br/><br/>\n</span><span style=\"color: #ff0000; font-size: x-large;\"><strong><center>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que:</center></strong></span><br/><br/>"
             +"<center>$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{B}}{C\\sqrt{D+Ex}}$$</center> <br/>\n"
-            +"</span><br/>\n"
+            +"<br/>\n"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
-            +"Usted deberá calcular la derivada $$\\displaystyle f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos.\n"
-            +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. </strong></span><br/><center>\n"
-            +"$$\\displaystyle A=$$\n{1:SHORTANSWER:=$RESPUESTA_A$} <br/>\n $$\\displaystyle B=$$\n{1:SHORTANSWER:=$RESPUESTA_B$} <br/>\n"
-            +"$$\\displaystyle C=$$\n{1:SHORTANSWER:=$RESPUESTA_C$} <br/>\n $$\\displaystyle D=$$\n{1:SHORTANSWER:=$RESPUESTA_D$}<br/>\n"
-            +"$$\\displaystyle E=$$\n{1:SHORTANSWER:=$RESPUESTA_E$}\n"
-            +"</center><br/>\n"
+            +"Usted deberá calcular la derivada $$f'(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos.\n"
+            +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. </strong></span><br/><center><br>\n"
+            +"$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/>$$B=$${1:SHORTANSWER:=$RESPUESTA_B$}<br/>"
+            +"$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/>"
+            +"$$E=$${1:SHORTANSWER:=$RESPUESTA_E$}"
+            +"<br/>\n"
             +" "
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
-            "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
-            "</strong>\n"
+            "¿ Revisión de su ejercicio ? Escribirá en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
+            "</strong></span>\n"
+            +" "
             ;
+
+    private static final int[] COTA_CONSTANTE_A = {2, 8};
+    private static final int[] COTA_CONSTANTE_B = {2, 7};
+    private static final int[] COTA_CONSTANTE_C = {6, 9};
+    private static final int[] COTA_CONSTANTE_D = {2, 9};
+
 
     private static final String EXPRESION="\\sqrt{$CONSTANTEA$-\\frac{$CONSTANTEB$}{$CONSTANTEC$} x}";
     private static  String FU="\\sqrt{u}";
@@ -84,8 +86,8 @@ public class GeneradorReactivo_Thomas_3_6ej19 implements GeneradorReactivoCloze 
         String f,g,solucion;
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
-        Integer constanteC = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], 3);
+        Integer constanteC = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1]);
 
 //        Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1],constanteC);
         String comentarioReactivo

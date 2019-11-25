@@ -31,7 +31,7 @@ public class Constantes {
             + "<a href=\"http://galois.azc.uam.mx/mate/propaganda/horarios.pdf\" target=\"_blank\">"
             +"<img src=\"http://galois.azc.uam.mx/mate/imagenes/entrar.gif\" alt=\"\" width=\"80\" "
             +"height=\"64\" role=\"presentation\" class=\"img-responsive atto_image_button_middle\"></a><br/>"
-            + "b).-"
+            + "<p>b).-"
             +"Realiza tantas autoevaluaciones como tú lo necesites. Entre más mejor !!!</p>"
             +"<br/><br/><span style=\"color: #000000; font-size: x-large\"><strong>SOLUCIÓN:</strong></span><br/>"
             +"<center><br/><span style=\"color: #000000; font-size: large\">$SOLUCION$</span></center>"
