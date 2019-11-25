@@ -53,7 +53,7 @@ public class GeneradorReactivo_Thomas_3_6ej20  implements GeneradorReactivoCloze
             +"$$\\displaystyle\\frac{df}{dx}=\\frac{A+Bx}{3(Cx+Dx^2)^E}$$ <br/>"
             +"</strong><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
-            +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
+            +"Usted deberá calcular la derivada $$f'(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
             +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. </strong></span><br/><center><br>\n"
             +" $$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> $$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> $$E=$${1:SHORTANSWER:=$RESPUESTA_E$}"
             +"<br/>"
