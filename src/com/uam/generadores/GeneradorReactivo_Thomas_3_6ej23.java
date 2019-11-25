@@ -50,14 +50,16 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
             +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A+Bx}{3(Cx+Dx^2)^E}$$ <br/>"
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\cot({Bx})csc({Cx})+D\\csc^2({Ex})}{({\\csc({Fx})-cot({Gx})})^2}$$ <br/>"
             +"</strong></span><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
-            //+"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito en su respuesta."
-            //+" Llene únicamente los cuadros apropiados:"
+            +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             +"<br/></strong></span>"
-            +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}<br/> E={:SHORTANSWER:=$RESPUESTA_E$}"
+            +"A={1:SHORTANSWER:=$RESPUESTA_A$} <br/> B={1:SHORTANSWER:=$RESPUESTA_B$}<br/>"
+            +"C={1:SHORTANSWER:=$RESPUESTA_C$} <br/> D={1:SHORTANSWER:=$RESPUESTA_D$}<br/>"
+            +"E={1:SHORTANSWER:=$RESPUESTA_E$} <br/> F={1:SHORTANSWER:=$RESPUESTA_F$}<br/>"
+            +"G={1:SHORTANSWER:=$RESPUESTA_G$} <br/> "
             +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
@@ -91,11 +93,13 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
 //        Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1],constanteC);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA;
-        Integer respuestaB = -2*constanteB;
+        Integer respuestaA = -constanteA;
+        Integer respuestaB = constanteA;
         Integer respuestaC = constanteA;
-        Integer respuestaD = -constanteB;
-        String  respuestaE = "2/3";
+        Integer respuestaD = constanteB;
+        Integer respuestaE = constanteB;
+        Integer respuestaF = constanteA;
+        Integer respuestaG = constanteB;
         String  parVariables= DatosReactivos.obtenerParesVariables();
         String  variableIndependiente=parVariables.substring(0, 1);
         String  variableDependiente=parVariables.substring(1, 2);
@@ -125,6 +129,8 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
         reactivo = reactivo.replace("$RESPUESTA_C$", respuestaC.toString());
         reactivo = reactivo.replace("$RESPUESTA_D$", respuestaD.toString());
         reactivo = reactivo.replace("$RESPUESTA_E$", respuestaE.toString());
+        reactivo = reactivo.replace("$RESPUESTA_F$", respuestaF.toString());
+        reactivo = reactivo.replace("$RESPUESTA_G$", respuestaG.toString());
 
         //Concatenando el separador de reactivos
         reactivo = reactivo.concat(SEPARADOR_REACTIVOS);

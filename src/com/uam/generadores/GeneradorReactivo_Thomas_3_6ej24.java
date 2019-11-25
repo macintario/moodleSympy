@@ -27,12 +27,6 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
      */
     private static final int NUMERO_DE_REACTIVOS = 3;
 
-    private static final int[] COTA_CONSTANTE_A = {2, 9};
-    private static final int[] COTA_CONSTANTE_B = {2, 9};
-    private static final int[] COTA_CONSTANTE_C = {5, 8};
-    private static final int[] COTA_CONSTANTE_D = {2, 9};
-
-
     /**
      * El texto del reactivo, las variables se encuentran en mayúsculas y
      * encerradas entre signos $. La tildes deben ser colocadas con código utf8.
@@ -54,8 +48,7 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
             +"</strong></span><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
-            //+"Utilice la respuesta parcial que ofrecemos, cada letra representa un dígito en su respuesta."
-            //+" Llene únicamente los cuadros apropiados:"
+            +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             +"<br/></strong></span>"
             +" A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}<br/> E={:SHORTANSWER:=$RESPUESTA_E$}"
             +"<br/>"
@@ -64,6 +57,11 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>"
             ;
+
+    private static final int[] COTA_CONSTANTE_A = {2, 9};
+    private static final int[] COTA_CONSTANTE_B = {2, 8};
+    private static final int[] COTA_CONSTANTE_C = {5, 8};
+    private static final int[] COTA_CONSTANTE_D = {2, 9};
 
     private static final String EXPRESION="(\\sec{x}-\\tan{x})^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
     private   String FU="{u}^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
@@ -86,7 +84,7 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
         String g = GX;
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0],COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_C[0],COTA_CONSTANTE_C[1], constanteA);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], constanteA);
 //        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0],COTA_CONSTANTE_B[1], constanteC);
 //        Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0],COTA_CONSTANTE_D[1],constanteC);
         String comentarioReactivo
@@ -116,7 +114,7 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
         //      GX = GX.replace("$CONSTANTED$", constanteD.toString());
 
 
-        solucion = solucionaSimbolico.reglaCadenaNoCancel(f,g);
+        solucion = solucionaSimbolico.reglaCadenaTrig(f,g);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$",expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
