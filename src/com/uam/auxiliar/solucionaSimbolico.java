@@ -8,8 +8,28 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+/**
+ * solucionaSimbolico genera scripts en python para hacer derivación simbolica usando
+ * la biblioteca SymPy (https://www.sympy.org/)
+ * Se usa Python3 y al parecer puede funcionar con Python2
+ * Para poder leer las expresiones en LaTex es necesario instalar (pip o conda) antlr4
+ * $ pip3 install antlr4-python3-runtime
+ * o
+ * $ conda install --channel=conda-forge antlr-python-runtime
+ * <p>
+ * Habría que explorar si las bibliotecas necesarias se pueden usar con jython y evitar la salida a shell
+ *
+ * @author: Iván Gutierrez
+ */
+
 public class solucionaSimbolico {
-    
+    /**
+     * ejecutaPython recibe un script en python, lo ejecuta y regresa la salida de la ejecución
+     *
+     * @param code Script en python para ejecutar.
+     * @return cadena con el resultado de la ejecución.
+     * @author: Iván Gutierrez
+     */
     private static String ejecutaPython(String code) {
         String uuid = String.valueOf(UUID.randomUUID());
         String solucion = "";
@@ -53,6 +73,13 @@ public class solucionaSimbolico {
 
     }
 
+    /**
+     * Incremento hace derivación simbólica de la expresión usando el límite que tiende a cero del incremento
+     *
+     * @param expresion cadena en LaTex con expresión para derivar
+     * @return cadena con el proceso de derivación usando el método del incremento que tiende a cero
+     * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.2"
+     */
     public static String Incremento(String expresion) {
         String PLANTILLA_SYMPY =
                 "from sympy import *\n" +
@@ -77,6 +104,14 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     * solucionaSimbolicoConjugados deriva simbólicamente expresiones algebráicas en LaTex usando el método de limite que tiende a cero y
+     * empeando además la multiplicación por el conjugado del incremento para eliminar la ideterminación
+     *
+     * @param expresion cadena en LaTex con expresión para derivar
+     * @return cadena con el proceso de derivación usando el método del incremento que tiende a cero
+     * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.2"
+     */
     public static String solucionaSimbolicoConjugados(String expresion) {
         String PLANTILLA_SYMPY =
                 "from sympy import *\n" +
@@ -113,8 +148,17 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     * reglaCadena deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
+     * se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x)
+     *
+     * @param fu función de la variable de sustitución  (u)
+     * @param gx función de la variable original (x)
+     * @return cadena con el proceso de derivación usando la regla de la cadena
+     * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.6"
+     */
+
     public static String reglaCadena(String fu, String gx) {
-        String archivo = String.valueOf(UUID.randomUUID());
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
@@ -146,8 +190,19 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     * reglaCadenaNoCancel deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
+     * se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x).
+     * A diferencia del método reglaCadena evita una simplificación al final
+     *
+     * @param fu función de la variable de sustitución  (u)
+     * @param gx función de la variable original (x)
+     * @return cadena con el proceso de derivación usando la regla de la cadena
+     * @see class reglaCadena
+     */
+
     public static String reglaCadenaNoCancel(String fu, String gx) {
-        String archivo = String.valueOf(UUID.randomUUID());
+
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
@@ -179,8 +234,18 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     * reglaCadenaTrig deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
+     * se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x).
+     * El método intenta hacer simplificación de expresiones trigonométricas
+     *
+     * @param fu función de la variable de sustitución  (u)
+     * @param gx función de la variable original (x)
+     * @return cadena con el proceso de derivación usando la regla de la cadena
+     * @see class reglaCadena
+     */
     public static String reglaCadenaTrig(String fu, String gx) {
-        String archivo = String.valueOf(UUID.randomUUID());
+
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
@@ -212,8 +277,18 @@ public class solucionaSimbolico {
         return solucion;
     }
 
-    public static String sumaReglaCadena(String fu, String gx, String hv, String jx) {
-        String archivo = String.valueOf(UUID.randomUUID());
+    /**
+     * sumaReglaCadena deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena para una suma
+     * de dos sumandos.
+     * Se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x) para el primer sumando.
+     * Se escoge una variable de sustitucion "v" y se ponen las expresiones en términos de h(v) y v(x)=j(x) para el segundo sumando.
+     * El método muestra los pasos de derivación con la regla de la cadena para cada sumando y efectúa la suma sibólica
+     *
+     * @param fu función de la variable de sustitución  (u)
+     * @param gx función de la variable original (x)
+     * @return cadena con el proceso de derivación usando la regla de la cadena
+     * @see class reglaCadena
+     */    public static String sumaReglaCadena(String fu, String gx, String hv, String jx) {
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
