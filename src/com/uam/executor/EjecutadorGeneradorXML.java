@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 
 /**
- *
+ * Crea un archivo XML para importar en Moodle
  * @author Iván Gutiérrez Rodríguez
  */
 public class EjecutadorGeneradorXML {

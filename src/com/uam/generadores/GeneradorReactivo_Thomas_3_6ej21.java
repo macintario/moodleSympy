@@ -47,7 +47,7 @@ public class GeneradorReactivo_Thomas_3_6ej21 implements GeneradorReactivoCloze 
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que:" +
             " </strong><br/><br/>"
-            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\cos{Bx}-C\\sin{Dx}}{\\pi}$$</center> <br/>\n"
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A\\cos{(Bx)}-C\\sin{(Dx)}}{\\pi}$$</center> <br/>\n"
             +"</strong><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
             +"Usted deberá calcular la derivada $$f'(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
@@ -67,8 +67,8 @@ public class GeneradorReactivo_Thomas_3_6ej21 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_C = {2, 9};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
-    private static final String EXPRESION="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{$CONSTANTEB$x}+" +
-            "\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{$CONSTANTED$x}";
+    private static final String EXPRESION="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{($CONSTANTEB$x)}+" +
+            "\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{($CONSTANTED$x)}";
     private   String FU="\\frac{$CONSTANTEA$}{$CONSTANTEB$\\pi}\\sin{u}";
     private   String GX="$CONSTANTEB$x";
     private   String HV="\\frac{$CONSTANTEC$}{$CONSTANTED$\\pi}\\cos{v}";
