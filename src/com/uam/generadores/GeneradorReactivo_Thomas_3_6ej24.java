@@ -50,8 +50,8 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
             +"<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             +"<br/></strong></span>"
-            +"A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> "
-            +"C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}<br/> "
+            +"$$A=$${:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${:SHORTANSWER:=$RESPUESTA_B$} <br/> "
+            +"$$C=$${:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
