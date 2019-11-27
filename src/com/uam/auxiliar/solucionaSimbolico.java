@@ -288,7 +288,8 @@ public class solucionaSimbolico {
      * @param gx función de la variable original (x)
      * @return cadena con el proceso de derivación usando la regla de la cadena
      * @see class reglaCadena
-     */    public static String sumaReglaCadena(String fu, String gx, String hv, String jx) {
+     */
+    public static String sumaReglaCadena(String fu, String gx, String hv, String jx) {
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "\n" +
