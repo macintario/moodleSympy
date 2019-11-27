@@ -62,8 +62,8 @@ public class GeneradorReactivo_Thomas_3_6ej22 implements GeneradorReactivoCloze 
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="\\sin{\\frac{$CONSTANTEA$}{$CONSTANTEB$}\\pi x}+" +
-            "\\cos{\\frac{$CONSTANTEC$}{$CONSTANTED$}\\pi x}";
+    private static final String EXPRESION="\\sin{(\\frac{$CONSTANTEA$}{$CONSTANTEB$}\\pi x)}+" +
+            "\\cos{(\\frac{$CONSTANTEC$}{$CONSTANTED$}\\pi x)}";
     private   String FU="\\sin{u}";
     private   String GX="\\frac{$CONSTANTEA$}{$CONSTANTEB$}\\pi x";
     private   String HV="\\cos{v}";

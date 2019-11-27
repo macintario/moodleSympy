@@ -44,7 +44,7 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
             +"$$\\displaystyle y=$EXPRESION$ $$<br/>"
             +"</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             +"<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A(\\sin{x}-1)}{B\\cos^2{x}}*(\\sec x - \\tan x)^{C/D}$$ <br/>"
+            +"$$\\displaystyle\\frac{df}{dx}=\\frac{A(\\sin{(x)}-1)}{B\\cos^2{(x)}}(\\sec{(x)} - \\tan{(x)})^{C/D}$$ <br/>"
             +"</strong></span><br/>"
             +"<span style=\"color: #000000; font-size: medium;\"><strong>"
             +"Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
@@ -52,7 +52,6 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
             +"<br/></strong></span>"
             +"A={:SHORTANSWER:=$RESPUESTA_A$} <br/> B={:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             +"C={:SHORTANSWER:=$RESPUESTA_C$} <br/> D={:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            //+"E={:SHORTANSWER:=$RESPUESTA_E$}"
             +"<br/>"
             +"</center>"
             +"<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
@@ -65,9 +64,9 @@ public class GeneradorReactivo_Thomas_3_6ej24  implements GeneradorReactivoCloze
     private static final int[] COTA_CONSTANTE_C = {5, 8};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
-    private static final String EXPRESION="(\\sec{x}-\\tan{x})^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
+    private static final String EXPRESION="(\\sec{(x)}-\\tan{(x)})^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
     private   String FU="{u}^{\\frac{$CONSTANTEA$}{$CONSTANTEB$}}";
-    private   String GX="\\sec{x}-\\tan{x}";
+    private   String GX="\\sec{(x)}-\\tan{(x)}";
 
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo

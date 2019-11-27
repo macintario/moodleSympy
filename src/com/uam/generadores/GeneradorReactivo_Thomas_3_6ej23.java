@@ -67,7 +67,7 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
             "</strong></span>"
             ;
 
-    private static final String EXPRESION="(\\csc{$CONSTANTEA$x}-\\cot{$CONSTANTEB$x})^{-1}";
+    private static final String EXPRESION="(\\csc{($CONSTANTEA$x)}-\\cot{($CONSTANTEB$x)})^{-1}";
     private   String FU="{u}^{-1}";
     private   String GX="\\csc{$CONSTANTEA$x}-\\cot{$CONSTANTEB$x}";
 
