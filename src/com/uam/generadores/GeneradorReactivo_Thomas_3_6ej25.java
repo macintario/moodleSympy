@@ -1,6 +1,6 @@
 package com.uam.generadores;
 /*
- *  TODO: agregar pregunta adicional para el modelo 26 de Noviembre, imprementar derigada de suma de productos por regla de la cadena
+ *
  *
  *
  * */
@@ -71,12 +71,14 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_C = {5, 8};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
-    private static final String EXPRESION = "x^2\\sin^4(x)+x \\cos^{-2}(x)";
-    private String FU = "\\sin{u}";
-    private String GX = "\\frac{$CONSTANTEA$}{$CONSTANTEB$}\\pi x";
-    private String HV = "\\cos{v}";
-    private String JX = "\\frac{$CONSTANTEC$}{$CONSTANTED$}\\pi x";
-
+    private static final String EXPRESION = "x^$CONSTANTEA$\\sin^$CONSTANTEB$(x)+x \\cos^{-$CONSTANTEC$}($CONSTANTED$x)";
+    private String UX = "x^$CONSTANTEA$";
+    private String VX = "\\sin^$CONSTANTEB$(x)";
+    private String WX = "x";
+    private String ZX = "\\cos^{-$CONSTANTEC$}($CONSTANTED$x)";
+/**
+ * TODO Arreglar resultados de "cajas"
+ */
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
      * sera el número de reactivo. Éste se insertará como un comentario html
@@ -90,10 +92,10 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
-        String f = FU;
-        String g = GX;
-        String h = HV;
-        String j = JX;        //Generación de variables aleatorias con parámetros de ejecución
+        String ux = UX;
+        String vx = VX;
+        String wx = WX;
+        String zx = ZX;        //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteA);
         Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteB);
@@ -115,27 +117,27 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
         expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
         expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
         expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
-        f = f.replace("$CONSTANTEA$", constanteA.toString());
-        f = f.replace("$CONSTANTEB$", constanteB.toString());
-        f = f.replace("$CONSTANTEC$", constanteC.toString());
-        f = f.replace("$CONSTANTED$", constanteD.toString());
+        ux = ux.replace("$CONSTANTEA$", constanteA.toString());
+        ux = ux.replace("$CONSTANTEB$", constanteB.toString());
+        ux = ux.replace("$CONSTANTEC$", constanteC.toString());
+        ux = ux.replace("$CONSTANTED$", constanteD.toString());
 
-        g = g.replace("$CONSTANTEA$", constanteA.toString());
-        g = g.replace("$CONSTANTEB$", constanteB.toString());
-        g = g.replace("$CONSTANTEC$", constanteC.toString());
-        g = g.replace("$CONSTANTED$", constanteD.toString());
+        vx = vx.replace("$CONSTANTEA$", constanteA.toString());
+        vx = vx.replace("$CONSTANTEB$", constanteB.toString());
+        vx = vx.replace("$CONSTANTEC$", constanteC.toString());
+        vx = vx.replace("$CONSTANTED$", constanteD.toString());
 
-        h = h.replace("$CONSTANTEA$", constanteA.toString());
-        h = h.replace("$CONSTANTEB$", constanteB.toString());
-        h = h.replace("$CONSTANTEC$", constanteC.toString());
-        h = h.replace("$CONSTANTED$", constanteD.toString());
+        wx = wx.replace("$CONSTANTEA$", constanteA.toString());
+        wx = wx.replace("$CONSTANTEB$", constanteB.toString());
+        wx = wx.replace("$CONSTANTEC$", constanteC.toString());
+        wx = wx.replace("$CONSTANTED$", constanteD.toString());
 
-        j = j.replace("$CONSTANTEA$", constanteA.toString());
-        j = j.replace("$CONSTANTEB$", constanteB.toString());
-        j = j.replace("$CONSTANTEC$", constanteC.toString());
-        j = j.replace("$CONSTANTED$", constanteD.toString());
+        zx = zx.replace("$CONSTANTEA$", constanteA.toString());
+        zx = zx.replace("$CONSTANTEB$", constanteB.toString());
+        zx = zx.replace("$CONSTANTEC$", constanteC.toString());
+        zx = zx.replace("$CONSTANTED$", constanteD.toString());
 
-        solucion = solucionaSimbolico.sumaReglaCadena(f, g, h, j);
+        solucion = solucionaSimbolico.sumaProductosCadena(ux, vx, wx, zx);
         reactivo = reactivo.replace("$SOLUCION$", solucion);
         reactivo = reactivo.replace("$EXPRESION$", expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
