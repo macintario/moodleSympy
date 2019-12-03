@@ -49,26 +49,20 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
             + "$$\\displaystyle y=$EXPRESION$ $$<br/>"
             + "</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
-            + "$$\\displaystyle\\frac{df}{dx}=\\frac{A(\\sin{(x)}-1)}{B\\cos^2{(x)}}(\\sec{(x)} - \\tan{(x)})^{C/D}$$ <br/>"
+            + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
             + "Usted deberá calcular la derivada $$f(x)$$ utilizando la regla de la cadena, indicando en papel todos los pasos. "
             + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             + "<br/></strong></span>"
-            + "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
-            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "<br/>"
-            + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
-            + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {20:SHORTANSWER:=4,7,-3,4}:</center> <br>"
-            + "</center>"
+            + "$RESPUESTAS$<br/>"
             + "<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {2, 5};
-    private static final int[] COTA_CONSTANTE_B = {5, 9};
-    private static final int[] COTA_CONSTANTE_C = {5, 8};
+    private static final int[] COTA_CONSTANTE_A = {3, 5};
+    private static final int[] COTA_CONSTANTE_B = {2, 9};
+    private static final int[] COTA_CONSTANTE_C = {2, 8};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
 
     private static final String EXPRESION = "x^$CONSTANTEA$\\sin^$CONSTANTEB$(x)+x \\cos^{-$CONSTANTEC$}($CONSTANTED$x)";
@@ -76,6 +70,19 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
     private String VX = "\\sin^$CONSTANTEB$(x)";
     private String WX = "x";
     private String ZX = "\\cos^{-$CONSTANTEC$}($CONSTANTED$x)";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=Ax^B\\sin^C(x)\\cos(x) + Dx^E\\sin^F(x) + Gx\\sin(Hx)\\cos^J(Kx)+\\cos^M(Nx)$$ <br/>";
+    private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
+            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
+            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$}<br/> "
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$}<br/> "
+            + "$$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/> $$N=$${1:SHORTANSWER:=$RESPUESTA_N$}<br/> "
+            + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
+            + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
+            + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_M$,$RESPUESTA_N$}</center> <br>"
+            + "</center>";
 /**
  * TODO Arreglar resultados de "cajas"
  */
@@ -103,9 +110,17 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = constanteA;
-        Integer respuestaB = constanteB;
-        Integer respuestaC = constanteA - constanteB;
-        Integer respuestaD = constanteB;
+        Integer respuestaB = constanteA;
+        Integer respuestaC = constanteB - 1;
+        Integer respuestaD = constanteA;
+        Integer respuestaE = constanteA - 1;
+        Integer respuestaF = constanteB;
+        Integer respuestaG = constanteC*constanteD;
+        Integer respuestaH = constanteD;
+        Integer respuestaJ = -constanteC - 1;
+        Integer respuestaK = constanteD;
+        Integer respuestaM = -constanteC;
+        Integer respuestaN = constanteD;
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
         String variableDependiente = parVariables.substring(1, 2);
@@ -113,10 +128,32 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
         //Sustitución de las variables por sus valores en el texto del reactivo
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
         String expresion = EXPRESION;
+
         expresion = expresion.replace("$CONSTANTEA$", constanteA.toString());
         expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
         expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
         expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
+
+        reactivo = reactivo.replace("$RESPUESTAS$", CAJAS_RESPUESTA);
+        reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
+        reactivo = reactivo.replace("$EXPRESION$", expresion);
+        reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
+        reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
+        reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);
+        reactivo = reactivo.replace("$RESPUESTA_A$", respuestaA.toString());
+        reactivo = reactivo.replace("$RESPUESTA_B$", respuestaB.toString());
+        reactivo = reactivo.replace("$RESPUESTA_C$", respuestaC.toString());
+        reactivo = reactivo.replace("$RESPUESTA_D$", respuestaD.toString());
+        reactivo = reactivo.replace("$RESPUESTA_E$", respuestaE.toString());
+        reactivo = reactivo.replace("$RESPUESTA_F$", respuestaF.toString());
+        reactivo = reactivo.replace("$RESPUESTA_G$", respuestaG.toString());
+        reactivo = reactivo.replace("$RESPUESTA_H$", respuestaH.toString());
+        reactivo = reactivo.replace("$RESPUESTA_J$", respuestaJ.toString());
+        reactivo = reactivo.replace("$RESPUESTA_K$", respuestaK.toString());
+        reactivo = reactivo.replace("$RESPUESTA_M$", respuestaM.toString());
+        reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
+
+
         ux = ux.replace("$CONSTANTEA$", constanteA.toString());
         ux = ux.replace("$CONSTANTEB$", constanteB.toString());
         ux = ux.replace("$CONSTANTEC$", constanteC.toString());
@@ -138,16 +175,8 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
         zx = zx.replace("$CONSTANTED$", constanteD.toString());
 
         solucion = solucionaSimbolico.sumaProductosCadena(ux, vx, wx, zx);
+
         reactivo = reactivo.replace("$SOLUCION$", solucion);
-        reactivo = reactivo.replace("$EXPRESION$", expresion);
-        reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
-        reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
-        reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);
-        reactivo = reactivo.replace("$RESPUESTA_A$", respuestaA.toString());
-        reactivo = reactivo.replace("$RESPUESTA_B$", respuestaB.toString());
-        reactivo = reactivo.replace("$RESPUESTA_C$", respuestaC.toString());
-        reactivo = reactivo.replace("$RESPUESTA_D$", respuestaD.toString());
-//        reactivo = reactivo.replace("$RESPUESTA_E$", respuestaE.toString());
 
         //Concatenando el separador de reactivos
         reactivo = reactivo.concat(SEPARADOR_REACTIVOS);

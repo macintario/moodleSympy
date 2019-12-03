@@ -373,8 +373,8 @@ public class solucionaSimbolico {
                 "salida.write(\"$$w'=%s$$<br/><br/>\\n\" % latex(dw))\n" +
                 "salida.write(\"$$z'=%s$$<br/><br/><br/>\\n\" % latex(dz))\n" +
                 "result = du*v+dv*u+dw*z+dz*w\n" +
-                "salida.write(\"$$y'=(u\\'v+v\\'u)+(w\\'z+z\\'w)$$<br/>\\n\")\n" +
-                "salida.write(\"$$y'=[(%s) (%s) +(%s) (%s)]+[(%s) (%s)]+[(%s)(%s)]$$<br/>\\n\"% ( latex(du), latex(v),latex(dv), latex(u), latex(dw), latex(z),latex(dz), latex(w) ) )\n" +
+                "salida.write(\"$$y'=(u\\'v+v\\'u)+(w\\'z+z\\'w)$$<br/><br/>\\n\")\n" +
+                "salida.write(\"$$y'=[(%s) (%s) +(%s) (%s)]+[(%s) (%s)]+[(%s)(%s)]$$<br/><br/>\\n\"% ( latex(du), latex(v),latex(dv), latex(u), latex(dw), latex(z),latex(dz), latex(w) ) )\n" +
                 "salida.write(\"$$y'=%s$$<br/>\\n\" % latex(result))\n" +
                 "salida.close()"
                 ;
