@@ -70,21 +70,21 @@ public class GeneradorReactivo_Thomas_3_6ej26 implements GeneradorReactivoCloze 
     private String VX = "\\sin^{-$CONSTANTEB$}(x)";
     private String WX = "- \\frac{x}{$CONSTANTEC$}";
     private String ZX = "\\cos^{$CONSTANTED$}(x)";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=Ax^B\\sin^C(x)\\cos(x) + Dx^E\\sin^F(x) + Gx\\sin(Hx)\\cos^J(Kx)+\\cos^M(Nx)$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=Ax^B\\sin^C(x)\\cos(x) + Dx^E\\sin^F(x) + \\frac{G}{K}x\\sin(x)\\cos^J(x)+\\frac{H}{N}\\cos^M(x)$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$}<br/> "
-            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$}<br/> "
-            + "$$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/> $$N=$${1:SHORTANSWER:=$RESPUESTA_N$}<br/> "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/> "
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/> "
+            + "$$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/> $$N=$${1:SHORTANSWER:=$RESPUESTA_N$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,M,N$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
             + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_M$,$RESPUESTA_N$}</center> <br>"
             + "</center>";
 /**
- * TODO Arreglar resultados de "cajas"
+ *
  */
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
@@ -109,18 +109,18 @@ public class GeneradorReactivo_Thomas_3_6ej26 implements GeneradorReactivoCloze 
         Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1], constanteC);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = constanteB - 1;
+        Integer respuestaA = constanteA*constanteB;
+        Integer respuestaB = -1;
+        Integer respuestaC = -constanteB - 1;
         Integer respuestaD = constanteA;
-        Integer respuestaE = constanteA - 1;
-        Integer respuestaF = constanteB;
-        Integer respuestaG = constanteC*constanteD;
-        Integer respuestaH = constanteD;
-        Integer respuestaJ = -constanteC - 1;
-        Integer respuestaK = constanteD;
-        Integer respuestaM = -constanteC;
-        Integer respuestaN = constanteD;
+        Integer respuestaE = -2;
+        Integer respuestaF = -constanteB;
+        Integer respuestaG = constanteD;
+        Integer respuestaH = 1;
+        Integer respuestaJ = constanteD - 1;
+        Integer respuestaK = constanteC;
+        Integer respuestaM = constanteD;
+        Integer respuestaN = constanteC;
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
         String variableDependiente = parVariables.substring(1, 2);

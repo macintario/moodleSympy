@@ -78,7 +78,7 @@ public class GeneradorReactivo_Thomas_3_6ej25 implements GeneradorReactivoCloze 
             + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$}<br/> "
             + "$$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/> $$N=$${1:SHORTANSWER:=$RESPUESTA_N$}<br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J.K,M,N$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
             + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_M$,$RESPUESTA_N$}</center> <br>"
