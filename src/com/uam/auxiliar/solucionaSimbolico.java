@@ -387,4 +387,48 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    public static String sumaPotenciasCadena(String u, String v, String w, String z){
+        String PLANTILLA_SYMPY = "from sympy import *\n" +
+                "from sympy.parsing.latex import parse_latex\n" +
+                "#Solución a derivada de y=uv+wz\n" +
+                "\n" +
+                "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
+                "init_printing()\n" +
+                "x = var('x')\n" +
+                "u = var('u')\n" +
+                "v = var('v')\n" +
+                "w = var('w')\n" +
+                "z = var('z')\n" +
+                "u = parse_latex(r\"$U$\")\n" +
+                "v = parse_latex(r\"$V$\")\n" +
+                "w = parse_latex(r\"$W$\")\n" +
+                "z = parse_latex(r\"$Z$\")\n" +
+                "du = diff(u)\n" +
+                "dv = diff(v)\n" +
+                "dw = diff(w)\n" +
+                "dz = diff(z)\n" +
+                "salida.write(\"$$y=%s$$<br/><br/>\\n\" % latex(u*v+w*z))\n" +
+                "salida.write(\"$$u=%s$$<br/><br/>\\n\" % latex(u))\n" +
+                "salida.write(\"$$v=%s$$<br/><br/>\\n\" % latex(v))\n" +
+                "salida.write(\"$$w=%s$$<br/><br/>\\n\" % latex(w))\n" +
+                "salida.write(\"$$z=%s$$<br/><br/><br/>\\n\" % latex(z))\n" +
+                "salida.write(\"$$u'=%s$$<br/><br/>\\n\" % latex(du))\n" +
+                "salida.write(\"$$v'=%s$$<br/><br/>\\n\" % latex(dv))\n" +
+                "salida.write(\"$$w'=%s$$<br/><br/>\\n\" % latex(dw))\n" +
+                "salida.write(\"$$z'=%s$$<br/><br/><br/>\\n\" % latex(dz))\n" +
+                "result = du*v+dv*u+dw*z+dz*w\n" +
+                "salida.write(\"$$y'=(u\\'v+v\\'u)+(w\\'z+z\\'w)$$<br/><br/>\\n\")\n" +
+                "salida.write(\"$$y'=[(%s) (%s) +(%s) (%s)]+[(%s) (%s)]+[(%s)(%s)]$$<br/><br/>\\n\"% ( latex(du), latex(v),latex(dv), latex(u), latex(dw), latex(z),latex(dz), latex(w) ) )\n" +
+                "salida.write(\"$$y'=%s$$<br/>\\n\" % latex(result))\n" +
+                "salida.close()"
+                ;
+        String script = PLANTILLA_SYMPY;
+        script = script.replace("$U$", u);
+        script = script.replace("$V$", v);
+        script = script.replace("$W$", w);
+        script = script.replace("$Z$", z);
+        String solucion = ejecutaPython(script);
+        return solucion;
+    }
+
 }
