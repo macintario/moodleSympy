@@ -65,13 +65,15 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_C = {2, 8};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
+    private static final int[] COTA_CONSTANTE_F = {2, 9};
+    private static final int[] COTA_CONSTANTE_G = {2, 9};
 
-    private static final String EXPRESION = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$} + ($CONSTANTEE$-\\frac{1}{2x^2})^{-1}";
-    private String UX = "\\frac{$CONSTANTEA$}{x}";
-    private String VX = "\\sin^{-$CONSTANTEB$}(x)";
+    private static final String EXPRESION = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$} + ($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})^{-1}";
+    private String UX = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$}";
+    private String VX = "($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})^{-1}";
     private String WX = "- \\frac{x}{$CONSTANTEC$}";
     private String ZX = "\\cos^{$CONSTANTED$}(x)";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=Ax^B\\sin^C(x)\\cos(x) + Dx^E\\sin^F(x) + \\frac{G}{K}x\\sin(x)\\cos^J(x)+\\frac{H}{N}\\cos^M(x)$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A(Bx-C)+\\frac{Dx^{E}}{(Fx^{G}+H)^{J}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
@@ -109,6 +111,8 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteB);
         Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1], constanteC);
         Integer constanteE = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
+        Integer constanteF = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
+        Integer constanteG = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteA);
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = constanteA*constanteB;
@@ -136,6 +140,8 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
         expresion = expresion.replace("$CONSTANTED$", constanteD.toString());
         expresion = expresion.replace("$CONSTANTEE$", constanteE.toString());
+        expresion = expresion.replace("$CONSTANTEF$", constanteF.toString());
+        expresion = expresion.replace("$CONSTANTEG$", constanteG.toString());
 
         reactivo = reactivo.replace("$RESPUESTAS$", CAJAS_RESPUESTA);
         reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
@@ -181,7 +187,8 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         zx = zx.replace("$CONSTANTED$", constanteD.toString());
         zx = zx.replace("$CONSTANTEE$", constanteE.toString());
 
-        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, vx, wx, zx);
+//        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, vx, wx, zx);
+        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, vx);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 

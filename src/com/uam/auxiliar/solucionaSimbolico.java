@@ -387,7 +387,7 @@ public class solucionaSimbolico {
         return solucion;
     }
 
-    public static String sumaPotenciasCadena(String u, String v, String w, String z){
+    public static String sumaPotenciasCadena(String u, String v){
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "#Solución a derivada de y=uv+wz\n" +
