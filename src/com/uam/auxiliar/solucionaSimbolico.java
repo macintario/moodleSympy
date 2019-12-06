@@ -387,7 +387,7 @@ public class solucionaSimbolico {
         return solucion;
     }
 
-    public static String sumaPotenciasCadena(String ux, String n, String vx, String m){
+    public static String sumaPotenciasCadena(String a, String ux, String n, String vx, String m){
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
                 "#Solución a derivada de y=uv+wz\n" +
@@ -395,22 +395,24 @@ public class solucionaSimbolico {
                 "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
                 "init_printing()\n" +
                 "x = var('x')\n" +
-                "u = var('u')\n" +
+                "a = var('a')\n" +
+                "u = var('u',commutative=false)\n" +
                 "n = var('n')\n" +
                 "v = var('v')\n" +
                 "m = var('m')\n" +
-                "ux = parse_latex(r\"$UX$\")\n" +
+                "a = UnevaluatedExpr(parse_latex(r\"$A$\"))\n" +
+                "ux = parse_latex(r\"$UX$\",)\n" +
                 "n = $N$\n" +
                 "vx = parse_latex(r\"$VX$\")\n" +
                 "m = $M$\n" +
                 "f1 = u ** n\n" +
                 "f2 = v ** m\n" +
-                "fx = ux ** n + vx ** m\n" +
+                "fx = a*ux ** n + vx ** m\n" +
                 "salida.write(\"$$f(x)=%s$$<br><br>\\n\" % latex(fx))\n" +
                 "# u(x)\n" +
                 "salida.write(\"$$u(x)=%s$$<br><br>\\n\" % latex(ux))\n" +
-                "dfu = diff(u ** n)\n" +
-                "salida.write(\"$$\\\\frac{d}{du}(%s)=%s$$<br><br>\\n\" % (latex(u ** n), latex(dfu)))\n" +
+                "dfu = diff(a*u ** n,u).doit()\n" +
+                "salida.write(\"$$\\\\frac{d}{du}(%s)=%s=%s$$<br><br>\\n\" % (latex(a*u ** n), latex(a*diff(u**n)), latex(dfu)))\n" +
                 "dux = diff(ux)\n" +
                 "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(ux), latex(dux)))\n" +
                 "df1 = dfu * dux\n" +
@@ -418,7 +420,7 @@ public class solucionaSimbolico {
                 "df1 = df1.subs(u, ux)\n" +
                 "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f1.subs(u, ux)), latex(df1)))\n" +
                 "# v(x)\n" +
-                "salida.write(\"$$v(x)=%s$$$<br><br>\\n\" % latex(vx))\n" +
+                "salida.write(\"$$v(x)=%s$$<br><br>\\n\" % latex(vx))\n" +
                 "dfv = diff(v ** m)\n" +
                 "salida.write(\"$$\\\\frac{d}{dv}(%s)=%s$$<br><br>\\n\" % (latex(v ** m), latex(dfv)))\n" +
                 "dvx = diff(vx)\n" +
@@ -426,9 +428,10 @@ public class solucionaSimbolico {
                 "df2 = dfv * dvx\n" +
                 "salida.write(\"$$\\\\frac{d}{du}\\\\frac{du}{dx}=%s$$<br><br>\\n\" % latex(df2))\n" +
                 "df2 = df2.subs(v, vx)\n" +
+                "\n" +
                 "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f2.subs(v, vx)), latex(df2)))\n" +
                 "\n" +
-                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(fx), latex(df1 + df2)))\n"+
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(fx), latex(df1 + df2.factor())))\n"+
                 "salida.close()"
                 ;
         String script = PLANTILLA_SYMPY;
@@ -436,6 +439,7 @@ public class solucionaSimbolico {
         script = script.replace("$VX$", vx);
         script = script.replace("$N$", n);
         script = script.replace("$M$", m);
+        script = script.replace("$A$", a);
         String solucion = ejecutaPython(script);
         return solucion;
     }
