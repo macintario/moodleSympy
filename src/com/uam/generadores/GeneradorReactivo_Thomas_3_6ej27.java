@@ -46,7 +46,7 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
             + "</strong></span>"
             + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
             + "Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            + "$$\\displaystyle y=$EXPRESION$ $$<br/>"
+            + "$$\\displaystyle f(x)=$EXPRESION$ $$<br/>"
             + "</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             + "$RESPUESTA$"
@@ -62,29 +62,30 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
 
     private static final int[] COTA_CONSTANTE_A = {2, 7};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
-    private static final int[] COTA_CONSTANTE_C = {2, 8};
+    private static final int[] COTA_CONSTANTE_C = {3, 8};
     private static final int[] COTA_CONSTANTE_D = {2, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
     private static final int[] COTA_CONSTANTE_F = {2, 9};
     private static final int[] COTA_CONSTANTE_G = {2, 9};
+    private static final int[] COTA_CONSTANTE_H = {2, 9};
 
-    private static final String EXPRESION = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$} + ($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})^{-1}";
-    private String UX = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$}";
-    private String VX = "($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})^{-1}";
-    private String WX = "- \\frac{x}{$CONSTANTEC$}";
-    private String ZX = "\\cos^{$CONSTANTED$}(x)";
+    private static final String EXPRESION = "$CONSTANTEA$($CONSTANTEB$x-$CONSTANTEC$)^{$CONSTANTED$} + ($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})^{-$CONSTANTEH$}";
+    private String UX = "($CONSTANTEB$x-$CONSTANTEC$)";
+    private String VX = "($CONSTANTEE$-\\frac{1}{$CONSTANTEF$x^{$CONSTANTEG$}})";
+    private String N = "$CONSTANTED$";
+    private String M = "$CONSTANTEH$";
+    private String A = "$CONSTANTEA$";
     private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A(Bx-C)+\\frac{Dx^{E}}{(Fx^{G}+H)^{J}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
             + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/> "
-            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/> "
-            + "$$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/> $$N=$${1:SHORTANSWER:=$RESPUESTA_N$} <br/>"
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,M,N$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J$$ en este orden y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
-            + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_M$,$RESPUESTA_N$}</center> <br>"
+            + "$RESPUESTA_J$}</center> <br>"
             + "</center>";
 /**
  *
@@ -95,6 +96,7 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
      * para que no sea visible para el usuario. El lugar de inserción de este
      * comentario dentro del texto del reactivo esta dado por la variable
      * $COMENTARIO$ en la plantilla del reactivo.
+     *
      */
     private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_27_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
@@ -104,15 +106,18 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         String solucion = "";
         String ux = UX;
         String vx = VX;
-        String wx = WX;
-        String zx = ZX;        //Generación de variables aleatorias con parámetros de ejecución
+        String n = N;
+        String m = M;
+        //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteA);
-        Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteB);
+        Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
         Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1], constanteC);
-        Integer constanteE = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
-        Integer constanteF = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
+        Integer constanteE = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
+        Integer constanteF = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
         Integer constanteG = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteA);
+        Integer constanteH = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteA);
+
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = constanteA*constanteB;
@@ -142,6 +147,7 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         expresion = expresion.replace("$CONSTANTEE$", constanteE.toString());
         expresion = expresion.replace("$CONSTANTEF$", constanteF.toString());
         expresion = expresion.replace("$CONSTANTEG$", constanteG.toString());
+        expresion = expresion.replace("$CONSTANTEH$", constanteG.toString());
 
         reactivo = reactivo.replace("$RESPUESTAS$", CAJAS_RESPUESTA);
         reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
@@ -168,27 +174,34 @@ public class GeneradorReactivo_Thomas_3_6ej27 implements GeneradorReactivoCloze 
         ux = ux.replace("$CONSTANTEC$", constanteC.toString());
         ux = ux.replace("$CONSTANTED$", constanteD.toString());
         ux = ux.replace("$CONSTANTEE$", constanteE.toString());
+        ux = ux.replace("$CONSTANTEF$", constanteF.toString());
+        ux = ux.replace("$CONSTANTEG$", constanteG.toString());
+        ux = ux.replace("$CONSTANTEH$", constanteH.toString());
 
         vx = vx.replace("$CONSTANTEA$", constanteA.toString());
         vx = vx.replace("$CONSTANTEB$", constanteB.toString());
         vx = vx.replace("$CONSTANTEC$", constanteC.toString());
         vx = vx.replace("$CONSTANTED$", constanteD.toString());
         vx = vx.replace("$CONSTANTEE$", constanteE.toString());
+        vx = vx.replace("$CONSTANTEF$", constanteF.toString());
+        vx = vx.replace("$CONSTANTEG$", constanteG.toString());
+        vx = vx.replace("$CONSTANTEH$", constanteH.toString());
 
-        wx = wx.replace("$CONSTANTEA$", constanteA.toString());
-        wx = wx.replace("$CONSTANTEB$", constanteB.toString());
-        wx = wx.replace("$CONSTANTEC$", constanteC.toString());
-        wx = wx.replace("$CONSTANTED$", constanteD.toString());
-        wx = wx.replace("$CONSTANTEE$", constanteE.toString());
+        n = n.replace("$CONSTANTEA$", constanteA.toString());
+        n = n.replace("$CONSTANTEB$", constanteB.toString());
+        n = n.replace("$CONSTANTEC$", constanteC.toString());
+        n = n.replace("$CONSTANTED$", constanteD.toString());
+        n = n.replace("$CONSTANTEE$", constanteE.toString());
+        n = n.replace("$CONSTANTED$", constanteD.toString());
 
-        zx = zx.replace("$CONSTANTEA$", constanteA.toString());
-        zx = zx.replace("$CONSTANTEB$", constanteB.toString());
-        zx = zx.replace("$CONSTANTEC$", constanteC.toString());
-        zx = zx.replace("$CONSTANTED$", constanteD.toString());
-        zx = zx.replace("$CONSTANTEE$", constanteE.toString());
+        m = m.replace("$CONSTANTEA$", constanteA.toString());
+        m = m.replace("$CONSTANTEB$", constanteB.toString());
+        m = m.replace("$CONSTANTEC$", constanteC.toString());
+        m = m.replace("$CONSTANTED$", constanteD.toString());
+        m = m.replace("$CONSTANTEE$", constanteE.toString());
+        m = m.replace("$CONSTANTEH$", constanteH.toString());
 
-//        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, vx, wx, zx);
-        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, vx);
+        solucion = solucionaSimbolico.sumaPotenciasCadena(ux, n, vx, m);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 
