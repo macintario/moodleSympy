@@ -444,4 +444,57 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    public static String productoPotenciasCadena(String ux, String n, String vx, String m){
+        String PLANTILLA_SYMPY = "from sympy import *\n" +
+                "from sympy.parsing.latex import parse_latex\n" +
+                "#Solución a derivada de y=u^n*v^m\n" +
+                "\n" +
+                "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
+                "init_printing()\n" +
+                "x = var('x')\n" +
+                "u = var('u')\n" +
+                "n = var('n')\n" +
+                "v = var('v')\n" +
+                "m = var('m')\n" +
+                "ux = parse_latex(r\"$UX$\")\n" +
+                "n = $N$\n" +
+                "vx = parse_latex(r\"$VX$\")\n" +
+                "m = $M$\n" +
+                "f1 = u ** n\n" +
+                "f2 = v ** m\n" +
+                "fx = ux ** n * vx ** m\n" +
+                "salida.write(\"$$f(x)=%s$$<br><br>\\n\" % latex(fx))\n" +
+                "# u(x)\n" +
+                "salida.write(\"$$u(x)=%s$$<br><br>\\n\" % latex(ux))\n" +
+                "dfu = diff(u ** n)\n" +
+                "salida.write(\"$$\\\\frac{d}{du}(%s)=%s$$<br><br>\\n\" % (latex(u ** n), latex(dfu)))\n" +
+                "dux = diff(ux)\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(ux), latex(dux)))\n" +
+                "df1 = dfu * dux\n" +
+                "salida.write(\"$$\\\\frac{d}{du}\\\\frac{du}{dx}=%s$$<br><br>\\n\" % latex(df1))\n" +
+                "df1 = df1.subs(u, ux)\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f1.subs(u, ux)), latex(df1)))\n" +
+                "# v(x)\n" +
+                "salida.write(\"$$v(x)=%s$$<br><br>\\n\" % latex(vx))\n" +
+                "dfv = diff(v ** m)\n" +
+                "salida.write(\"$$\\\\frac{d}{dv}(%s)=%s$$<br><br>\\n\" % (latex(v ** m), latex(dfv)))\n" +
+                "dvx = diff(vx)\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(vx), latex(dvx)))\n" +
+                "df2 = dfv * dvx\n" +
+                "salida.write(\"$$\\\\frac{d}{du}\\\\frac{du}{dx}=%s$$<br><br>\\n\" % latex(df2))\n" +
+                "df2 = df2.subs(v, vx)\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f2.subs(v, vx)), latex(df2)))\n" +
+                "\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(u^{n}(x) v^{m}(x))=v^{m}(x) nu^{n-1}(x)\\\\frac{du}{dx} + u^{n}(x)mv^{m-1}(x)\\\\frac{dv}{dx}$$<br><br>\\n\")\n" +
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=[(%s)(%s)]+[(%s)(%s)]=%s$$<br><br>\\n\" % (latex(fx),latex(df1),latex(vx**m), latex(df2), latex(ux**n), latex(df1*vx**m + df2*ux**n)))\n"
+                ;
+        String script = PLANTILLA_SYMPY;
+        script = script.replace("$UX$", ux);
+        script = script.replace("$VX$", vx);
+        script = script.replace("$N$", n);
+        script = script.replace("$M$", m);
+        String solucion = ejecutaPython(script);
+        return solucion;
+    }
+
 }
