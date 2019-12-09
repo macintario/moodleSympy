@@ -13,6 +13,7 @@ import com.uam.utilidades.Utilidades;
 
 import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
+import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
 public class GeneradorReactivo_Thomas_3_6ej28 implements GeneradorReactivoCloze {
     /**
@@ -75,7 +76,7 @@ public class GeneradorReactivo_Thomas_3_6ej28 implements GeneradorReactivoCloze 
     private String N = "$CONSTANTEG$";
     private String M = "-$CONSTANTEC$";
     private String A = "\\frac{1}{$CONSTANTED$}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A}{(Bx+C)^{D}}- \\frac{(Ex+F)^{G}}{x^{H}} $$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A}{(Bx+C)^{D}}- \\frac{E(Fx+G)^{H}}{Jx^{K}} $$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
@@ -116,24 +117,30 @@ public class GeneradorReactivo_Thomas_3_6ej28 implements GeneradorReactivoCloze 
         Integer constanteD = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
         Integer constanteE = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
         Integer constanteF = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
-        Integer constanteG = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteD);
+//        Integer constanteG = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteD);
+        Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA*constanteB*constanteC;
-        Integer respuestaB = constanteB;
-        Integer respuestaC = constanteC;
-        Integer respuestaD = constanteD-1;
+        Integer respuestaA = -constanteB*(-constanteC);
+        Integer respuestaB = -constanteB;
+        Integer respuestaC = constanteA;
+        Integer respuestaD = constanteD+1;
 
-        Integer respuestaE = (int) -Math.pow(constanteF,constanteH)*constanteG*constanteH;
-        Integer respuestaF = constanteG*constanteH-1;
-        Integer respuestaG = constanteE*constanteF;
-        Integer respuestaH = constanteG;
-        Integer respuestaJ = -1;
-        Integer respuestaK = constanteH+1;
+        Integer respuestaE = constanteE*constanteG;
+        Integer respuestaF = 1;
+        Integer respuestaG = 1;
+        Integer respuestaH = constanteG-1;
+        Integer respuestaJ = constanteD;
+        Integer respuestaK = constanteG+1;
         Integer respuestaM = constanteD;
         Integer respuestaN = constanteC;
+        //Checar fracción reductible respuestaE y respuestaJ
+        Integer divisor = maximoComunDivisor(respuestaE, respuestaJ);
+        respuestaE /= divisor;
+        respuestaJ /= divisor;
+
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
         String variableDependiente = parVariables.substring(1, 2);

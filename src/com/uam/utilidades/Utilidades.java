@@ -325,4 +325,18 @@ public class Utilidades {
     public static String aString(SingularPlural obj, boolean plural){
         return plural ? obj.getPlural() : obj.getSingular();
     }
+
+    /**
+     *  Máximo Común Divisor de dos enteros, útil para reducción de fracciones
+      * @param a primer número
+     * @param b segundo número
+     * @return MCD
+     * @author Iván Gutiérrez
+     */
+    public static Integer maximoComunDivisor(int a, int b){
+        if(b==0)
+            return a;
+        else
+            return maximoComunDivisor(b,a%b);
+    }
 }
