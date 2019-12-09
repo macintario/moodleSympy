@@ -431,7 +431,7 @@ public class solucionaSimbolico {
                 "\n" +
                 "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f2.subs(v, vx)), latex(df2)))\n" +
                 "\n" +
-                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(fx), latex(df1 + df2.factor())))\n"+
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(fx), latex(df1.factor() + df2.factor())))\n"+
                 "salida.close()"
                 ;
         String script = PLANTILLA_SYMPY;
