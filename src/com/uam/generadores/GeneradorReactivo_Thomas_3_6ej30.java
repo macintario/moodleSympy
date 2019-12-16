@@ -70,26 +70,25 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {2, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "($CONSTANTEA$x+$CONSTANTEB$)^{-$CONSTANTEC$}  ($CONSTANTED$x^{$CONSTANTEE$}-$CONSTANTEF$x^{$CONSTANTEG$})^{$CONSTANTEH$}";
-    private String UX = "($CONSTANTEA$x+$CONSTANTEB$)";
-    private String VX = "($CONSTANTED$x^{$CONSTANTEE$}-$CONSTANTEF$x^{$CONSTANTEG$})";
-    private String N = "-$CONSTANTEC$";
-    private String M = "$CONSTANTEH$";
+    private static final String EXPRESION = "($CONSTANTEA$x^{$CONSTANTEB$}-$CONSTANTEC$)^{-$CONSTANTED$}  (x^{$CONSTANTEE$}-$CONSTANTEF$x)^{$CONSTANTEG$}";
+    private String UX = "($CONSTANTEA$x^{$CONSTANTEB$}-$CONSTANTEC$)";
+    private String VX = "(x^{$CONSTANTEE$}-$CONSTANTEF$x)";
+    private String N = "-$CONSTANTED$";
+    private String M = "$CONSTANTEG$";
     private String A = "\\frac{1}{$CONSTANTEA$}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A(Bx+C)^{D}}{(Ex+F)^{G}}- \\frac{H(Jx+K)^{L}}{(Mx+N)^{P}} $$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A(x^B+Cx)^D + \\frac{Ex^F(x^G+Hx)}{(Jx^K+L)^M}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
             + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/> "
             + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/>"
             + "$$L=$${1:SHORTANSWER:=$RESPUESTA_L$} <br/> $$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/>"
-            + "$$N=$${1:SHORTANSWER:=$RESPUESTA_N$} <br/> $$P=$${1:SHORTANSWER:=$RESPUESTA_P$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,L,M,N,P$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,L,M,N$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
-            + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$,$RESPUESTA_M$,$RESPUESTA_N$,$RESPUESTA_P$}</center> <br>"
+            + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$,$RESPUESTA_M$}</center> <br>"
             + "</center>";
 /**
  *
@@ -114,30 +113,29 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
         String m = M;
         String a = A;
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteA);
-        Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteB);
-        Integer constanteD = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
-        Integer constanteE = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
-        Integer constanteF = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
-        Integer constanteG = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteE );
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteB = constanteA-1;
+        Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1]);
+        Integer constanteD = 1;
+        Integer constanteE = constanteA;
+        Integer constanteF = constanteC;
+        Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = ;
-        Integer respuestaB = -constanteB;
-        Integer respuestaC = constanteA;
-        Integer respuestaD = constanteD+1;
-        Integer respuestaE = constanteE*constanteG;
-        Integer respuestaF = 1;
-        Integer respuestaG = 1;
-
-        Integer respuestaH = constanteG-1;
-        Integer respuestaJ = constanteD;
-        Integer respuestaK = constanteG+1;
-        Integer respuestaL = constanteG+1;
-        Integer respuestaM = constanteD;
+        Integer respuestaA = constanteG;
+        Integer respuestaB = constanteA;
+        Integer respuestaC = -constanteC;
+        Integer respuestaD = constanteG-1;
+        Integer respuestaE = -constanteA*(constanteB);
+        Integer respuestaF = constanteA-2;
+        Integer respuestaG = constanteA;
+        Integer respuestaH = -constanteC;
+        Integer respuestaJ = constanteA;
+        Integer respuestaK = constanteA-1;
+        Integer respuestaL = -constanteB;
+        Integer respuestaM = 2;
         Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
         //Checar fracción reductible respuestaE y respuestaJ
@@ -216,6 +214,7 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
         m = m.replace("$CONSTANTED$", constanteD.toString());
         m = m.replace("$CONSTANTEE$", constanteE.toString());
         m = m.replace("$CONSTANTEF$", constanteF.toString());
+        m = m.replace("$CONSTANTEG$", constanteG.toString());
         m = m.replace("$CONSTANTEH$", constanteH.toString());
 
         a = a.replace("$CONSTANTEA$", constanteA.toString());
