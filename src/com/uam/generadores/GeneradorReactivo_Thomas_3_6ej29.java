@@ -63,7 +63,7 @@ public class GeneradorReactivo_Thomas_3_6ej29 implements GeneradorReactivoCloze 
 
     private static final int[] COTA_CONSTANTE_A = {2, 7};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
-    private static final int[] COTA_CONSTANTE_C = {2, 8};
+    private static final int[] COTA_CONSTANTE_C = {3, 9};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
     private static final int[] COTA_CONSTANTE_F = {2, 9};
@@ -118,7 +118,7 @@ public class GeneradorReactivo_Thomas_3_6ej29 implements GeneradorReactivoCloze 
         Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteA);
         Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1], constanteB);
         Integer constanteD = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
-        Integer constanteE = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteA);
+        Integer constanteE = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1], constanteD);
         Integer constanteF = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1], constanteA);
 //        Integer constanteG = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1], constanteD);
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
@@ -126,21 +126,21 @@ public class GeneradorReactivo_Thomas_3_6ej29 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = -constanteB*(-constanteC);
-        Integer respuestaB = -constanteB;
-        Integer respuestaC = constanteA;
-        Integer respuestaD = constanteD+1;
-        Integer respuestaE = constanteE*constanteG;
-        Integer respuestaF = 1;
-        Integer respuestaG = 1;
+        Integer respuestaA = -constanteA*constanteC;
+        Integer respuestaB = -constanteA;
+        Integer respuestaC = constanteB;
+        Integer respuestaD = constanteC-1;
+        Integer respuestaE = constanteD;
+        Integer respuestaF = constanteE;
+        Integer respuestaG = constanteF;
 
-        Integer respuestaH = constanteG-1;
-        Integer respuestaJ = constanteD;
-        Integer respuestaK = constanteG+1;
-        Integer respuestaL = constanteG+1;
+        Integer respuestaH = constanteD*(-constanteF);
+        Integer respuestaJ = constanteA;
+        Integer respuestaK = constanteB;
+        Integer respuestaL = constanteC;
         Integer respuestaM = constanteD;
-        Integer respuestaN = constanteC;
-        Integer respuestaP = constanteC;
+        Integer respuestaN = constanteE;
+        Integer respuestaP = -constanteF-1;
         //Checar fracción reductible respuestaE y respuestaJ
         Integer divisor = maximoComunDivisor(respuestaE, respuestaJ);
         respuestaE /= divisor;
