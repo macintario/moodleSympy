@@ -62,12 +62,12 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
             "</strong></span>";
 
     private static final int[] COTA_CONSTANTE_A = {2, 7};
-    private static final int[] COTA_CONSTANTE_B = {2, 9};
+    private static final int[] COTA_CONSTANTE_B = {3, 9};
     private static final int[] COTA_CONSTANTE_C = {2, 8};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
     private static final int[] COTA_CONSTANTE_F = {2, 9};
-    private static final int[] COTA_CONSTANTE_G = {2, 5};
+    private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "($CONSTANTEA$x^{$CONSTANTEB$}-$CONSTANTEC$)^{-$CONSTANTED$}  (x^{$CONSTANTEE$}-$CONSTANTEF$x)^{$CONSTANTEG$}";
@@ -115,7 +115,7 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = constanteA-1;
-        Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1]);
+        Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteA);
         Integer constanteD = 1;
         Integer constanteE = constanteA;
         Integer constanteF = constanteC;
@@ -128,20 +128,21 @@ public class GeneradorReactivo_Thomas_3_6ej30 implements GeneradorReactivoCloze 
         Integer respuestaB = constanteA;
         Integer respuestaC = -constanteC;
         Integer respuestaD = constanteG-1;
-        Integer respuestaE = -constanteA*(constanteB);
+
+        Integer respuestaE = -constanteE*(constanteE-1);
         Integer respuestaF = constanteA-2;
         Integer respuestaG = constanteA;
         Integer respuestaH = -constanteC;
         Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA-1;
-        Integer respuestaL = -constanteB;
+        Integer respuestaL = -constanteC;
         Integer respuestaM = 2;
         Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
         //Checar fracción reductible respuestaE y respuestaJ
         Integer divisor = maximoComunDivisor(respuestaE, respuestaJ);
-        respuestaE /= divisor;
-        respuestaJ /= divisor;
+        //respuestaE /= divisor;
+        //respuestaJ /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);

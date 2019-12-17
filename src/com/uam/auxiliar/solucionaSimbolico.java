@@ -486,7 +486,7 @@ public class solucionaSimbolico {
                 "salida.write(\"$$\\\\frac{d}{dx}(%s)=%s$$<br><br>\\n\" % (latex(f2.subs(v, vx)), latex(df2)))\n" +
                 "\n" +
                 "salida.write(\"$$\\\\frac{d}{dx}(u^{n}(x) v^{m}(x))=v^{m}(x) nu^{n-1}(x)\\\\frac{du}{dx} + u^{n}(x)mv^{m-1}(x)\\\\frac{dv}{dx}$$<br><br>\\n\")\n" +
-                "salida.write(\"$$\\\\frac{d}{dx}(%s)=[(%s)(%s)]+[(%s)(%s)]=%s$$<br><br>\\n\" % (latex(fx),latex(df1),latex(vx**m), latex(df2), latex(ux**n), latex(df1*vx**m + df2*ux**n)))\n"
+                "salida.write(\"$$\\\\frac{d}{dx}(%s)=[(%s)(%s)]+[(%s)(%s)]=%s$$<br><br>\\n\" % (latex(fx),latex(df1),latex(vx**m), latex(df2), latex(ux**n), latex(df1*vx**m + cancel(df2*ux**n))))\n"
                 ;
         String script = PLANTILLA_SYMPY;
         script = script.replace("$UX$", ux);
