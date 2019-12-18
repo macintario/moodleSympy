@@ -619,14 +619,14 @@ public class solucionaSimbolico {
                 "        self.level += 1\n" +
                 "        self.lines.append(' ' * 4 * self.level + '<ol>')\n" +
                 "        yield\n" +
-                "        self.lines.append(' ' * 4 * self.level + '</ol>')\n" +
+                "        self.lines.append(' ' * 4 * self.level + '</ol><br/>')\n" +
                 "        self.level -= 1\n" +
                 "\n" +
                 "    @contextmanager\n" +
                 "    def new_step(self):\n" +
                 "        self.lines.append(' ' * 4 * self.level + '<li>')\n" +
                 "        yield self.level\n" +
-                "        self.lines.append(' ' * 4 * self.level + '</li>')\n" +
+                "        self.lines.append(' ' * 4 * self.level + '</li><br>')\n" +
                 "\n" +
                 "    @contextmanager\n" +
                 "    def new_collapsible(self):\n" +
@@ -980,7 +980,7 @@ public class solucionaSimbolico {
                 "\n" +
                 "    def print_Power(self, rule):\n" +
                 "        with self.new_step():\n" +
-                "            self.append(\"Aplicando la regla de potencia: {0} se obtiene {1}\".format(\n" +
+                "            self.append(\"Aplicando la regla de potencia a: {0} se obtiene {1}\".format(\n" +
                 "                self.format_math(rule.context),\n" +
                 "                self.format_math(diff(rule))))\n" +
                 "\n" +
@@ -1083,7 +1083,7 @@ public class solucionaSimbolico {
                 "                            sympy.Derivative(rule.inner, rule.symbol))))\n" +
                 "                with self.new_level():\n" +
                 "                    self.print_rule(rule.innerstep)\n" +
-                "                self.append(\"El resultado de la regla de la cadena:\")\n" +
+                "                self.append(\"El resultado de aplicar la regla de la cadena:\")\n" +
                 "                self.append(self.format_math_display(diff(rule)))\n" +
                 "\n" +
                 "    def print_Trig(self, rule):\n" +
@@ -1189,7 +1189,7 @@ public class solucionaSimbolico {
                 "                with self.new_step():\n" +
                 "                    self.append(\"Simplificando:\")\n" +
                 "                    self.append(self.format_math_display(simp))\n" +
-                "        self.lines.append('</ol>')\n" +
+                "        self.lines.append('</ol><br/>')\n" +
                 "        self.lines.append('<hr/>')\n" +
                 "        self.level = 0\n" +
                 "        self.append('La respuesta es:')\n" +

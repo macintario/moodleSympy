@@ -70,20 +70,17 @@ public class GeneradorReactivo_Thomas_3_6ej31 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "x \\tan({2 \\sqrt{x}})+7";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A(x^B+Cx)^D + \\frac{Ex^F(x^G+Hx)}{(Jx^K+L)^M}$$ <br/>";
+    private static final String EXPRESION = "x \\tan({$CONSTANTEA$ \\sqrt{x}})+$CONSTANTEB$";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A\\sqrt{x}+sin({B\\sqrt{x}})}{C\\cos^{D}({E\\sqrt{x}})}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/> "
-            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/>"
-            + "$$L=$${1:SHORTANSWER:=$RESPUESTA_L$} <br/> $$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/>"
+            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/>  "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,L,M,N$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,"
-            + "$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$,$RESPUESTA_M$}</center> <br>"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$"
+            + "}</center> <br>"
             + "</center>";
 /**
  *
@@ -103,8 +100,8 @@ public class GeneradorReactivo_Thomas_3_6ej31 implements GeneradorReactivoCloze 
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = constanteA-1;
+        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteB = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
         Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteA);
         Integer constanteD = 1;
         Integer constanteE = constanteA;
@@ -114,12 +111,12 @@ public class GeneradorReactivo_Thomas_3_6ej31 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteG;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = -constanteC;
-        Integer respuestaD = constanteG-1;
+        Integer respuestaA = constanteA;
+        Integer respuestaB = 2*constanteA;
+        Integer respuestaC = 2;
+        Integer respuestaD = 2;
+        Integer respuestaE = constanteA;
 
-        Integer respuestaE = -constanteE*(constanteE-1);
         Integer respuestaF = constanteA-2;
         Integer respuestaG = constanteA;
         Integer respuestaH = -constanteC;
