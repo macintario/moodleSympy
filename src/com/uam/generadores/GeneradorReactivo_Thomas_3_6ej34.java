@@ -71,7 +71,7 @@ public class GeneradorReactivo_Thomas_3_6ej34 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\frac{\\tan({$CONSTANTEA$x})}{(x+$CONSTANTEB$)^{$CONSTANTEC$}}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax-B\\sin(Cx)+D}{(x+E)^F(\\cos(Gx)+H)}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax+B\\sin(Cx)+D}{(x+E)^F(\\cos(Gx)+H)}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -112,15 +112,15 @@ public class GeneradorReactivo_Thomas_3_6ej34 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA-2;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = constanteB;
-        Integer respuestaD = -constanteB;
+        Integer respuestaA = 2*constanteA;
+        Integer respuestaB = -constanteC;
+        Integer respuestaC = 2*constanteA;
+        Integer respuestaD = 2*constanteA*constanteB;
         Integer respuestaE = constanteB;
-        Integer respuestaF = 2;
-        Integer respuestaG = constanteB;
+        Integer respuestaF = constanteC+1;
+        Integer respuestaG = 2*constanteA;
 
-        Integer respuestaH = -constanteC;
+        Integer respuestaH = 1;
         Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA-1;
         Integer respuestaL = -constanteC;
