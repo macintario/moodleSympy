@@ -6,6 +6,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -69,6 +71,9 @@ public class solucionaSimbolico {
         } catch (java.io.IOException e) {
             System.err.format("Leyendo Solucion IOException: %s%n", e);
         }
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd '-' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
         return solucion;
 
     }
