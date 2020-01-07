@@ -75,12 +75,13 @@ public class GeneradorReactivo_Thomas_3_6ej33 implements GeneradorReactivoCloze 
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -101,8 +102,8 @@ public class GeneradorReactivo_Thomas_3_6ej33 implements GeneradorReactivoCloze 
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
         Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1]);
         Integer constanteD = 1;
         Integer constanteE = constanteA;
@@ -112,23 +113,23 @@ public class GeneradorReactivo_Thomas_3_6ej33 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA-2;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = constanteB;
-        Integer respuestaD = -constanteB;
-        Integer respuestaE = constanteB;
-        Integer respuestaF = 2;
-        Integer respuestaG = constanteB;
+        Integer respuestaA = constanteB;
+        Integer respuestaB = constanteB;
+        Integer respuestaC = 1;
+        Integer respuestaD = constanteB;
+        Integer respuestaE = 2;
+        Integer respuestaF = constanteB;
+        Integer respuestaG = constanteA;
 
-        Integer respuestaH = -constanteC;
-        Integer respuestaJ = constanteA;
+        Integer respuestaH = 2;
+        Integer respuestaJ = constanteB;
         Integer respuestaK = constanteA-1;
         Integer respuestaL = -constanteC;
         Integer respuestaM = 2;
         Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
         //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisor = maximoComunDivisor(respuestaE, respuestaJ);
+        Integer divisor = maximoComunDivisor(respuestaA, respuestaE);
         //respuestaE /= divisor;
         //respuestaJ /= divisor;
 
