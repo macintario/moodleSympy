@@ -1212,7 +1212,7 @@ public class solucionaSimbolico {
                 "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
                 "x = symbols('x')\n" +
                 "expr = parse_latex(r\"$EXPRESION$\")\n" +
-                "salida.write(\"Obtener: $$%s$$<br>\" % latex(Derivative(expr)))\n" +
+                "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr)))\n" +
                 "solucion = print_html_steps(expr, x)\n" +
                 "salida.write(solucion)\n" +
                 "salida.close()\n"

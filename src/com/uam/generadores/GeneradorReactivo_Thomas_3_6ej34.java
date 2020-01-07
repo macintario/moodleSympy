@@ -80,7 +80,7 @@ public class GeneradorReactivo_Thomas_3_6ej34 implements GeneradorReactivoCloze 
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$"
             + "}</center> <br>"
             + "</center>";
 /**

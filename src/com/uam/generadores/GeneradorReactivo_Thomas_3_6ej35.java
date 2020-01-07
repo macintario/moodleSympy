@@ -70,8 +70,8 @@ public class GeneradorReactivo_Thomas_3_6ej35 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "(\\frac{\\sin(x)}{1+\\cos(x)})^2";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax+B\\sin(Cx)+D}{(x+E)^F(\\cos(Gx)+H)}$$ <br/>";
+    private static final String EXPRESION = "(\\frac{\\sin($CONSTANTEA$x)}{$CONSTANTEB$+\\cos($CONSTANTEA$x)})^$CONSTANTEC$";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{(A\\cos(Bx)+C)\\sin^{D}(Ex)}{(\\cos(Fx)+G)^{H}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -80,7 +80,7 @@ public class GeneradorReactivo_Thomas_3_6ej35 implements GeneradorReactivoCloze 
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -102,7 +102,7 @@ public class GeneradorReactivo_Thomas_3_6ej35 implements GeneradorReactivoCloze 
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
         Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1]);
         Integer constanteD = 1;
         Integer constanteE = constanteA;
@@ -112,15 +112,15 @@ public class GeneradorReactivo_Thomas_3_6ej35 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = 2*constanteA;
-        Integer respuestaB = -constanteC;
-        Integer respuestaC = 2*constanteA;
-        Integer respuestaD = 2*constanteA*constanteB;
-        Integer respuestaE = constanteB;
-        Integer respuestaF = constanteC+1;
-        Integer respuestaG = 2*constanteA;
+        Integer respuestaA = constanteA*constanteB*constanteC;
+        Integer respuestaB = constanteA;
+        Integer respuestaC = constanteA*constanteC;
+        Integer respuestaD = constanteC-1;
+        Integer respuestaE = constanteA;
+        Integer respuestaF = constanteA;
+        Integer respuestaG = constanteB;
+        Integer respuestaH = constanteC+1;
 
-        Integer respuestaH = 1;
         Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA-1;
         Integer respuestaL = -constanteC;
@@ -128,9 +128,9 @@ public class GeneradorReactivo_Thomas_3_6ej35 implements GeneradorReactivoCloze 
         Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
         //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisor = maximoComunDivisor(respuestaE, respuestaJ);
-        //respuestaE /= divisor;
-        //respuestaJ /= divisor;
+        Integer divisor = maximoComunDivisor(respuestaA, respuestaC);
+        //respuestaA /= divisor;
+        //respuestaC /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
