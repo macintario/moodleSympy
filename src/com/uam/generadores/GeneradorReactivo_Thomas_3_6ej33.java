@@ -71,7 +71,7 @@ public class GeneradorReactivo_Thomas_3_6ej33 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\sqrt{$CONSTANTEA$+x\\sec({$CONSTANTEB$x})}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{x^{A}(Bx\\cos({\\frac{C}{x}})+D \\sin({\\frac{E}{x}}))}{\\cos^{F}(\\frac{G}{x})}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax\\sin(Bx)+C\\cos(Dx)}{E\\sqrt{x\\sec(Fx)+G} \\cos^{H}(Jx)}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
