@@ -41,7 +41,7 @@ public class GeneradorReactivo_Thomas_3_3ej14 implements GeneradorReactivoCloze 
             = "<span style=\"color: #ff0000,2E8B57; font-size: large;\"><strong>\n" +
             "galoisenlinea&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; http://galois.azc.uam.mx </strong></span>\n" +
             "<span style=\"color: #E38E03; font-size: large;\"><strong>\n" +
-            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla de la cadena</strong></span> <br><br>"
+            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; En este ejercicio aprenderás a aplicar la regla del producto</strong></span> <br><br>"
             + "<span style=\"color: #ff0000; font-size: xx-large;\"><strong>\n"
             + "PROBLEMA:\n"
             + "</strong></span>"
@@ -53,7 +53,7 @@ public class GeneradorReactivo_Thomas_3_3ej14 implements GeneradorReactivoCloze 
             + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
-            + "Usted deberá calcular la derivada $$y(x)$$ utilizando la regla del producto, indicando en papel todos los pasos. "
+            + "Usted deberá calcular la derivada $$y'(x)$$ aplicando: a)la regla del producto, b) multiplicando los factores y derivando el polinomio, indicando en papel todos los pasos. "
             + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             + "<br/></strong></span>"
             + "$RESPUESTAS$<br/>"
@@ -97,7 +97,7 @@ public class GeneradorReactivo_Thomas_3_3ej14 implements GeneradorReactivoCloze 
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
-        String solucion = "";
+        String solucion = "a) Regla del producto <br/>";
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
@@ -168,7 +168,10 @@ public class GeneradorReactivo_Thomas_3_3ej14 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
 
-        solucion = solucionaSimbolico.derivaSimbolico(expresion);
+        solucion = solucion+solucionaSimbolico.derivaSimbolico(expresion);
+        String simplificacion = solucionaSimbolico.simplifica(expresion);
+        solucion = solucion + "<br/>b) Multiplicando y derivando <br/>"+"<br/><center>$$y=" +expresion+"="+ simplificacion+"$$</center><br/><br/>";
+        solucion = solucion+solucionaSimbolico.derivaSimbolico(simplificacion);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 
