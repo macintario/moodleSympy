@@ -15,18 +15,18 @@ import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
-public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_3ej14 implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_3x13_000-->"
+     * "<!--Reactivo Thomas_3_3x14_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej13.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej14.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -53,7 +53,7 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
             + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
-            + "Usted deberá calcular la derivada $$y'(x)$$ aplicando la regla del producto, indicando en papel todos los pasos. "
+            + "Usted deberá calcular la derivada $$y(x)$$ utilizando la regla del producto, indicando en papel todos los pasos. "
             + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
             + "<br/></strong></span>"
             + "$RESPUESTAS$<br/>"
@@ -70,15 +70,15 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "($CONSTANTEA$-$CONSTANTEB$x^{2})($CONSTANTEC$x^{3}-$CONSTANTED$x+$CONSTANTEE$)";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=Ax^4+Bx^2+Cx+D $$ <br/>";
+    private static final String EXPRESION = "($CONSTANTEA$x-$CONSTANTEB$)($CONSTANTEC$x^{2}-$CONSTANTED$x)";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=Ax^2+Bx+C $$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
-            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
+            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -92,12 +92,12 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_13_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_14_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
-        String solucion = "a) Regla del producto <br/>";
+        String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
@@ -110,9 +110,9 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = -5*constanteB*constanteC;
-        Integer respuestaB = 3*(constanteA*constanteC+constanteB*constanteD);
-        Integer respuestaC = -2*constanteE*constanteB;
+        Integer respuestaA = 3*constanteA*constanteC;
+        Integer respuestaB = -2*(constanteB*constanteC+constanteA*constanteD);
+        Integer respuestaC = constanteB*constanteD;
         Integer respuestaD = -1*constanteA*constanteD;
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteA;
@@ -168,10 +168,7 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
 
-        solucion = solucion+solucionaSimbolico.derivaSimbolico(expresion);
-        String simplificacion = solucionaSimbolico.simplifica(expresion);
-        solucion = solucion + "<br/>b) Multiplicando y derivando <br/>"+"<br/><center>$$y=" +expresion+"="+ simplificacion+"$$</center><br/><br/>";
-        solucion = solucion+solucionaSimbolico.derivaSimbolico(simplificacion);
+        solucion = solucionaSimbolico.derivaSimbolico(expresion);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 
@@ -181,7 +178,7 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej13());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej14());
     }
 
 

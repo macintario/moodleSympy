@@ -1212,11 +1212,28 @@ public class solucionaSimbolico {
                 "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
                 "x = symbols('x')\n" +
                 "expr = parse_latex(r\"$EXPRESION$\")\n" +
-                "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr)))\n" +
+                "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr,x)))\n" +
                 "solucion = print_html_steps(expr, x)\n" +
                 "salida.write(solucion)\n" +
                 "salida.close()\n"
                 ;
+        String script = PLANTILLA_SYMPY;
+        script = script.replace("$EXPRESION$", expresion);
+        String solucion = ejecutaPython(script);
+        return solucion;
+    }
+
+    public static String simplifica(String expresion){
+        String PLANTILLA_SYMPY =
+                "from sympy import *\n" +
+                        "from sympy.parsing.latex import parse_latex\n" +
+                        "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
+                        "init_printing()\n" +
+                        "x = var('x')\n" +
+                        "f = parse_latex(r\" $EXPRESION$ \")\n" +
+                        "f = expand(f) \n" +
+//                        "f = collect(f,x) \n" +
+                        "salida.write(\"%s\" %(latex(f)))\n" ;
         String script = PLANTILLA_SYMPY;
         script = script.replace("$EXPRESION$", expresion);
         String solucion = ejecutaPython(script);
