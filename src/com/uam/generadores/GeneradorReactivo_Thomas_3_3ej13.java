@@ -110,10 +110,10 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA*constanteB*constanteC;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = constanteA*constanteC;
-        Integer respuestaD = constanteC-1;
+        Integer respuestaA = -5*constanteB*constanteC;
+        Integer respuestaB = 3*(constanteA*constanteC+constanteB*constanteD);
+        Integer respuestaC = -2*constanteE*constanteB;
+        Integer respuestaD = -1*constanteA*constanteD;
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteA;
         Integer respuestaG = constanteB;
