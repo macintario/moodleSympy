@@ -49,7 +49,7 @@ public class GeneradorReactivo_Thomas_3_3ej13 implements GeneradorReactivoCloze 
             + "Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             + "$$\\displaystyle y(x)=$EXPRESION$ $$<br/>"
             + "</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$y($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"

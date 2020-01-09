@@ -49,7 +49,7 @@ public class GeneradorReactivo_Thomas_3_3ej16 implements GeneradorReactivoCloze 
             + "Considere la función: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             + "$$\\displaystyle y(x)=$EXPRESION$ $$<br/>"
             + "</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$f($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Calculando la derivada de la función $$y($VARIABLE_INDEPENDIENTE$)$$ obtenemos que: </strong></span><br/><br/>"
             + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
@@ -71,19 +71,16 @@ public class GeneradorReactivo_Thomas_3_3ej16 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "($CONSTANTEA$+$CONSTANTEB$x^2)($CONSTANTEC$x^{\\frac{3}{4}}-$CONSTANTED$x^{-3})";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=Ax^2+\\frac{B}{x^2}+C$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^{\\frac{7}{4}}}{4}+\\frac{B}{x^2}+\\frac{C}{x^4}+\\frac{D}{4x^{\\frac{1}{4}}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
-            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/>"
+            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$"
             + "}</center> <br>"
             + "</center>";
-/**
- *
- */
     /**
      * El comentario que se pondrá a cada reactivo para etiquetarlo, el sufijo
      * sera el número de reactivo. Éste se insertará como un comentario html
@@ -110,10 +107,10 @@ public class GeneradorReactivo_Thomas_3_3ej16 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = 3*constanteA*(constanteC+constanteD);
-        Integer respuestaB = -constanteB*constanteE;
-        Integer respuestaC = constanteA*constanteE+constanteB*constanteC+constanteB*constanteD;
-        Integer respuestaD = -1*constanteA*constanteD;
+        Integer respuestaA = 11*constanteB*constanteC;
+        Integer respuestaB = constanteB*constanteD;
+        Integer respuestaC = 3*constanteA*constanteD;
+        Integer respuestaD = 3*constanteA*constanteC;
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteA;
         Integer respuestaG = constanteB;
