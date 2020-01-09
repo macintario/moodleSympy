@@ -1194,6 +1194,13 @@ public class solucionaSimbolico {
                 "                with self.new_step():\n" +
                 "                    self.append(\"Simplificando:\")\n" +
                 "                    self.append(self.format_math_display(simp))\n" +
+                "            else:\n"+
+                "                simp = sympy.factor(answer)\n"+
+                "                if simp != answer:\n" +
+                "                    answer = simp\n" +
+                "                    with self.new_step():\n" +
+                "                        self.append(\"Simplificando:\")\n" +
+                "                        self.append(self.format_math_display(simp))\n" +
                 "        self.lines.append('</ol><br/>')\n" +
                 "        self.lines.append('<hr/>')\n" +
                 "        self.level = 0\n" +

@@ -70,8 +70,8 @@ public class GeneradorReactivo_Thomas_3_3ej19 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "\\frac{x^2-$CONSTANTEB$}{x+$CONSTANTED$}";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^2+Bx+C}{(Dx^E+x)^F}$$ <br/>";
+    private static final String EXPRESION = "\\frac{$CONSTANTEA$x^2-$CONSTANTEB$}{x+$CONSTANTEC$}";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^2+Bx+C}{(Dx+E)^F}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -108,11 +108,11 @@ public class GeneradorReactivo_Thomas_3_3ej19 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteB*constanteC;
-        Integer respuestaB = -2*constanteA*constanteC;
-        Integer respuestaC = -constanteA;
-        Integer respuestaD = constanteC;
-        Integer respuestaE = 2;
+        Integer respuestaA = constanteA;
+        Integer respuestaB = 2*constanteA*constanteC;
+        Integer respuestaC = constanteB;
+        Integer respuestaD = 1;
+        Integer respuestaE = constanteC;
         Integer respuestaF = 2;
         Integer respuestaG = constanteB;
         Integer respuestaH = constanteC+1;
