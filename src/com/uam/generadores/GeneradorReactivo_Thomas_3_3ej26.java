@@ -15,18 +15,18 @@ import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
-public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_3ej26 implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_3x25_000-->"
+     * "<!--Reactivo Thomas_3_3x26_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej25.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej26.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -70,8 +70,8 @@ public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "\\frac{$CONSTANTEA$+$CONSTANTEB$x-$CONSTANTEC$\\sqrt{x}}{x}";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{A\\sqrt{x}+B}{Cx^D}$$ <br/>";
+    private static final String EXPRESION = "$CONSTANTEA$(\\frac{$CONSTANTEB$}{\\sqrt{x}}+$CONSTANTEC$\\sqrt{x})";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax+B}{Cx^{\\frac{D}{2}}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
@@ -89,7 +89,7 @@ public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze 
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_25_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_26_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
@@ -98,8 +98,8 @@ public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze 
         //Generación de variables aleatorias con parámetros de ejecución
 
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
-        Integer constanteC = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
+        Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteB);
         Integer constanteD = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1],constanteC);
         Integer constanteE = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1]);
         Integer constanteF = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_F[0], COTA_CONSTANTE_F[1]);
@@ -108,10 +108,10 @@ public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteC;
-        Integer respuestaB = -2*constanteA;
+        Integer respuestaA = constanteA*constanteC;
+        Integer respuestaB = -constanteA*constanteB;
         Integer respuestaC = 2;
-        Integer respuestaD = 2;
+        Integer respuestaD = 3;
         Integer respuestaE = constanteB;
         Integer respuestaF = 2;
         Integer respuestaG = constanteB;
@@ -178,7 +178,7 @@ public class GeneradorReactivo_Thomas_3_3ej25 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej25());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej26());
     }
 
 
