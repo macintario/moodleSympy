@@ -1189,13 +1189,15 @@ public class solucionaSimbolico {
                 "        answer = diff(self.rule)\n" +
                 "        if answer:\n" +
                 "            simp = sympy.simplify(answer)\n" +
+                "            simp = sympy.factor(simp)\n" +
                 "            if simp != answer:\n" +
                 "                answer = simp\n" +
                 "                with self.new_step():\n" +
                 "                    self.append(\"Simplificando:\")\n" +
                 "                    self.append(self.format_math_display(simp))\n" +
                 "            else:\n"+
-                "                simp = sympy.factor(answer)\n"+
+                "                simp = sympy.expand(answer)\n"+
+                "                simp = sympy.factor(simp)\n"+
                 "                if simp != answer:\n" +
                 "                    answer = simp\n" +
                 "                    with self.new_step():\n" +
