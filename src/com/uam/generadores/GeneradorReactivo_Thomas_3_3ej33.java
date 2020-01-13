@@ -53,8 +53,8 @@ public class GeneradorReactivo_Thomas_3_3ej33 implements GeneradorReactivoCloze 
             + "$RESPUESTA$"
             + "</strong></span><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
-            + "Usted deberá calcular la derivada $$y'(x)$$, indicando en papel todos los pasos. "
-            + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
+            + "Usted deberá calcular las derivadas $$y'(x)$$ y $$y''(x)$$, indicando en papel todos los pasos. "
+            + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que obtuvo. \n"
             + "<br/></strong></span>"
             + "$RESPUESTAS$<br/>"
             + "<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
@@ -71,7 +71,8 @@ public class GeneradorReactivo_Thomas_3_3ej33 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\frac{$CONSTANTEA$x^3+$CONSTANTEB$}{x}";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^3+Bx^2+Cx+D}{(x^2+E)^F(x^2+Gx+H)^J}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^B+C}{x^D}$$ <br/><br/>" +
+            "$$\\displaystyle y''(x)=\\frac{E(Fx^G+H)}{x^J}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -100,8 +101,8 @@ public class GeneradorReactivo_Thomas_3_3ej33 implements GeneradorReactivoCloze 
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
 
-        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
         Integer constanteC = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteB);
         Integer constanteD = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1],constanteC);
         Integer constanteE = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_E[0], COTA_CONSTANTE_E[1]);
@@ -111,27 +112,29 @@ public class GeneradorReactivo_Thomas_3_3ej33 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = -4*constanteA;
-        Integer respuestaB = -3*constanteA*constanteC;
-        Integer respuestaC = 2*constanteA*(constanteB-constanteD);
-        Integer respuestaD = constanteB*constanteC*constanteA;
-        Integer respuestaE = -constanteB;
-        Integer respuestaF = 2;
-        Integer respuestaG = constanteC;
-        Integer respuestaH = constanteD;
-        Integer respuestaJ = 2;
+        Integer respuestaA = 2*constanteA;
+        Integer respuestaB = 3;
+        Integer respuestaC = -constanteB;
+        Integer respuestaD = 2;
+        Integer respuestaE = 2;
+        Integer respuestaF = constanteA;
+        Integer respuestaG = 3;
+        Integer respuestaH = constanteB;
+        Integer respuestaJ = 3;
+
+        //Checar fracción reductible respuestaF y respuestaH
+        Integer divisor = maximoComunDivisor(respuestaF, respuestaH);
+        respuestaE *= divisor;
+        respuestaF /= divisor;
+        respuestaH /= divisor;
+
 
         Integer respuestaK = constanteA-1;
         Integer respuestaL = -constanteC;
         Integer respuestaM = 2;
         Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
-        //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisorNumerador = maximoComunDivisor(respuestaA, -respuestaB);
-        Integer divisor = maximoComunDivisor(divisorNumerador,respuestaC);
-        // respuestaA /= divisor;
-        // respuestaB /= divisor;
-        // respuestaC /= divisor;
+
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);

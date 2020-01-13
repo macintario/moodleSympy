@@ -744,19 +744,20 @@ public class solucionaSimbolico {
             "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
             "x = symbols('x')\n" +
             "expr = parse_latex(r\"$EXPRESION$\")\n";
-private static final String SOLVER =
+
+    private static final String SOLVER =
                     "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr,x)))\n" +
                             "solucion = print_html_steps(expr, x)\n" +
                             "salida.write(solucion)\n" ;
-private static final String DIFF_STEP =
+
+    private static final String DIFF_STEP =
                             "derivada = Derivative(expr)\n"+
                             "derivada = factor(derivada.doit())\n"+
-                            "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(derivada,x)))\n" +
+                            "salida.write(\"<br/>Siguiente derivada<br/>Obtener: $$%s$$<br><br>\" % latex(Derivative(derivada,x)))\n" +
                                     "solucion = print_html_steps(derivada, x)\n" +
                                     "expr = derivada\n" +
                             "salida.write(solucion)\n" ;
-
-private static final String CLOSER      =                      "salida.close()\n";
+    private static final String CLOSER      =                      "salida.close()\n";
 
 
     /**
