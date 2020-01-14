@@ -112,15 +112,15 @@ public class GeneradorReactivo_Thomas_3_3ej34 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = 2*constanteA;
-        Integer respuestaB = 3;
-        Integer respuestaC = -constanteB;
-        Integer respuestaD = 2;
-        Integer respuestaE = 2;
-        Integer respuestaF = constanteA;
-        Integer respuestaG = 3;
-        Integer respuestaH = constanteB;
-        Integer respuestaJ = 3;
+        Integer respuestaA = -constanteA;
+        Integer respuestaB = 1;
+        Integer respuestaC = 2*constanteB;
+        Integer respuestaD = 3;
+        Integer respuestaE = -2;
+        Integer respuestaF = -constanteB;
+        Integer respuestaG = 1;
+        Integer respuestaH = 3*constanteC;
+        Integer respuestaJ = 4;
 
         //Checar fracción reductible respuestaF y respuestaH
         Integer divisor = maximoComunDivisor(respuestaF, respuestaH);
