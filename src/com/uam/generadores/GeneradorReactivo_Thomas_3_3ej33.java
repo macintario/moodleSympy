@@ -143,7 +143,12 @@ public class GeneradorReactivo_Thomas_3_3ej33 implements GeneradorReactivoCloze 
         //Sustitución de las variables por sus valores en el texto del reactivo
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
         String expresion = EXPRESION;
+// Incliur segunda derivada
+        reactivo = reactivo.replace("\\frac{d}{dx}\\left(","\\frac{d}{dx}\\left(\\frac{d}{dx}\\left(");
+        reactivo = reactivo.replace("\\right)","\\right)\\right)");
+        reactivo = reactivo.replace("La derivada de la función $$f(","La segunda derivada de la función $$y(");
 
+//
         expresion = expresion.replace("$CONSTANTEA$", constanteA.toString());
         expresion = expresion.replace("$CONSTANTEB$", constanteB.toString());
         expresion = expresion.replace("$CONSTANTEC$", constanteC.toString());
