@@ -70,7 +70,7 @@ public class GeneradorReactivo_Thomas_3_3ej36 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "\\frac{(x^2-$CONSTANTEA$x)($CONSTANTEB$x^2+$CONSTANTEC$x+$CONSTANTED$)}{x^4}";
+    private static final String EXPRESION = "\\frac{(x^2-$CONSTANTEA$x)($CONSTANTEB$x^2-$CONSTANTEC$x+$CONSTANTED$)}{x^4}";
     private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^2+Bx+C}{x^D}$$ <br/><br/>" +
             "$$\\displaystyle y''(x)=\\frac{E(Fx^2+Gx+H)}{x^J}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
@@ -112,14 +112,14 @@ public class GeneradorReactivo_Thomas_3_3ej36 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA*constanteB-constanteC;
-        Integer respuestaB = 2*(constanteA*constanteC-constanteD);
+        Integer respuestaA = constanteA*constanteB+constanteC;
+        Integer respuestaB = -2*(constanteA*constanteC+constanteD);
         Integer respuestaC = 3*constanteA*constanteD;
         Integer respuestaD = 4;
         Integer respuestaE = -2;
         Integer respuestaF = respuestaA;
-        Integer respuestaG = 3*(constanteA*constanteC-constanteD);
-        Integer respuestaH = 6*constanteA*constanteD;
+        Integer respuestaG = 3*(constanteA*constanteC+constanteD);
+        Integer respuestaH = -6*constanteA*constanteD;
         Integer respuestaJ = 5;
 
         //Checar fracción reductible respuestaF y respuestaH
