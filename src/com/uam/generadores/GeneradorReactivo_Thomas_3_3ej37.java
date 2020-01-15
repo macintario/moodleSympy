@@ -14,6 +14,7 @@ import com.uam.utilidades.Utilidades;
 import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
+import static java.lang.Math.abs;
 
 public class GeneradorReactivo_Thomas_3_3ej37 implements GeneradorReactivoCloze {
     /**
@@ -76,7 +77,7 @@ public class GeneradorReactivo_Thomas_3_3ej37 implements GeneradorReactivoCloze 
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
@@ -115,6 +116,8 @@ public class GeneradorReactivo_Thomas_3_3ej37 implements GeneradorReactivoCloze 
         Integer respuestaB = -constanteA*constanteD;
         Integer respuestaC = constanteC;
         Integer respuestaD = 2;
+
+
         Integer respuestaE = 2*constanteA*constanteD;
         Integer respuestaF = constanteC;
         Integer respuestaG = 3;
@@ -122,12 +125,17 @@ public class GeneradorReactivo_Thomas_3_3ej37 implements GeneradorReactivoCloze 
         Integer respuestaJ = 5;
 
         //Checar fracción reductible respuestaF y respuestaH
-        Integer divisor = maximoComunDivisor(respuestaF, respuestaG);
-        divisor = maximoComunDivisor(divisor, respuestaH);
-        respuestaE *= divisor;
+        Integer divisor = maximoComunDivisor(respuestaA, respuestaB);
+        divisor = maximoComunDivisor(divisor, respuestaC);
+        divisor = abs(divisor);
+        respuestaA *= divisor;
+        respuestaB /= divisor;
+        respuestaC /= divisor;
+
+        divisor = maximoComunDivisor(respuestaE, respuestaF);
+        divisor = abs(divisor);
+        respuestaE /= divisor;
         respuestaF /= divisor;
-        respuestaG /= divisor;
-        respuestaH /= divisor;
 
 
         Integer respuestaK = constanteA-1;
