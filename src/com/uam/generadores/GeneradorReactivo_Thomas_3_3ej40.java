@@ -16,18 +16,18 @@ import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 import static java.lang.Math.abs;
 
-public class GeneradorReactivo_Thomas_3_3ej39 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_3ej40 implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_3x39_000-->"
+     * "<!--Reactivo Thomas_3_3x40_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej39.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej40.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -71,21 +71,22 @@ public class GeneradorReactivo_Thomas_3_3ej39 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "(\\frac{x^2+$CONSTANTEA$}{$CONSTANTEB$x})(\\frac{x^4-$CONSTANTEC$}{x^3})";
-    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{A(Bx^6+Cx^2+D)}{Ex^F}$$ <br/><br/>" +
-            "$$\\displaystyle y''(x)=\\frac{G(Hx^6+Jx^2+K)}{Lx^M}$$ <br/>";
+    private static final String EXPRESION = "\\frac{x^2+$CONSTANTEA$}{(x-$CONSTANTEB$)^3+(x+$CONSTANTEB$)^3}";
+    private String RESPUESTA= "$$\\displaystyle y'(x)=\\frac{Ax^4+Bx^2+C}{Dx^E(x^2+F)^2}$$ <br/><br/>" +
+            "$$\\displaystyle y''(x)=\\frac{Gx^6+Hx^4+Jx^2+K}{Lx^M(x^2+N)^3}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$} <br/>"
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
             + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
             + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/>"
             + "$$L=$${1:SHORTANSWER:=$RESPUESTA_L$} <br/> $$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/>"
+            + "$$N=$${1:SHORTANSWER:=$RESPUESTA_NL$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,L,M$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J,K,L,M,N$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$," +
-            "$RESPUESTA_H$,$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$,$RESPUESTA_M$"
+            "$RESPUESTA_H$,$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$,$RESPUESTA_M$,$RESPUESTA_N$"
             + "}</center> <br>"
             + "</center>";
     /**
@@ -96,7 +97,7 @@ public class GeneradorReactivo_Thomas_3_3ej39 implements GeneradorReactivoCloze 
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_39_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_40_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
@@ -115,34 +116,34 @@ public class GeneradorReactivo_Thomas_3_3ej39 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA =1;
-        Integer respuestaB = 2;
-        Integer respuestaC = 2*constanteC;
-        Integer respuestaD = 4*constanteA*constanteC;
-        Integer respuestaE = constanteB;
-        Integer respuestaF = 5;
+        Integer respuestaA = -2;
+        Integer respuestaB = 6*(constanteB*constanteB-constanteA);
+        Integer respuestaC = -6*constanteB*constanteB*constanteA;
+        Integer respuestaD = 2;
+        Integer respuestaE = 2;
+        Integer respuestaF = 3*constanteB*constanteB;
         //Checar fracción reductible
         Integer divisor = maximoComunDivisor(respuestaB, maximoComunDivisor(respuestaC,respuestaD));
-        respuestaA *= divisor;
-        respuestaB /= divisor;
-        respuestaC /= divisor;
-        respuestaD /= divisor;
+//        respuestaA *= divisor;
+//        respuestaB /= divisor;
+//        respuestaC /= divisor;
+//        respuestaD /= divisor;
 
 
-        Integer respuestaG = 2;
-        Integer respuestaH = 1;
-        Integer respuestaJ = -3*constanteC;
-        Integer respuestaK = -10*constanteA*constanteC;
-        Integer respuestaL = constanteB;
-        Integer respuestaM = 6;
+        Integer respuestaG = 8;
+        Integer respuestaH = 8*(6*constanteA-9*constanteB*constanteB);
+        Integer respuestaJ = 8*9*constanteB*constanteB*constanteA;
+        Integer respuestaK = 8*9*constanteB*constanteB*constanteB*constanteB*constanteA;
+        Integer respuestaL = 2;
+        Integer respuestaM = 3;
+        Integer respuestaN = 3*constanteB*constanteB;
         divisor = maximoComunDivisor(respuestaH, maximoComunDivisor(respuestaJ,respuestaK));
-        respuestaG *= divisor;
-        respuestaH /= divisor;
-        respuestaJ /= divisor;
-        respuestaK /= divisor;
+//        respuestaG *= divisor;
+//        respuestaH /= divisor;
+//        respuestaJ /= divisor;
+ //       respuestaK /= divisor;
 
 
-        Integer respuestaN = constanteC;
         Integer respuestaP = constanteC;
 
 //        divisor = maximoComunDivisor(divisor, respuestaC);
@@ -213,8 +214,10 @@ public class GeneradorReactivo_Thomas_3_3ej39 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej39());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej40());
     }
 
 
 }
+
+
