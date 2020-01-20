@@ -134,11 +134,11 @@ public class GeneradorReactivo_Thomas_3_3ej40 implements GeneradorReactivoCloze 
         Integer respuestaH = 8*(6*constanteA-9*constanteB*constanteB);
         Integer respuestaJ = 8*9*constanteB*constanteB*constanteA;
         Integer respuestaK = 8*9*constanteB*constanteB*constanteB*constanteB*constanteA;
-        Integer respuestaL = 2;
+        Integer respuestaL = 8;
         Integer respuestaM = 3;
         Integer respuestaN = 3*constanteB*constanteB;
         divisor = maximoComunDivisor(maximoComunDivisor(maximoComunDivisor(respuestaG,respuestaH),maximoComunDivisor(respuestaJ,respuestaK)),respuestaL);
-        respuestaG *= divisor;
+        respuestaG /= divisor;
         respuestaH /= divisor;
         respuestaJ /= divisor;
         respuestaK /= divisor;
