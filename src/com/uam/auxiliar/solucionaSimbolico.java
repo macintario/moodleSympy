@@ -741,8 +741,10 @@ public class solucionaSimbolico {
             "\n" +
             "def acomodaNotacion(expresion):\n" +
             "    # parche para notación\n" +
+            "    expresion = expresion.replace(\"\\\\frac{d}{d x} f{\\\\left(x \\\\right)} g{\\\\left(x \\\\right)}\",\n" +
+            "                                  \"\\\\frac{d}{d x}( f{\\\\left(x \\\\right)} g{\\\\left(x \\\\right)})\")\n"+
             "    expresion = expresion.replace(\"\\\\frac{d}{d x} \\\\frac{f{\\\\left(x \\\\right)}}{g{\\left(x \\\\right)}}\",\n" +
-            "                                \"\\\\frac{d}{d x}( \\\\frac{f{\\\\left(x \\\\right)}}{g{\\left(x \\\\right)}})\")\n" +
+            "                                  \"\\\\frac{d}{d x}( \\\\frac{f{\\\\left(x \\\\right)}}{g{\\left(x \\\\right)}})\")\n" +
             "    expresion = expresion.replace(\n" +
             "        \"\\\\frac{- f{\\\\left(x \\\\right)} \\\\frac{d}{d x} g{\\\\left(x \\\\right)} + g{\\\\left(x \\\\right)} \\\\frac{d}{d x} f{\\\\left(x \\\\right)}}{g^{2}{\\\\left(x \\\\right)}}\",\n" +
             "        \"\\\\frac{- f{\\\\left(x \\\\right)} \\\\frac{d}{d x}( g{\\\\left(x \\\\right)}) + g{\\\\left(x \\\\right)} \\\\frac{d}{d x}( f{\\\\left(x \\\\right))}}{g^{2}{\\\\left(x \\\\right)}}\")\n" +
