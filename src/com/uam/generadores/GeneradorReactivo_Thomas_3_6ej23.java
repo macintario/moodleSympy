@@ -25,7 +25,7 @@ public class GeneradorReactivo_Thomas_3_6ej23  implements GeneradorReactivoCloze
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
      */
-    private static final int NUMERO_DE_REACTIVOS = 3;
+    private static final int NUMERO_DE_REACTIVOS = 2;
 
     private static final int[] COTA_CONSTANTE_A = {2, 9};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
