@@ -738,6 +738,21 @@ public class solucionaSimbolico {
             "    a = HTMLPrinter(diff_steps(function, symbol))\n" +
             "    return a.finalize()\n" +
             "\n" +
+            "\n" +
+            "def acomodaNotacion(expresion):\n" +
+            "    # parche para notación\n" +
+            "    expresion = expresion.replace(\"\\\\frac{d}{d x} \\\\frac{f{\\\\left(x \\\\right)}}{g{\\left(x \\\\right)}}\",\n" +
+            "                                \"\\\\frac{d}{d x}( \\\\frac{f{\\\\left(x \\\\right)}}{g{\\left(x \\\\right)}})\")\n" +
+            "    expresion = expresion.replace(\n" +
+            "        \"\\\\frac{- f{\\\\left(x \\\\right)} \\\\frac{d}{d x} g{\\\\left(x \\\\right)} + g{\\\\left(x \\\\right)} \\\\frac{d}{d x} f{\\\\left(x \\\\right)}}{g^{2}{\\\\left(x \\\\right)}}\",\n" +
+            "        \"\\\\frac{- f{\\\\left(x \\\\right)} \\\\frac{d}{d x}( g{\\\\left(x \\\\right)}) + g{\\\\left(x \\\\right)} \\\\frac{d}{d x}( f{\\\\left(x \\\\right))}}{g^{2}{\\\\left(x \\\\right)}}\")\n" +
+            "    expresion = expresion.replace(\"\\\\frac{d}{d x} f{\\\\left(x \\\\right)}\",\n" +
+            "                                \"\\\\frac{d}{d x}( f{\\\\left(x \\\\right)})\")\n" +
+            "    expresion = expresion.replace(\"\\\\frac{d}{d x} g{\\\\left(x \\\\right)}\",\n" +
+            "                                \"\\\\frac{d}{d x}( g{\\\\left(x \\\\right)})\")\n" +
+            "\n" +
+            "    return expresion\n" +
+            "\n"+
             "\n" ;
     private static final String PARSER =                 "##MAIN##\n" +
             "\n" +
@@ -748,6 +763,7 @@ public class solucionaSimbolico {
     private static final String SOLVER =
                     "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr,x)))\n" +
                             "solucion = print_html_steps(expr, x)\n" +
+                            "solucion=acomodaNotacion(solucion)\n"+
                             "salida.write(solucion)\n" ;
 
     private static final String DIFF_STEP =
@@ -755,6 +771,7 @@ public class solucionaSimbolico {
                             "derivada = factor(derivada.doit())\n"+
                             "salida.write(\"<br/>Siguiente derivada<br/>Obtener: $$%s$$<br><br>\" % latex(Derivative(derivada,x)))\n" +
                                     "solucion = print_html_steps(derivada, x)\n" +
+                                    "solucion=acomodaNotacion(solucion)\n"+
                                     "expr = derivada\n" +
                             "salida.write(solucion)\n" ;
     private static final String CLOSER      =                      "salida.close()\n";
