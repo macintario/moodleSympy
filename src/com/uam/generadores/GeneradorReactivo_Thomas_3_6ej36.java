@@ -31,7 +31,7 @@ public class GeneradorReactivo_Thomas_3_6ej36 implements GeneradorReactivoCloze 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
      */
-    private static final int NUMERO_DE_REACTIVOS = 3;
+    private static final int NUMERO_DE_REACTIVOS = 2;
 
     /**
      * El texto del reactivo, las variables se encuentran en mayúsculas y
@@ -70,17 +70,18 @@ public class GeneradorReactivo_Thomas_3_6ej36 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "(\\frac{1+\\sin($CONSTANTEA$x)}{$CONSTANTEB$-$CONSTANTEC$x})^{-$CONSTANTED$}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{(A\\cos(Bx)+C)\\sin^{D}(Ex)}{(\\cos(Fx)+G)^{H}}$$ <br/>";
+    private static final String EXPRESION = "(\\frac{1+\\sin($CONSTANTEA$x)}{$CONSTANTEB$-$CONSTANTEC$x})^{-1}";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A\\cos(Bx)+Cxcos(Dx)+E+Fsin(Gx)}{(1+\\sin(Hx))^{J}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
             + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G,H,J$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -102,8 +103,8 @@ public class GeneradorReactivo_Thomas_3_6ej36 implements GeneradorReactivoCloze 
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1]);
-        Integer constanteC = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1]);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
+        Integer constanteC = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteB);
         Integer constanteD =  Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
         Integer constanteE = constanteA;
         Integer constanteF = constanteC;
@@ -112,16 +113,16 @@ public class GeneradorReactivo_Thomas_3_6ej36 implements GeneradorReactivoCloze 
 
         String comentarioReactivo
                 = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA*constanteB*constanteC;
+        Integer respuestaA = -constanteA*constanteB;
         Integer respuestaB = constanteA;
         Integer respuestaC = constanteA*constanteC;
-        Integer respuestaD = constanteC-1;
-        Integer respuestaE = constanteA;
-        Integer respuestaF = constanteA;
-        Integer respuestaG = constanteB;
-        Integer respuestaH = constanteC+1;
+        Integer respuestaD = constanteA;
+        Integer respuestaE = -constanteC;
+        Integer respuestaF = -constanteC;
+        Integer respuestaG = constanteA;
+        Integer respuestaH = constanteA;
+        Integer respuestaJ = 2;
 
-        Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA-1;
         Integer respuestaL = -constanteC;
         Integer respuestaM = 2;
