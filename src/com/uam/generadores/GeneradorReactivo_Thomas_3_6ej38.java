@@ -61,7 +61,7 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {3, 7};
+    private static final int[] COTA_CONSTANTE_A = {3, 9};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
     private static final int[] COTA_CONSTANTE_C = {2, 9};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
@@ -71,7 +71,7 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\sec(\\sqrt[$CONSTANTEA$]{x})\\tan(\\frac{$CONSTANTEB$}{x})";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{x^{\\frac{1}{A}}sec }{}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax^{\\frac{B}{C}}\\cos(\\sqrt[D]{x}) +x^{E}\\sin(\\sqrt[F]{x})cos^G(\\frac{H}{x})\\tan(\\frac{J}{x})}{Kx^{\\frac{L}{M}}\\cos^2(\\frac{N}{x})cos^2(\\sqrt[P]{x})}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -110,17 +110,16 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA;
+        Integer respuestaA = -constanteA*constanteB;
         Integer respuestaB = constanteA-1;
-        Integer respuestaC = constanteB;
+        Integer respuestaC = constanteA;
         Integer respuestaD = constanteA;
-        Integer respuestaE = -constanteB;
-        Integer respuestaF = constanteB;
-        Integer respuestaG = constanteA;
-
-        Integer respuestaH = constanteA;
-        Integer respuestaJ = 2;
-        Integer respuestaK = constanteA-1;
+        Integer respuestaE = 2;
+        Integer respuestaF = constanteA;
+        Integer respuestaG = 2;
+        Integer respuestaH = constanteB;
+        Integer respuestaJ = constanteB;
+        Integer respuestaK = constanteA;
         Integer respuestaL = -constanteC;
         Integer respuestaM = 2;
         Integer respuestaN = constanteC;
