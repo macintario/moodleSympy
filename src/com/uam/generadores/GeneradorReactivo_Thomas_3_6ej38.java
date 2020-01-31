@@ -75,7 +75,10 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/>"
+            + "$$L=$${1:SHORTANSWER:=$RESPUESTA_L$} <br/> $$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/>"
+            + "$$N=$${1:SHORTANSWER:=$RESPUESTA_N$} <br/> $$P=$${1:SHORTANSWER:=$RESPUESTA_P$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
@@ -120,10 +123,10 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
         Integer respuestaH = constanteB;
         Integer respuestaJ = constanteB;
         Integer respuestaK = constanteA;
-        Integer respuestaL = -constanteC;
+        Integer respuestaL = 3*constanteA-1;
         Integer respuestaM = 2;
-        Integer respuestaN = constanteC;
-        Integer respuestaP = constanteC;
+        Integer respuestaN = constanteB;
+        Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
         Integer divisor = maximoComunDivisor(respuestaA, respuestaC);
         //respuestaA /= divisor;
