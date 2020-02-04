@@ -71,19 +71,20 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\sec(\\sqrt[$CONSTANTEA$]{x})\\tan(\\frac{$CONSTANTEB$}{x})";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax^{\\frac{B}{C}}\\cos(\\sqrt[D]{x}) +x^{E}\\sin(\\sqrt[F]{x})cos^G(\\frac{H}{x})\\tan(\\frac{J}{x})}{Kx^{\\frac{L}{M}}\\cos^2(\\frac{N}{x})cos^2(\\sqrt[P]{x})}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{Ax^{\\frac{B}{C}}\\cos(\\sqrt[D]{x}) +x^{2}\\sin(\\sqrt[F]{x})cos^G(\\frac{H}{x})\\tan(\\frac{J}{x})}{Kx^{\\frac{L}{M}}\\cos^2(\\frac{N}{x})cos^2(\\sqrt[P]{x})}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
+            + "$$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
             + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
             + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/> $$K=$${1:SHORTANSWER:=$RESPUESTA_K$} <br/>"
             + "$$L=$${1:SHORTANSWER:=$RESPUESTA_L$} <br/> $$M=$${1:SHORTANSWER:=$RESPUESTA_M$} <br/>"
             + "$$N=$${1:SHORTANSWER:=$RESPUESTA_N$} <br/> $$P=$${1:SHORTANSWER:=$RESPUESTA_P$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,F,G,H,J,K,L,M,N.P$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$,$RESPUESTA_K$,$RESPUESTA_L$" +
+            ",$RESPUESTA_M$,$RESPUESTA_N$,$RESPUESTA_P$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -124,7 +125,7 @@ public class GeneradorReactivo_Thomas_3_6ej38 implements GeneradorReactivoCloze 
         Integer respuestaJ = constanteB;
         Integer respuestaK = constanteA;
         Integer respuestaL = 3*constanteA-1;
-        Integer respuestaM = 2;
+        Integer respuestaM = constanteA;
         Integer respuestaN = constanteB;
         Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
