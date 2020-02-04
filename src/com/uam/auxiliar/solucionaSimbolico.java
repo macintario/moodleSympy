@@ -33,6 +33,8 @@ public class solucionaSimbolico {
             "from sympy.strategies.core import switch\n" +
             "from sympy.core.compatibility import reduce\n" +
             "from sympy import factor\n" +
+            "from sympy import Symbol\n" +
+            "from sympy import pi\n" +
             "\n" +
             "from contextlib import contextmanager\n" +
             "\n" +
@@ -752,7 +754,6 @@ public class solucionaSimbolico {
             "                                \"\\\\frac{d}{d x}( f{\\\\left(x \\\\right)})\")\n" +
             "    expresion = expresion.replace(\"\\\\frac{d}{d x} g{\\\\left(x \\\\right)}\",\n" +
             "                                \"\\\\frac{d}{d x}( g{\\\\left(x \\\\right)})\")\n" +
-            "\n" +
             "    return expresion\n" +
             "\n"+
             "\n" ;
@@ -760,7 +761,7 @@ public class solucionaSimbolico {
             "\n" +
             "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
             "x = symbols('x')\n" +
-            "expr = parse_latex(r\"$EXPRESION$\")\n";
+            "expr = parse_latex(r\"$EXPRESION$\").subs({Symbol('pi'): pi})\n";
 
     private static final String SOLVER =
                     "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr,x)))\n" +
