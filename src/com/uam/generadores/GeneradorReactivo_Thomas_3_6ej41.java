@@ -61,7 +61,7 @@ public class GeneradorReactivo_Thomas_3_6ej41 implements GeneradorReactivoCloze 
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {3, 9};
+    private static final int[] COTA_CONSTANTE_A = {2, 9};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
     private static final int[] COTA_CONSTANTE_C = {2, 9};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
@@ -70,8 +70,8 @@ public class GeneradorReactivo_Thomas_3_6ej41 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "\\sin^2(\\pi x -2)";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{\\sin(Ax)+Bx\\cos(Cx)}{Dx^{E}\\sin^{F}(\\frac{\\sin(Gx)}{Hx})}$$ <br/>";
+    private static final String EXPRESION = "\\sin^$CONSTANTEA$(\\pi x -$CONSTANTEB$)";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A\\pi\\sin^{B}(\\pi x-D) \\cos(\\pi x - E)$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
@@ -101,7 +101,7 @@ public class GeneradorReactivo_Thomas_3_6ej41 implements GeneradorReactivoCloze 
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
         Integer constanteC = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteB);
         Integer constanteD =  Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
