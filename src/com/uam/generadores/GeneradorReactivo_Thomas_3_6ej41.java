@@ -71,16 +71,14 @@ public class GeneradorReactivo_Thomas_3_6ej41 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "\\sin^$CONSTANTEA$(\\pi x -$CONSTANTEB$)";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A\\pi\\sin^{B}(\\pi x-D) \\cos(\\pi x - E)$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A\\pi\\sin^{B}(\\pi x-C) \\cos(\\pi x - D)$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,F,G,H,J,K,L,M,N.P$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -111,8 +109,8 @@ public class GeneradorReactivo_Thomas_3_6ej41 implements GeneradorReactivoCloze 
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = constanteA;
-        Integer respuestaB = -constanteA;
-        Integer respuestaC = constanteA;
+        Integer respuestaB = constanteA-1;
+        Integer respuestaC = constanteB;
         Integer respuestaD = constanteB;
         Integer respuestaE = 2;
         Integer respuestaF = 2;
