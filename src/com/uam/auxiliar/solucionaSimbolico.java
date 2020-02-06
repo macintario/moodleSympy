@@ -717,7 +717,7 @@ public class solucionaSimbolico {
             "        if answer:\n" +
             "            simp = sympy.simplify(answer)\n" +
 //            "            simp = sympy.trigsimp(simp).rewrite(sin,cos)\n" +
-//            "            simp = sympy.trigsimp(simp)\n" +
+            "            simp = sympy.trigsimp(simp)\n" +
             "            simp = sympy.factor(simp)\n" +
             "            if simp != answer:\n" +
             "                answer = simp\n" +
