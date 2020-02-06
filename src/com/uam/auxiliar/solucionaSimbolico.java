@@ -35,6 +35,8 @@ public class solucionaSimbolico {
             "from sympy import factor\n" +
             "from sympy import Symbol\n" +
             "from sympy import pi\n" +
+            "from sympy import sin\n" +
+            "from sympy import cos\n" +
             "\n" +
             "from contextlib import contextmanager\n" +
             "\n" +
@@ -714,6 +716,7 @@ public class solucionaSimbolico {
             "        answer = diff(self.rule)\n" +
             "        if answer:\n" +
             "            simp = sympy.simplify(answer)\n" +
+            "            simp = sympy.trigsimp(simp).rewrite(sin,cos)\n" +
             "            simp = sympy.factor(simp)\n" +
             "            if simp != answer:\n" +
             "                answer = simp\n" +
@@ -722,12 +725,21 @@ public class solucionaSimbolico {
             "                    self.append(self.format_math_display(simp))\n" +
             "            else:\n"+
             "                simp = sympy.expand(answer)\n"+
+            "                simp = sympy.trigsimp(simp).rewrite(sin,cos)\n"+
             "                simp = sympy.factor(simp)\n"+
             "                if simp != answer:\n" +
             "                    answer = simp\n" +
             "                    with self.new_step():\n" +
             "                        self.append(\"Simplificando:\")\n" +
             "                        self.append(self.format_math_display(simp))\n" +
+            "                else:\n"+
+            "                    simp = sympy.trigsimp(answer).rewrite(sin,cos)\n"+
+            "                    simp = sympy.factor(simp)\n"+
+            "                    if simp != answer:\n" +
+            "                        answer = simp\n" +
+            "                        with self.new_step():\n" +
+            "                            self.append(\"Simplificando:\")\n" +
+            "                            self.append(self.format_math_display(simp))\n" +
             "        self.lines.append('</ol><br/>')\n" +
             "        self.lines.append('<hr/>')\n" +
             "        self.level = 0\n" +
@@ -822,7 +834,7 @@ public class solucionaSimbolico {
             File archivoSolucion = new File("/tmp/solucion_" + uuid + ".txt");
             archivoSolucion.delete();
             File archivoScript = new File("/tmp/script_" + uuid + ".py");
-            archivoScript.delete();
+            //archivoScript.delete();
         } catch (java.io.IOException e) {
             System.err.format("Leyendo Solucion IOException: %s%n", e);
         }

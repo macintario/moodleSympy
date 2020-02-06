@@ -15,18 +15,18 @@ import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
-public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_Thomas_3_6ej44 implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_6x40_000-->"
+     * "<!--Reactivo Thomas_3_6x44_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej40.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_6ej44.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -61,7 +61,7 @@ public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze 
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {3, 9};
+    private static final int[] COTA_CONSTANTE_A = {2, 9};
     private static final int[] COTA_CONSTANTE_B = {2, 9};
     private static final int[] COTA_CONSTANTE_C = {2, 9};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
@@ -70,17 +70,16 @@ public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "\\cot(\\frac{\\sin($CONSTANTEA$x)}{$CONSTANTEB$x})";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{\\sin(Ax)+Bx\\cos(Cx)}{Dx^{E}\\sin^{F}(\\frac{\\sin(Gx)}{Hx})}$$ <br/>";
+    private static final String EXPRESION = "($CONSTANTEA$+\\cot(\\frac{x}{$CONSTANTEB$}))^{-$CONSTANTEC$}";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A\\sin(Bx)(C+cos(Dx))^{E}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$} <br/>"
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$} <br/>"
+            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,F,G,H$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -94,14 +93,14 @@ public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze 
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_40_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.6_Ej_44_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer constanteA = Utilidades.obtenerImparAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
         Integer constanteC = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteB);
         Integer constanteD =  Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
@@ -110,11 +109,11 @@ public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze 
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteA;
-        Integer respuestaB = -constanteA;
+        Integer respuestaA = constanteB*constanteC;
+        Integer respuestaB = constanteB;
         Integer respuestaC = constanteA;
         Integer respuestaD = constanteB;
-        Integer respuestaE = 2;
+        Integer respuestaE = -constanteC-1;
         Integer respuestaF = 2;
         Integer respuestaG = constanteA;
         Integer respuestaH = constanteB;
@@ -177,7 +176,7 @@ public class GeneradorReactivo_Thomas_3_6ej40 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej40());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_6ej44());
     }
 
 
