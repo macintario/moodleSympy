@@ -716,7 +716,8 @@ public class solucionaSimbolico {
             "        answer = diff(self.rule)\n" +
             "        if answer:\n" +
             "            simp = sympy.simplify(answer)\n" +
-            "            simp = sympy.trigsimp(simp).rewrite(sin,cos)\n" +
+//            "            simp = sympy.trigsimp(simp).rewrite(sin,cos)\n" +
+//            "            simp = sympy.trigsimp(simp)\n" +
             "            simp = sympy.factor(simp)\n" +
             "            if simp != answer:\n" +
             "                answer = simp\n" +
@@ -725,21 +726,14 @@ public class solucionaSimbolico {
             "                    self.append(self.format_math_display(simp))\n" +
             "            else:\n"+
             "                simp = sympy.expand(answer)\n"+
-            "                simp = sympy.trigsimp(simp).rewrite(sin,cos)\n"+
+//            "                simp = sympy.trigsimp(simp).rewrite(sin,cos)\n"+
+            "                simp = sympy.trigsimp(simp)\n"+
             "                simp = sympy.factor(simp)\n"+
             "                if simp != answer:\n" +
             "                    answer = simp\n" +
             "                    with self.new_step():\n" +
             "                        self.append(\"Simplificando:\")\n" +
             "                        self.append(self.format_math_display(simp))\n" +
-            "                else:\n"+
-            "                    simp = sympy.trigsimp(answer).rewrite(sin,cos)\n"+
-            "                    simp = sympy.factor(simp)\n"+
-            "                    if simp != answer:\n" +
-            "                        answer = simp\n" +
-            "                        with self.new_step():\n" +
-            "                            self.append(\"Simplificando:\")\n" +
-            "                            self.append(self.format_math_display(simp))\n" +
             "        self.lines.append('</ol><br/>')\n" +
             "        self.lines.append('<hr/>')\n" +
             "        self.level = 0\n" +

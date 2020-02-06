@@ -71,15 +71,16 @@ public class GeneradorReactivo_Thomas_3_6ej44 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
     private static final String EXPRESION = "($CONSTANTEA$+\\cot(\\frac{x}{$CONSTANTEB$}))^{-$CONSTANTEC$}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A\\sin(Bx)(C+cos(Dx))^{E}$$ <br/>";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{A}{B\\sin^{C}(\\frac{x}{D})(E+\\cot(\\frac{x}{F}))^{G}}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
-            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> "
+            + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -109,13 +110,13 @@ public class GeneradorReactivo_Thomas_3_6ej44 implements GeneradorReactivoCloze 
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteB*constanteC;
+        Integer respuestaA = constanteC;
         Integer respuestaB = constanteB;
-        Integer respuestaC = constanteA;
+        Integer respuestaC = 2;
         Integer respuestaD = constanteB;
-        Integer respuestaE = -constanteC-1;
-        Integer respuestaF = 2;
-        Integer respuestaG = constanteA;
+        Integer respuestaE = constanteA;
+        Integer respuestaF = constanteB;
+        Integer respuestaG = constanteC+1;
         Integer respuestaH = constanteB;
         Integer respuestaJ = constanteB;
         Integer respuestaK = constanteA;
@@ -124,9 +125,9 @@ public class GeneradorReactivo_Thomas_3_6ej44 implements GeneradorReactivoCloze 
         Integer respuestaN = constanteB;
         Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisor = maximoComunDivisor(respuestaA, respuestaC);
-        //respuestaA /= divisor;
-        //respuestaC /= divisor;
+        Integer divisor = maximoComunDivisor(respuestaA, respuestaB);
+        respuestaA /= divisor;
+        respuestaB /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
