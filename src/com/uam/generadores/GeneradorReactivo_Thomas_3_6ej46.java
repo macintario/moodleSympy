@@ -70,8 +70,8 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
 
-    private static final String EXPRESION = "(x^{\\frac{-3}{4}} \\sin(x))^{\\frac{4}{3}}";
-    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=A(x\\tan(Bx))^{C}(\\tan(Dx)+Ex\\sec^{F}(Gx))$$ <br/>";
+    private static final String EXPRESION = "(x^{\\frac{-$CONSTANTEA$}{$CONSTANTEB$}} \\sin($CONSTANTEC$x))^{\\frac{$CONSTANTEB$}{$CONSTANTEA$}}";
+    private String RESPUESTA= "$$\\displaystyle\\frac{df}{dx}=\\frac{(sin(Ax))^{\\frac{B}{C}}(Dx-E\\tan(Fx))}{Gx^H\\tan(Jx)}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
@@ -102,7 +102,7 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
-        Integer constanteB = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
+        Integer constanteB = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_B[0], COTA_CONSTANTE_B[1],constanteA);
         Integer constanteC = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_C[0], COTA_CONSTANTE_C[1],constanteB);
         Integer constanteD =  Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1]);
         Integer constanteE = constanteA;
@@ -110,15 +110,15 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteB;
+        Integer respuestaA = constanteC;
         Integer respuestaB = constanteA;
-        Integer respuestaC = constanteB-1;
-        Integer respuestaD = constanteA;
+        Integer respuestaC = constanteB;
+        Integer respuestaD = constanteB*constanteC;
         Integer respuestaE = constanteA;
-        Integer respuestaF = 2;
+        Integer respuestaF = constanteC;
         Integer respuestaG = constanteA;
-        Integer respuestaH = constanteB;
-        Integer respuestaJ = constanteB;
+        Integer respuestaH = 2;
+        Integer respuestaJ = constanteC;
         Integer respuestaK = constanteA;
         Integer respuestaL = 3*constanteA-1;
         Integer respuestaM = constanteA;
