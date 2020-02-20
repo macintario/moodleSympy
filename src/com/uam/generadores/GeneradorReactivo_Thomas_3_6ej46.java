@@ -75,12 +75,13 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
             + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "$$E=$${1:SHORTANSWER:=$RESPUESTA_E$} <br/> $$F=$${1:SHORTANSWER:=$RESPUESTA_F$}<br/> "
-            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/>"
+            + "$$G=$${1:SHORTANSWER:=$RESPUESTA_G$} <br/> $$H=$${1:SHORTANSWER:=$RESPUESTA_H$}<br/> "
+            + "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
             + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -111,8 +112,8 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Integer respuestaA = constanteC;
-        Integer respuestaB = constanteA;
-        Integer respuestaC = constanteB;
+        Integer respuestaB = constanteB;
+        Integer respuestaC = constanteA;
         Integer respuestaD = constanteB*constanteC;
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteC;
@@ -125,9 +126,14 @@ public class GeneradorReactivo_Thomas_3_6ej46 implements GeneradorReactivoCloze 
         Integer respuestaN = constanteB;
         Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisor = maximoComunDivisor(respuestaA, respuestaB);
-        //  respuestaA /= divisor;
-        // respuestaB /= divisor;
+        Integer divisor = maximoComunDivisor(respuestaD, respuestaE);
+        divisor = maximoComunDivisor(divisor, respuestaG);
+        respuestaD /= divisor;
+        respuestaE /= divisor;
+        respuestaG /= divisor;
+        divisor = maximoComunDivisor(respuestaB, respuestaC);
+        respuestaB /= divisor;
+        respuestaC /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
