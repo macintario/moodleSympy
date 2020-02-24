@@ -1275,6 +1275,12 @@ public class solucionaSimbolico {
         String solucion = ejecutaPython(script);
         return solucion;
     }
+    public String rectaTangente(String expresion, String x0){  /* Modificar para x0 */
+        String script = DERIVADOR+PARSER+SOLVER+DIFF_STEP+CLOSER;
+        script = script.replace("$EXPRESION$", expresion);
+        String solucion = ejecutaPython(script);
+        return solucion;
+    }
     public static String simplifica(String expresion){
         String PLANTILLA_SYMPY =
                 "from sympy import *\n" +
