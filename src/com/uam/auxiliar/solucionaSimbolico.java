@@ -775,6 +775,28 @@ public class solucionaSimbolico {
                             "solucion=acomodaNotacion(solucion)\n"+
                             "salida.write(solucion)\n" ;
 
+    private static final String SOLVER_RECTA_TANGENTE =
+                       "x0 = $X0$\n"
+                     +"salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr, x)))\n"
+                     +"solucion = print_html_steps(expr, x)\n"
+                     +"solucion = acomodaNotacion(solucion)\n"
+                     +"salida.write(solucion)\n"
+                     +"derivada = Derivative(expr)\n"
+                     +"y_0 = expr.subs(x, x0)\n"
+                     +"yp_0 = derivada.subs(x, x0)\n"
+                     +"salida.write(\"\\n $$x_{0}=0$$\\n<br/>\")\n"
+                     + "salida.write(\"$$f(x_{0})=%s$$ \\n<br/>\" % latex(y_0))\n" +
+                               "solucion=\"$$f'(x_{0})=%s=%s$$ \\n<br/>\" % (latex(yp_0), latex(yp_0.doit()))\n" +
+                               "solucion=solucion.replace(\"+-\",\"-\")\n" +
+                               "solucion = solucion.replace(\"--\",\"+\")\n" +
+                               "salida.write(solucion)\n" 
+                     +"salida.write(\"Sustituyendo en $$y-f(x_{0})=f'(x_{0})(x-x_{0})$$ obtenemos:\\n<br/>$$y-%s=%s(x-%s)$$ \\n<br/>\" % (\n"
+                     +"latex(y_0.doit()), latex(yp_0.doit()), x0))\n"
+                     +"solucion=\"Simplificando:\\n<br/>$$y=%sx+%s$$\"%(latex(yp_0.doit()),latex(y_0.doit()-yp_0.doit()*x0))\n"
+                     +"solucion=solucion.replace(\"+-\",\"-\")\n"
+                     +"salida.write(solucion)\n"
+            ;
+
     private static final String DIFF_STEP =
                             "derivada = Derivative(expr)\n"+
                             "derivada = factor(derivada.doit())\n"+
@@ -1275,9 +1297,10 @@ public class solucionaSimbolico {
         String solucion = ejecutaPython(script);
         return solucion;
     }
-    public String rectaTangente(String expresion, String x0){  /* Modificar para x0 */
-        String script = DERIVADOR+PARSER+SOLVER+DIFF_STEP+CLOSER;
+    public static String rectaTangente(String expresion, Integer x0){  /* Modificar para x0 */
+        String script = DERIVADOR+PARSER+SOLVER_RECTA_TANGENTE+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
+        script = script.replace("$X0$", x0.toString());
         String solucion = ejecutaPython(script);
         return solucion;
     }

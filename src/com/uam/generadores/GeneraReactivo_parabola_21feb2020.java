@@ -173,7 +173,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$EQUIS0$", x_0.toString());
 
-        solucion = solucionaSimbolico.derivaSimbolico(expresion);
+        solucion = solucionaSimbolico.rectaTangente(expresion,x_0);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 
