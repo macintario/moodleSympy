@@ -784,15 +784,15 @@ public class solucionaSimbolico {
                      +"derivada = Derivative(expr)\n"
                      +"y_0 = expr.subs(x, x0)\n"
                      +"yp_0 = derivada.subs(x, x0)\n"
-                     +"salida.write(\"\\n $$x_{0}=0$$\\n<br/>\")\n"
-                     + "salida.write(\"$$f(x_{0})=%s$$ \\n<br/>\" % latex(y_0))\n" +
-                               "solucion=\"$$f'(x_{0})=%s=%s$$ \\n<br/>\" % (latex(yp_0), latex(yp_0.doit()))\n" +
+                     +"salida.write(\"\\n Evaluamos en $$x_{0}=$X0$ $$\\n<br/><br/>\")\n"
+                     + "salida.write(\" Sustituyendo en $$f(x)$$ el valor de $$x_{0}$$<br/><center>$$f(x_{0})=%s$$</center> \\n<br/><br/>\" % latex(y_0))\n" +
+                               "solucion=\"Sustituyendo en $$f'(x)$$ el valor de $$x_{0}$$<br/><center>$$f'(x_{0})=%s=%s$$</center> \\n<br/><br/>\" % (latex(yp_0), latex(yp_0.doit()))\n" +
                                "solucion=solucion.replace(\"+-\",\"-\")\n" +
                                "solucion = solucion.replace(\"--\",\"+\")\n" +
-                               "salida.write(solucion)\n" 
-                     +"salida.write(\"Sustituyendo en $$y-f(x_{0})=f'(x_{0})(x-x_{0})$$ obtenemos:\\n<br/>$$y-%s=%s(x-%s)$$ \\n<br/>\" % (\n"
+                               "salida.write(solucion)\n"
+                     +"salida.write(\"Sustituyendo en la ecuación de la recta $$y-f(x_{0})=f'(x_{0})(x-x_{0})$$ obtenemos:\\n<br/><center>$$y-(%s)=(%s)(x-(%s))$$ </center>\\n<br/>\" % (\n"
                      +"latex(y_0.doit()), latex(yp_0.doit()), x0))\n"
-                     +"solucion=\"Simplificando:\\n<br/>$$y=%sx+%s$$\"%(latex(yp_0.doit()),latex(y_0.doit()-yp_0.doit()*x0))\n"
+                     +"solucion=\"Simplificando:\\n<br/><center>$$y=%sx+%s$$</center><br/><br/>\"%(latex(yp_0.doit()),latex(y_0.doit()-yp_0.doit()*x0))\n"
                      +"solucion=solucion.replace(\"+-\",\"-\")\n"
                      +"salida.write(solucion)\n"
             ;
