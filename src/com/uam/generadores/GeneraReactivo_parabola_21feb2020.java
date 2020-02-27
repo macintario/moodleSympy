@@ -109,8 +109,9 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         Integer x_0 = Utilidades.obtenerEnteroAleatorio(COTA_X_0[0], COTA_X_0[1]);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = constanteC;
-        Integer respuestaB = constanteB;
+        Integer respuestaA = 2*constanteA*x_0+constanteB;
+        Integer respuestaB = (constanteA*x_0*x_0+constanteB*x_0+constanteC)-respuestaA*x_0;
+        Integer y_0 = constanteA*x_0*x_0+constanteB*x_0+constanteC;
         Integer respuestaC = constanteA;
         Integer respuestaD = constanteB*constanteC;
         Integer respuestaE = constanteA;
@@ -153,6 +154,11 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
 
         reactivo = reactivo.replace("$RESPUESTAS$", CAJAS_RESPUESTA);
         reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
+        //cambiar el problema para punto  tangente
+        reactivo = reactivo.replace("\\frac{d}{dx}\\left($EXPRESION$ \\right)",
+                "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,$YE0$)");
+        reactivo = reactivo.replace("<strong>La derivada de la función $$f(x)$$ es:</strong>",
+                "<strong>La recta tangente a la función $$f(x)$$ en el punto $x_0=$EQUIS0$ $$  es:</strong>");
         reactivo = reactivo.replace("$EXPRESION$", expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
         reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
@@ -172,6 +178,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$EQUIS0$", x_0.toString());
+        reactivo = reactivo.replace("$YE0$", y_0.toString());
 
         solucion = solucionaSimbolico.rectaTangente(expresion,x_0);
 
