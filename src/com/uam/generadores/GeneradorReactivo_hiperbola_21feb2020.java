@@ -15,18 +15,18 @@ import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
-public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo parabola_21feb2020_000-->"
+     * "<!--Reactivo hiperbola_21feb2020_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_parabola_21feb2020.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_hiperbola_21feb2020.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -71,7 +71,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
     private static final int[] COTA_CONSTANTE_H = {2, 5};
     private static final int[] COTA_X_0 = {-10, 10};
 
-    private static final String EXPRESION = "$CONSTANTEA$x^2+$CONSTANTEB$x+$CONSTANTEC$";
+    private static final String EXPRESION = "\\frac{1}{$CONSTANTEA$x+$CONSTANTEB$}";
     private String RESPUESTA= "$$\\displaystyle y=$${1:SHORTANSWER:=$RESPUESTA_A$}$$x+ $${1:SHORTANSWER:=$RESPUESTA_B$}<br/>";
     private String CAJAS_RESPUESTA = "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/>"
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
@@ -92,7 +92,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo parabola_21feb2020_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo hiperbola_21feb2020_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
@@ -107,11 +107,11 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         Integer constanteF = constanteC;
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
-        Integer x_0 = Utilidades.obtenerEnteroAleatorio(COTA_X_0[0], COTA_X_0[1]);
+        Integer x_0 = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_X_0[0], COTA_X_0[1],-constanteB/constanteA);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
+        Integer y_0_n = constanteA*x_0*x_0+constanteB*x_0+constanteC;
         Integer respuestaA = 2*constanteA*x_0+constanteB;
         Integer respuestaB = (constanteA*x_0*x_0+constanteB*x_0+constanteC)-respuestaA*x_0;
-        Integer y_0 = constanteA*x_0*x_0+constanteB*x_0+constanteC;
         Integer respuestaC = constanteA;
         Integer respuestaD = constanteB*constanteC;
         Integer respuestaE = constanteA;
@@ -158,7 +158,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         reactivo = reactivo.replace("\\frac{d}{dx}\\left($EXPRESION$ \\right)",
                 "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,$YE0$)");
         reactivo = reactivo.replace("<strong>La derivada de la función $$f(x)$$ es:</strong>",
-                "<strong>La recta tangente a la función $$f(x)$$ en el punto $x_0=$EQUIS0$ $$  es:</strong>");
+                "<strong>La recta tangente a la función $$f(x)$$ en el punto $$x_0=$EQUIS0$ $$  es:</strong>");
         reactivo = reactivo.replace("$EXPRESION$", expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
         reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
@@ -178,7 +178,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$EQUIS0$", x_0.toString());
-        reactivo = reactivo.replace("$YE0$", y_0.toString());
+        reactivo = reactivo.replace("$YE0$", y_0_n.toString());
 
         solucion = solucionaSimbolico.rectaTangente(expresion,x_0);
 
@@ -190,7 +190,7 @@ public class GeneraReactivo_parabola_21feb2020 implements GeneradorReactivoCloze
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneraReactivo_parabola_21feb2020());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_hiperbola_21feb2020());
     }
 
 
