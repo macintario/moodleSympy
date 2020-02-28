@@ -56,7 +56,9 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
             + "Usted deberá calcular la derivada $$f(x)$$, evaluando la función y la derivada en el punto $$ x_{0} $$ y sustituyendo en la ecuación de la recta"
             + "<br/> $$ y-f(x_{0})=f'(x_{0})(x-x_{0})$$ \n"
-            + "<br/><br/></strong></span>"
+            + "<br/>Utilizando el resultado calculado por el sistema, deberás escribir en las cajas correspondientes los números que tú obtuviste. \n"
+            + "<br/></strong></span>"
+            + "$RESPUESTAS$<br/>"
             + "<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
@@ -72,13 +74,14 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
     private static final int[] COTA_X_0 = {-10, 10};
 
     private static final String EXPRESION = "\\frac{1}{$CONSTANTEA$x+$CONSTANTEB$}";
-    private String RESPUESTA= "$$\\displaystyle y=$${1:SHORTANSWER:=$RESPUESTA_A$}$$x+ $${1:SHORTANSWER:=$RESPUESTA_B$}<br/>";
-    private String CAJAS_RESPUESTA = "$$J=$${1:SHORTANSWER:=$RESPUESTA_J$} <br/>"
+    private String RESPUESTA= "$$\\displaystyle y=\\frac{A}{B}x+\\frac{C}{D}$$ <br/>";
+    private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
+            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D,E,F,G$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$,$RESPUESTA_E$,$RESPUESTA_F$,$RESPUESTA_G$,$RESPUESTA_H$,$RESPUESTA_J$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -109,11 +112,11 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         Integer x_0 = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_X_0[0], COTA_X_0[1],-constanteB/constanteA);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer y_0_n = constanteA*x_0*x_0+constanteB*x_0+constanteC;
-        Integer respuestaA = 2*constanteA*x_0+constanteB;
-        Integer respuestaB = (constanteA*x_0*x_0+constanteB*x_0+constanteC)-respuestaA*x_0;
-        Integer respuestaC = constanteA;
-        Integer respuestaD = constanteB*constanteC;
+        Integer y_0_d = constanteA*x_0+constanteB;
+        Integer respuestaA = constanteA;
+        Integer respuestaB = (constanteA*x_0+constanteB)*(constanteA*x_0+constanteB);
+        Integer respuestaC = 2*constanteA*x_0+constanteB;
+        Integer respuestaD = (constanteA*x_0+constanteB)*(constanteA*x_0+constanteB);
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteC;
         Integer respuestaG = constanteA;
@@ -125,14 +128,12 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
         Integer respuestaN = constanteB;
         Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
-        Integer divisor = maximoComunDivisor(respuestaD, respuestaE);
-        divisor = maximoComunDivisor(divisor, respuestaG);
-//        respuestaD /= divisor;
-//        respuestaE /= divisor;
-//        respuestaG /= divisor;
-//        divisor = maximoComunDivisor(respuestaB, respuestaC);
-//        respuestaB /= divisor;
-//        respuestaC /= divisor;
+        Integer divisor = maximoComunDivisor(respuestaA, respuestaB);
+        respuestaA /= divisor;
+        respuestaB /= divisor;
+        divisor = maximoComunDivisor(respuestaC, respuestaD);
+        respuestaC /= divisor;
+        respuestaD /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
@@ -156,7 +157,7 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
         reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
         //cambiar el problema para punto  tangente
         reactivo = reactivo.replace("\\frac{d}{dx}\\left($EXPRESION$ \\right)",
-                "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,$YE0$)");
+                "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,\\frac{1}{$YE0$})");
         reactivo = reactivo.replace("<strong>La derivada de la función $$f(x)$$ es:</strong>",
                 "<strong>La recta tangente a la función $$f(x)$$ en el punto $$x_0=$EQUIS0$ $$  es:</strong>");
         reactivo = reactivo.replace("$EXPRESION$", expresion);
@@ -178,7 +179,7 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$EQUIS0$", x_0.toString());
-        reactivo = reactivo.replace("$YE0$", y_0_n.toString());
+        reactivo = reactivo.replace("$YE0$", y_0_d.toString());
 
         solucion = solucionaSimbolico.rectaTangente(expresion,x_0);
 
