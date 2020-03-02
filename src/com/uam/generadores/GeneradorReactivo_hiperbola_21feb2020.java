@@ -63,15 +63,15 @@ public class GeneradorReactivo_hiperbola_21feb2020 implements GeneradorReactivoC
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {-9, 9};
-    private static final int[] COTA_CONSTANTE_B = {-9, 9};
+    private static final int[] COTA_CONSTANTE_A = {-4, 4};
+    private static final int[] COTA_CONSTANTE_B = {-4, 4};
     private static final int[] COTA_CONSTANTE_C = {-9, 9};
     private static final int[] COTA_CONSTANTE_D = {3, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
     private static final int[] COTA_CONSTANTE_F = {2, 9};
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
-    private static final int[] COTA_X_0 = {-10, 10};
+    private static final int[] COTA_X_0 = {-3, 3};
 
     private static final String EXPRESION = "\\frac{1}{$CONSTANTEA$x+$CONSTANTEB$}";
     private String RESPUESTA= "$$\\displaystyle y=\\frac{A}{B}x+\\frac{C}{D}$$ <br/>";
