@@ -63,25 +63,24 @@ public class GeneradorReactivo_cubica_21feb2020 implements GeneradorReactivoCloz
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {-9, 9};
-    private static final int[] COTA_CONSTANTE_B = {-9, 9};
-    private static final int[] COTA_CONSTANTE_C = {-9, 9};
-    private static final int[] COTA_CONSTANTE_D = {3, 9};
+    private static final int[] COTA_CONSTANTE_A = {-3, 3};
+    private static final int[] COTA_CONSTANTE_B = {-5, 5};
+    private static final int[] COTA_CONSTANTE_C = {-5, 5};
+    private static final int[] COTA_CONSTANTE_D = {-9, 9};
     private static final int[] COTA_CONSTANTE_E = {2, 9};
     private static final int[] COTA_CONSTANTE_F = {2, 9};
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
-    private static final int[] COTA_X_0 = {-10, 10};
+    private static final int[] COTA_X_0 = {-2, 2};
 
-    private static final String EXPRESION = "\\frac{1}{$CONSTANTEA$x+$CONSTANTEB$}";
-    private String RESPUESTA= "$$\\displaystyle y=\\frac{A}{B}x+\\frac{C}{D}$$ <br/>";
+    private static final String EXPRESION = "$CONSTANTEA$x^3+$CONSTANTEB$x^2+$CONSTANTEC$x+$CONSTANTED$";
+    private String RESPUESTA= "$$\\displaystyle y={A}x+{B}$$ <br/>";
     private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$} <br/> "
-            + "$$C=$${1:SHORTANSWER:=$RESPUESTA_C$} <br/> $$D=$${1:SHORTANSWER:=$RESPUESTA_D$}<br/> "
             + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B,C,D$$ en este orden "
+            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B$$ en este orden "
             + "y que dan solución correcta al ejercicio son: </strong></span>"
             + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$,$RESPUESTA_C$,$RESPUESTA_D$"
+            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$"
             + "}</center> <br>"
             + "</center>";
 /**
@@ -112,11 +111,11 @@ public class GeneradorReactivo_cubica_21feb2020 implements GeneradorReactivoCloz
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         Integer x_0 = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_X_0[0], COTA_X_0[1],-constanteB/constanteA);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer y_0_d = constanteA*x_0+constanteB;
-        Integer respuestaA = constanteA;
-        Integer respuestaB = (constanteA*x_0+constanteB)*(constanteA*x_0+constanteB);
-        Integer respuestaC = 2*constanteA*x_0+constanteB;
-        Integer respuestaD = (constanteA*x_0+constanteB)*(constanteA*x_0+constanteB);
+        Integer y_0 = constanteA*x_0*x_0*x_0 + constanteB*x_0*x_0 + constanteC*x_0+constanteD;
+        Integer respuestaA = 3*constanteA*x_0*x_0+2*constanteB*x_0+constanteC;
+        Integer respuestaB = y_0-respuestaA*x_0;
+        Integer respuestaC = 1;
+        Integer respuestaD = 1;
         Integer respuestaE = constanteA;
         Integer respuestaF = constanteC;
         Integer respuestaG = constanteA;
@@ -129,11 +128,11 @@ public class GeneradorReactivo_cubica_21feb2020 implements GeneradorReactivoCloz
         Integer respuestaP = constanteA;
         //Checar fracción reductible respuestaE y respuestaJ
         Integer divisor = maximoComunDivisor(respuestaA, respuestaB);
-        respuestaA /= divisor;
-        respuestaB /= divisor;
-        divisor = maximoComunDivisor(respuestaC, respuestaD);
-        respuestaC /= divisor;
-        respuestaD /= divisor;
+        //respuestaA /= divisor;
+        //respuestaB /= divisor;
+        //divisor = maximoComunDivisor(respuestaC, respuestaD);
+        //respuestaC /= divisor;
+        //respuestaD /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
@@ -157,7 +156,7 @@ public class GeneradorReactivo_cubica_21feb2020 implements GeneradorReactivoCloz
         reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
         //cambiar el problema para punto  tangente
         reactivo = reactivo.replace("\\frac{d}{dx}\\left($EXPRESION$ \\right)",
-                "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,\\frac{1}{$YE0$})");
+                "tangente de f\\left(x\\right)=$EXPRESION$, at($EQUIS0$,$YE0$)");
         reactivo = reactivo.replace("<strong>La derivada de la función $$f(x)$$ es:</strong>",
                 "<strong>La recta tangente a la función $$f(x)$$ en el punto $$x_0=$EQUIS0$ $$  es:</strong>");
         reactivo = reactivo.replace("$EXPRESION$", expresion);
@@ -179,7 +178,8 @@ public class GeneradorReactivo_cubica_21feb2020 implements GeneradorReactivoCloz
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$EQUIS0$", x_0.toString());
-        reactivo = reactivo.replace("$YE0$", y_0_d.toString());
+        reactivo = reactivo.replace("$YE0$", y_0.toString());
+        reactivo = reactivo.replace("1x", "x");
 
         solucion = solucionaSimbolico.rectaTangente(expresion,x_0);
 
