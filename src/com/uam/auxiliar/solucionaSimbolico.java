@@ -37,6 +37,7 @@ public class solucionaSimbolico {
             "from sympy import pi\n" +
             "from sympy import sin\n" +
             "from sympy import cos\n" +
+            "from sympy import solve\n" +
             "\n" +
             "from contextlib import contextmanager\n" +
             "\n" +
@@ -796,6 +797,28 @@ public class solucionaSimbolico {
                      +"solucion=solucion.replace(\"+-\",\"-\")\n"
                      +"salida.write(solucion)\n"
             ;
+    private static final String SOLVER_TANGENTE_HORIZONTAL =
+            "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr, x)))\n" +
+                    "solucion = print_html_steps(expr, x)\n" +
+                    "solucion = acomodaNotacion(solucion)\n" +
+                    "salida.write(solucion)\n" +
+                    "derivada = Derivative(expr)\n" +
+                    "derivada = derivada.doit()\n" +
+                    "anula = solve(derivada, x)\n" +
+                    "solucion = \"Resolviendo $$%s=0$$ obtenemos las raices<br/>\" % (latex(derivada))\n" +
+                    "n = 1\n" +
+                    "for x_0 in anula:\n" +
+                    "    solucion = solucion + \"$$x_%s=%s$$ <br/>\" % (n, latex(x_0))\n" +
+                    "    n = n+1\n" +
+                    "n = 1\n" +
+                    "solucion = solucion+\"Sustituyendo en $$%s$$, se obtienen los puntos:<br/>\"%(latex(expr))\n" +
+                    "for x_0 in anula:\n" +
+                    "    y = expr.subs(x, x_0)\n" +
+                    "    solucion = solucion + \"$$P_%s(%s,%s)$$<br/>\" % (n,latex(x_0), latex(y))\n" +
+                    "    n = n+1\n" +
+                    "\n" +
+                    "salida.write(solucion)\n"
+            ;
 
     private static final String DIFF_STEP =
                             "derivada = Derivative(expr)\n"+
@@ -1297,10 +1320,16 @@ public class solucionaSimbolico {
         String solucion = ejecutaPython(script);
         return solucion;
     }
-    public static String rectaTangente(String expresion, Integer x0){  /* Modificar para x0 */
+    public static String rectaTangente(String expresion, Integer x0){
         String script = DERIVADOR+PARSER+SOLVER_RECTA_TANGENTE+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
         script = script.replace("$X0$", x0.toString());
+        String solucion = ejecutaPython(script);
+        return solucion;
+    }
+    public static String tangentesHorizontales(String expresion){
+        String script = DERIVADOR+PARSER+SOLVER_TANGENTE_HORIZONTAL+CLOSER;
+        script = script.replace("$EXPRESION$", expresion);
         String solucion = ejecutaPython(script);
         return solucion;
     }
