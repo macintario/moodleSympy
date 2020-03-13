@@ -11,9 +11,11 @@ import com.uam.data.DatosReactivos;
 import com.uam.executor.EjecutadorGeneradorXML;
 import com.uam.utilidades.Utilidades;
 
+
 import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
-import static com.uam.utilidades.Utilidades.maximoComunDivisor;
+import static com.uam.utilidades.Utilidades.redondea;
+import static com.uam.utilidades.Utilidades.obtenerEnteroAleatorio;
 
 public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze {
     /**
@@ -45,27 +47,25 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
             + "<span style=\"color: #ff0000; font-size: xx-large;\"><strong>\n"
             + "PROBLEMA:\n"
             + "</strong></span>"
-            + "<center><span style=\"color: #0000ff; font-size: x-large;\"><strong>"
+            + "<span style=\"color: #0000ff; font-size: x-large;\"><strong>"
             + "Una explosión de dinamita lanza una roca directamente hacia arriba con una velocidad de"
-            + " $$ $CONSTANTEA$ \\frac{m}{seg}$$. Alcanza una altura de $$s=$CONSTANTEB$t-4.9t^2 $$ "
+            + " $$ $CONSTANTEA$ \\frac{m}{seg}$$. Alcanza una altura de $$s=$CONSTANTEA$t-4.9t^2 $$ "
             + "al cabo de $$t$$ segundos. <br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             + "<ol type=\"a\">"
-            + "   <li>¿Qué altura alcanza la roca?{1:NUMERICAL:=$RESPUESTA_A$:$tolerancia$}</li>"
-            + "   <li>¿Cuáles son la velocidad y la rapidez de la roca cuando la roca está $$ $CONSTANTEC$ m"
-            + " por arriba del del suelo durnate el ascenso?{1:NUMERICAL:=$RESPUESTA_B$:$tolerancia$} ¿Durante el descenso? {1:NUMERICAL:=$RESPUESTA_C$:$tolerancia$}</li>"
-            + "   <li>¿Cuál es la aceleración de la roca en cualquier instante t durante su trayecto (después de la explosión)?{1:NUMERICAL:=$RESPUESTA_D$:$tolerancia$}</li>"
-            + "   <li>¿Cuándo choca la roca contra el suelo?{1:NUMERICAL:=$RESPUESTA_E$:$tolerancia$}</li>"
+            + "   <li>¿Qué altura alcanza la roca?<br/>{1:NUMERICAL:=$RESPUESTA_A$:$tolerancia$}$$m$$</li>"
+            + "   <li>¿Cuáles es la velocidad  de la roca cuando la roca está $$ $CONSTANTEB$m $$"
+            + " por arriba del del suelo durante el ascenso?<br/>{1:NUMERICAL:=$RESPUESTA_B$:$tolerancia$}$$\\frac{m}{s}$$<br/> ¿Durante el descenso?<br/>{1:NUMERICAL:=$RESPUESTA_C$:$tolerancia$}$$\\frac{m}{s}$$</li>"
+            + "   <li>¿Cuál es la aceleración de la roca en cualquier instante t durante su trayecto (después de la explosión)?<br/>{1:NUMERICAL:=$RESPUESTA_D$:$tolerancia$}$$\\frac{m}{s^2}$$</li>"
+            + "   <li>¿Cuándo choca la roca contra el suelo?<br/>{1:NUMERICAL:=$RESPUESTA_E$:$tolerancia$}$$segundos$$</li>"
             + "</ol>"
-            + "</strong><br/><br/></span><span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp;"
-            +"  </strong></span><br/><br/>"
+            + "</strong><br/><br/></span><br/><br/>"
             + "<span style=\"color: #000000; font-size: medium;\"><strong>"
-            + "Usted deberá calcular la derivada $$f(x)$$, igualarla a cero y encontrar las raices, para luego escribir las coordenadas de cada punto<br/>"
+            + "Usted deberá calcular la derivada $$s(t)$$para calcular la velocidad como función del tiempo y derivar de nuevo para obtener la aceleración<br/>"
             + "<span style=\"color: #FF4000; font-size: medium;\"><strong>\n" +
             "¿ Revisión de su ejercicio ? Escribirás en papel el procedimiento detallado que muestre cómo obtuviste tus respuestas. \n" +
             "</strong></span>";
 
-    private static final int[] COTA_CONSTANTE_A = {-3, 3};
+    private static final int[] COTA_CONSTANTE_A = {10, 50};
     private static final int[] COTA_CONSTANTE_B = {-5, 5};
     private static final int[] COTA_CONSTANTE_C = {-5, 5};
     private static final int[] COTA_CONSTANTE_D = {-9, 9};
@@ -75,17 +75,8 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_H = {2, 5};
     private static final int[] COTA_R = {-4, 4};
 
-    private static final String EXPRESION = "$CONSTANTEA$x^3+$CONSTANTEB$x^2+$CONSTANTEC$x+$CONSTANTED$";
-    private String RESPUESTA= "$$\\displaystyle P_1($${1:SHORTANSWER:=$RESPUESTA_A$}$$,$${1:SHORTANSWER:=$RESPUESTA_B$}$$)$$ <br/>"+
-            "$$\\displaystyle P_2($${1:SHORTANSWER:=$RESPUESTA_C$}$$,$${1:SHORTANSWER:=$RESPUESTA_D$}$$)$$ <br/>";
-    private String CAJAS_RESPUESTA = "$$A=$${1:SHORTANSWER:=$RESPUESTA_A$} <br/> $$B=$${1:SHORTANSWER:=$RESPUESTA_B$}) <br/> "
-            + "<span style=\"color: #ff0000; font-size: x-large;\"><strong>"
-            + "<script type=\"math/tex\">\\bullet</script> &nbsp;&nbsp;&nbsp; Los números $$A,B$$ en este orden "
-            + "y que dan solución correcta al ejercicio son: </strong></span>"
-            + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-            +" {20:SHORTANSWER:=$RESPUESTA_A$,$RESPUESTA_B$"
-            + "}</center> <br>"
-            + "</center>";
+
+
 /**
  *
  */
@@ -104,36 +95,28 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
     public String generarReactivoCloze(int numeroReactivo) {
         String solucion = "";
         //Generación de variables aleatorias con parámetros de ejecución
-        Integer r1 = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_R[0], COTA_R[1],0);
-        Integer r2;
-        do {
-            r2 = Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_R[0], COTA_R[1], 0);
-        }while(r2.equals(r1));
-        if(r2>r1){
-            Integer tmp = r2;
-            r2=r1;
-            r1=tmp;
-        }
-        Integer constanteA = 2;
-        Integer constanteB = (r1+r2)*3;
-        Integer constanteC = 6*r1*r2;
+        Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
+        Integer constanteB = constanteA;
+        Integer constanteC = 6;
         Integer constanteD =  Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1],0);
-        Integer divisor = maximoComunDivisor(maximoComunDivisor(maximoComunDivisor(constanteA,constanteB),constanteC),constanteD);
-        if(divisor<0) divisor = -divisor;
-        constanteA/=divisor;
-        constanteB/=divisor;
-        constanteC/=divisor;
-        constanteD/=divisor;
         Integer constanteE = constanteA;
         Integer constanteF = constanteC;
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
-        Integer respuestaA = -r1;
-        Integer respuestaB = -constanteA*r1*r1*r1+constanteB*r1*r1-constanteC*r1+constanteD;
-        Integer respuestaC = -r2;
-        Integer respuestaD = -constanteA*r2*r2*r2+constanteB*r2*r2-constanteC*r2+constanteD;
-        Integer respuestaE = constanteA;
+        Double v_0=constanteA.doubleValue();
+        Double g=9.8;
+        Double t_h_max = v_0/g;
+        Double s_max = v_0*t_h_max-g/2*t_h_max*t_h_max;
+        constanteB = obtenerEnteroAleatorio(1,s_max.intValue());
+        Double t_1 = (v_0-Math.sqrt(v_0*v_0-2*g*constanteB.doubleValue()))/g;
+        Double t_2 = (v_0+Math.sqrt(v_0*v_0-2*g*constanteB.doubleValue()))/g;
+        Double t_land = 2*v_0/g;
+        Double respuestaA = redondea( t_h_max,2);
+        Double respuestaB = redondea(t_1,2);
+        Double respuestaC = redondea(t_2,2);
+        Double respuestaD = g;
+        Double respuestaE = redondea(t_land,2);
         Integer respuestaF = constanteC;
         Integer respuestaG = constanteA;
         Integer respuestaH = 2;
@@ -150,7 +133,42 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
 
         //Sustitución de las variables por sus valores en el texto del reactivo
         String reactivo = XML_PREFIJO + PLANTILLA_REACTIVO + XML_SUFIJO;
-        String expresion = EXPRESION;
+        solucion = "<ol type=\"a\">" +
+                " <li> En el sistema de coordenadas elegido, $$s$$ mide la altura con respecto al suelo, así que la velocidad es positiva en el escenso y negativa durante el descenso. " +
+                "El instante en el que la roca está en el punto más alto es aquél en el que la velocidad es cero. Para conocer la altura máxima, todo lo que necesitamos hacer " +
+                "es determinar cuándo $$v=0$$ y evaluar $$s$$ en ese instante<br/>" +
+                "En cualquier instante $$t$$ durante el trayecto de la roca, su velocidad es<br/>" +
+                "<center>$$\\displaystyle v=\\frac{ds}{dt}=\\frac{d}{dt}(at-9.8t^2)=a-9.8t$$ $$ \\frac{m}{s}$$</center>" +
+                "La velocidad es cero  cuando" +
+                "<center>$$\\displaystyle a-9.8t=0$$ o $$t=k$$ $$seg.$$</center>" +
+                "La altura de la roca en $$t=k $$ $$seg.$$ es<br/>" +
+                "<center>$$\\displaystyle s_{máx}=s(k)=a(k)-9.8(k)^2=sm$$  $$m.$$</center>" +
+                " </li>" +
+                "<li>Para determinar la velocidad de la roca a $$X m$$, en el ascenso y luego el descenso, primero determinamos los valores de de $$t$$ para los cuales:<br/>" +
+                "<center>$$\\displaystyle s(t)=at-4.9t^2=X$$<br/>$$4.9t^2-at+X=0$$</center>" +
+                "Resolviendo la ecuación<br/>" +
+                "<center>$$\\displaystyle t=\\frac{2v_0\\pm\\sqrt{b^2-4ac }}{2g}$$</center>" +
+                "<center>$$t=1 seg, t= 2 seg$$</center>" +
+                "La roca está $$Xm$$ por encima del suelo t1 segundos después de la explosión y nuevamente a los t2 segundos de la explosión, Las velocdades de la" +
+                " roca en esos instantes son" +
+                "<center>$$v(t1)=v_0-9.8(t1)=v_0-v_1= vt1 \\frac{m}{s}$$<br/>" +
+                "$$v(t1)=v_0-9.8(t1)=v_0-v_1= vt1 \\frac{m}{s}$$</center>" +
+                "En ambos instantes, la velocidad de la roca es 96 ft/ seg. Como v(2) > O, la roca se desplaza hacia arriba (s aumenta)" +
+                " en t = 2 seg, se mueve hacia abajo (s disminuye) en t = 8, ya que v(8) < O." +
+                "</li>" +
+                "<li>En cualquier instante durante el trayecto que sigue a la explosión, la aceleración de la roca es constante" +
+                "<center>$$\\displaystyle a=\\frac{dv}{dt}=\\frac{d}{dt}({v_0-9.8t})=-9.8 \\frac{m}{s^2}$$</center>" +
+                "La aceleración siempre es hacia abajo. Conforme la roca sube, desacelera, y cuando cae acelera." +
+                "</li>" +
+                "<li>La roca choca con el suelo en el tiempo positivo $$t$$, para el cual s=0, por lo que se resuelve" +
+                "<center>$$\\displaystyle v_o t-4.9t^2=0$$<br/>$$\\displaystyle t(v_0-4.9t)=0$$<br/>$$\\displaystyle t=0, t=\\frac{v_0}{4.9}$$</center>" +
+                "En $$t=0$$, la explosión ocurrió y la roca sale lanzada hacia arriba. Regresa al suelo al cabo de tx segundos." +
+                "</li>" +
+                "</ol>";
+
+        reactivo = reactivo.replace("$SOLUCION$", solucion);
+
+
 
         reactivo = reactivo.replace("$CONSTANTEA$", constanteA.toString());
         reactivo = reactivo.replace("$CONSTANTEB$", constanteB.toString());
@@ -162,9 +180,6 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$CONSTANTEH$", constanteH.toString());
         reactivo = reactivo.replace("+-", "-");
 
-        reactivo = reactivo.replace("$RESPUESTAS$", CAJAS_RESPUESTA);
-        reactivo = reactivo.replace("$RESPUESTA$", RESPUESTA);
-        reactivo = reactivo.replace("$EXPRESION$", expresion);
         reactivo = reactivo.replace("$COMENTARIO$", comentarioReactivo);
         reactivo = reactivo.replace("$VARIABLE_INDEPENDIENTE$", variableIndependiente);
         reactivo = reactivo.replace("$VARIABLE_DEPENDIENTE$", variableDependiente);
@@ -184,10 +199,6 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$tolerancia$", "0.1");
         reactivo = reactivo.replace("1x", "x");
-
-        //solucion = solucionaSimbolico.tangentesHorizontales(expresion);
-
-        reactivo = reactivo.replace("$SOLUCION$", solucion);
 
         //Concatenando el separador de reactivos
         reactivo = reactivo.concat(SEPARADOR_REACTIVOS);

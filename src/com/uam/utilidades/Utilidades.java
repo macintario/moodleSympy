@@ -5,6 +5,8 @@ import com.uam.auxiliar.Relacion;
 import com.uam.auxiliar.SingularPlural;
 import com.uam.constantes.Constantes;
 import com.uam.excepcion.CondicionReactivoNoCumplidaException;
+
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -339,4 +341,12 @@ public class Utilidades {
         else
             return maximoComunDivisor(b,a%b);
     }
+    public static   double redondea(double valor, int decimales) {
+        if (decimales < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(valor);
+        bd = bd.setScale(decimales, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
 }

@@ -2,6 +2,9 @@ package com.uam.auxiliar;
 
 import com.uam.constantes.Constantes;
 import com.uam.utilidades.Utilidades;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 
 /**
@@ -201,6 +204,7 @@ public class Fraccion implements Comparable<Fraccion> {
         return multiplicar(a, inversa(b));
     }
 
+
     private int mcd() {
         int u = Math.abs(this.numerador);
         int v = Math.abs(this.denominador);
@@ -251,4 +255,7 @@ public class Fraccion implements Comparable<Fraccion> {
     public String toString() {
         return this.numerador + "/" + this.denominador;
     }
+
 }
+
+
