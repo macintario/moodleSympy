@@ -73,7 +73,6 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
     private static final int[] COTA_CONSTANTE_F = {2, 9};
     private static final int[] COTA_CONSTANTE_G = {3, 5};
     private static final int[] COTA_CONSTANTE_H = {2, 5};
-    private static final int[] COTA_R = {-4, 4};
 
 
 
@@ -97,16 +96,17 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         //Generación de variables aleatorias con parámetros de ejecución
         Integer constanteA = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_A[0], COTA_CONSTANTE_A[1]);
         Integer constanteB = constanteA;
-        Integer constanteC = 6;
+        Double constanteC = 0.;
         Integer constanteD =  Utilidades.obtenerEnteroAleatorioDistintoDe(COTA_CONSTANTE_D[0], COTA_CONSTANTE_D[1],0);
         Integer constanteE = constanteA;
-        Integer constanteF = constanteC;
+        Integer constanteF = constanteA;
         Integer constanteG = Utilidades.obtenerEnteroAleatorio(COTA_CONSTANTE_G[0], COTA_CONSTANTE_G[1]);
         Integer constanteH = Utilidades.obtenerImparAleatorioDistintoDe(COTA_CONSTANTE_H[0], COTA_CONSTANTE_H[1], constanteF);
         String comentarioReactivo = Utilidades.generaComentario(COMENTARIO_REACTIVO_PREFIJO, numeroReactivo, POSICIONES_CONTADOR_REACTIVO);
         Double v_0=constanteA.doubleValue();
         Double g=9.8;
         Double t_h_max = v_0/g;
+        constanteC = redondea(t_h_max,2);
         Double s_max = v_0*t_h_max-g/2*t_h_max*t_h_max;
         constanteB = obtenerEnteroAleatorio(1,s_max.intValue());
         Double t_1 = (v_0-Math.sqrt(v_0*v_0-2*g*constanteB.doubleValue()))/g;
@@ -117,10 +117,10 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         Double respuestaC = redondea(t_2,2);
         Double respuestaD = g;
         Double respuestaE = redondea(t_land,2);
-        Integer respuestaF = constanteC;
+        Integer respuestaF = constanteA;
         Integer respuestaG = constanteA;
         Integer respuestaH = 2;
-        Integer respuestaJ = constanteC;
+        Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA;
         Integer respuestaL = 3*constanteA-1;
         Integer respuestaM = constanteA;
@@ -138,9 +138,10 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
                 "El instante en el que la roca está en el punto más alto es aquél en el que la velocidad es cero. Para conocer la altura máxima, todo lo que necesitamos hacer " +
                 "es determinar cuándo $$v=0$$ y evaluar $$s$$ en ese instante<br/>" +
                 "En cualquier instante $$t$$ durante el trayecto de la roca, su velocidad es<br/>" +
-                "<center>$$\\displaystyle v=\\frac{ds}{dt}=\\frac{d}{dt}(at-9.8t^2)=a-9.8t$$ $$ \\frac{m}{s}$$</center>" +
+                "<center>$$\\displaystyle v=\\frac{ds}{dt}=\\frac{d}{dt}($CONSTANTEA$t-4.9t^2)=$CONSTANTEA$-9.8t$$ " +
+                "$$ \\frac{m}{s}$$</center>" +
                 "La velocidad es cero  cuando" +
-                "<center>$$\\displaystyle a-9.8t=0$$ o $$t=k$$ $$seg.$$</center>" +
+                "<center>$$\\displaystyle $CONSTANTEA$-9.8t=0$$ o $$t=$CONSTANTEC$ $$ $$seg.$$</center>" +
                 "La altura de la roca en $$t=k $$ $$seg.$$ es<br/>" +
                 "<center>$$\\displaystyle s_{máx}=s(k)=a(k)-9.8(k)^2=sm$$  $$m.$$</center>" +
                 " </li>" +
