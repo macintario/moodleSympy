@@ -117,7 +117,7 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         Double respuestaC = redondea(t_2,2);
         Double respuestaD = g;
         Double respuestaE = redondea(t_land,2);
-        Integer respuestaF = constanteA;
+        Double respuestaF = redondea(s_max,2);
         Integer respuestaG = constanteA;
         Integer respuestaH = 2;
         Integer respuestaJ = constanteA;
@@ -142,17 +142,20 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
                 "$$ \\frac{m}{s}$$</center>" +
                 "La velocidad es cero  cuando" +
                 "<center>$$\\displaystyle $CONSTANTEA$-9.8t=0$$ o $$t=$CONSTANTEC$ $$ $$seg.$$</center>" +
-                "La altura de la roca en $$t=k $$ $$seg.$$ es<br/>" +
-                "<center>$$\\displaystyle s_{máx}=s(k)=a(k)-9.8(k)^2=sm$$  $$m.$$</center>" +
+                "La altura de la roca en $$t=$respuestaA$ $$ $$seg.$$ es<br/>" +
+                "<center>$$\\displaystyle s_{máx}=s($respuestaA$)=a($resuestaA$)-9.8($respuestaA$)^2=$respuestaF$ $$  $$m.$$</center>" +
                 " </li>" +
-                "<li>Para determinar la velocidad de la roca a $$X m$$, en el ascenso y luego el descenso, primero determinamos los valores de de $$t$$ para los cuales:<br/>" +
-                "<center>$$\\displaystyle s(t)=at-4.9t^2=X$$<br/>$$4.9t^2-at+X=0$$</center>" +
+                "<li>Para determinar la velocidad de la roca a $$ $CONSTANTEB$ m$$, en el ascenso y " +
+                "luego el descenso, primero determinamos los valores de de $$t$$ para los cuales:<br/>" +
+                "<center>$$\\displaystyle s(t)=$CONSTANTEA$t-4.9t^2=$CONSTANTEB$ $$<br/>" +
+                "$$4.9t^2-$CONSTANTEA$t+$CONSTANTEB$=0$$</center>" +
                 "Resolviendo la ecuación<br/>" +
-                "<center>$$\\displaystyle t=\\frac{2v_0\\pm\\sqrt{b^2-4ac }}{2g}$$</center>" +
-                "<center>$$t=1 seg, t= 2 seg$$</center>" +
-                "La roca está $$Xm$$ por encima del suelo t1 segundos después de la explosión y nuevamente a los t2 segundos de la explosión, Las velocdades de la" +
+                "<center>$$\\displaystyle t=\\frac{2($CONSTANTEA$)\\pm\\sqrt{($CONSTANTEA$)^2-4(4.9)($CONSTANTEB$) }}{2(4.9)}$$</center>" +
+                "<center>$$t=$respuestaB$ seg, t=$respuestaC$ seg$$</center>" +
+                "La roca está $$ $CONSTANTEA$ m$$ por encima del suelo $$ $respuestaB$ $$ segundos después" +
+                " de la explosión y nuevamente a los $$ $respuestaC$ $$ segundos de la explosión, Las velocdades de la" +
                 " roca en esos instantes son" +
-                "<center>$$v(t1)=v_0-9.8(t1)=v_0-v_1= vt1 \\frac{m}{s}$$<br/>" +
+                "<center>$$v($respuestaB$)=$CONSTANTEA$-9.8($respuestaB$)=v_0-v_1= vt1 \\frac{m}{s}$$<br/>" +
                 "$$v(t1)=v_0-9.8(t1)=v_0-v_1= vt1 \\frac{m}{s}$$</center>" +
                 "En ambos instantes, la velocidad de la roca es 96 ft/ seg. Como v(2) > O, la roca se desplaza hacia arriba (s aumenta)" +
                 " en t = 2 seg, se mueve hacia abajo (s disminuye) en t = 8, ya que v(8) < O." +
