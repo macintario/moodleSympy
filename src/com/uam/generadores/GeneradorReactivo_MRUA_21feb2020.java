@@ -52,10 +52,13 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
             + " $$ $CONSTANTEA$ \\frac{m}{seg}$$. Alcanza una altura de $$s=$CONSTANTEA$t-4.9t^2 $$ "
             + "al cabo de $$t$$ segundos. <br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
             + "<ol type=\"a\">"
-            + "   <li>¿Qué altura alcanza la roca?<br/>{1:NUMERICAL:=$RESPUESTA_A$:$tolerancia$}$$m$$</li>"
+            + "   <li>¿Qué altura alcanza la roca?<br/>{1:NUMERICAL:=$RESPUESTA_F$:$tolerancia$}$$m$$</li>"
             + "   <li>¿Cuáles es la velocidad  de la roca cuando la roca está $$ $CONSTANTEB$m $$"
-            + " por arriba del del suelo durante el ascenso?<br/>{1:NUMERICAL:=$RESPUESTA_B$:$tolerancia$}$$\\frac{m}{s}$$<br/> ¿Durante el descenso?<br/>{1:NUMERICAL:=$RESPUESTA_C$:$tolerancia$}$$\\frac{m}{s}$$</li>"
-            + "   <li>¿Cuál es la aceleración de la roca en cualquier instante t durante su trayecto (después de la explosión)?<br/>{1:NUMERICAL:=$RESPUESTA_D$:$tolerancia$}$$\\frac{m}{s^2}$$</li>"
+            + " por arriba del del suelo durante el ascenso?<br/>{1:NUMERICAL:=$RESPUESTA_G$:$tolerancia$}" +
+            "$$\\frac{m}{s}$$<br/> ¿Durante el descenso?" +
+            "<br/>{1:NUMERICAL:=$RESPUESTA_H$:$tolerancia$}$$\\frac{m}{s}$$</li>"
+            + "   <li>¿Cuál es la aceleración de la roca en cualquier instante t durante su trayecto (después de la explosión)?<br/>" +
+            "{1:NUMERICAL:=$RESPUESTA_D$:$tolerancia$}$$\\frac{m}{s^2}$$</li>"
             + "   <li>¿Cuándo choca la roca contra el suelo?<br/>{1:NUMERICAL:=$RESPUESTA_E$:$tolerancia$}$$segundos$$</li>"
             + "</ol>"
             + "</strong><br/><br/></span><br/><br/>"
@@ -110,16 +113,18 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         Double s_max = v_0*t_h_max-g/2*t_h_max*t_h_max;
         constanteB = obtenerEnteroAleatorio(1,s_max.intValue());
         Double t_1 = (v_0-Math.sqrt(v_0*v_0-2*g*constanteB.doubleValue()))/g;
+        Double v_t1 = v_0-g*t_1;
         Double t_2 = (v_0+Math.sqrt(v_0*v_0-2*g*constanteB.doubleValue()))/g;
+        Double v_t2 = v_0-g*t_2;
         Double t_land = 2*v_0/g;
         Double respuestaA = redondea( t_h_max,2);
         Double respuestaB = redondea(t_1,2);
         Double respuestaC = redondea(t_2,2);
-        Double respuestaD = g;
+        Double respuestaD = -g;
         Double respuestaE = redondea(t_land,2);
         Double respuestaF = redondea(s_max,2);
-        Integer respuestaG = constanteA;
-        Integer respuestaH = 2;
+        Double respuestaG = redondea(v_t1,2);
+        Double respuestaH = redondea(v_t2,2);
         Integer respuestaJ = constanteA;
         Integer respuestaK = constanteA;
         Integer respuestaL = 3*constanteA-1;
@@ -141,32 +146,40 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
                 "<center>$$\\displaystyle v=\\frac{ds}{dt}=\\frac{d}{dt}($CONSTANTEA$t-4.9t^2)=$CONSTANTEA$-9.8t$$ " +
                 "$$ \\frac{m}{s}$$</center>" +
                 "La velocidad es cero  cuando" +
-                "<center>$$\\displaystyle $CONSTANTEA$-9.8t=0$$ o $$t=$CONSTANTEC$ $$ $$seg.$$</center>" +
-                "La altura de la roca en $$t=$respuestaA$ $$ $$seg.$$ es<br/>" +
-                "<center>$$\\displaystyle s_{máx}=s($respuestaA$)=a($resuestaA$)-9.8($respuestaA$)^2=$respuestaF$ $$  $$m.$$</center>" +
+                "<center>$$\\displaystyle $CONSTANTEA$-9.8t=0$$ <br/>" +
+                "o $$t=$CONSTANTEC$ $$ $$seg.$$</center>" +
+                "La altura de la roca en $$t=$RESPUESTA_A$ $$ $$seg.$$ es<br/>" +
+                "<center>$$\\displaystyle s_{máx}=s($RESPUESTA_A$)=" +
+                "$CONSTANTEA$($RESPUESTA_A$)-9.8($RESPUESTA_A$)^2=$RESPUESTA_F$ $$  $$m.$$</center>" +
                 " </li>" +
                 "<li>Para determinar la velocidad de la roca a $$ $CONSTANTEB$ m$$, en el ascenso y " +
                 "luego el descenso, primero determinamos los valores de de $$t$$ para los cuales:<br/>" +
                 "<center>$$\\displaystyle s(t)=$CONSTANTEA$t-4.9t^2=$CONSTANTEB$ $$<br/>" +
                 "$$4.9t^2-$CONSTANTEA$t+$CONSTANTEB$=0$$</center>" +
                 "Resolviendo la ecuación<br/>" +
-                "<center>$$\\displaystyle t=\\frac{2($CONSTANTEA$)\\pm\\sqrt{($CONSTANTEA$)^2-4(4.9)($CONSTANTEB$) }}{2(4.9)}$$</center>" +
-                "<center>$$t=$respuestaB$ seg, t=$respuestaC$ seg$$</center>" +
-                "La roca está $$ $CONSTANTEA$ m$$ por encima del suelo $$ $respuestaB$ $$ segundos después" +
-                " de la explosión y nuevamente a los $$ $respuestaC$ $$ segundos de la explosión, Las velocdades de la" +
+                "<center>$$\\displaystyle t=\\frac{2($CONSTANTEA$)\\pm\\sqrt{($CONSTANTEA$)^2-4(4.9)($CONSTANTEB$) }}{2(4.9)}$$" +
+                "</center>" +
+                "<center>$$t=$RESPUESTA_B$ seg, t=$RESPUESTA_C$ seg$$</center>" +
+                "La roca está $$ $CONSTANTEB$ m$$ por encima del suelo $$ $RESPUESTA_B$ $$ segundos después" +
+                " de la explosión y nuevamente a los $$ $RESPUESTA_C$ $$ segundos de la explosión, Las velocidades de la" +
                 " roca en esos instantes son" +
-                "<center>$$v($respuestaB$)=$CONSTANTEA$-9.8($respuestaB$)=v_0-v_1= vt1 \\frac{m}{s}$$<br/>" +
-                "$$v(t1)=v_0-9.8(t1)=v_0-v_1= vt1 \\frac{m}{s}$$</center>" +
-                "En ambos instantes, la velocidad de la roca es 96 ft/ seg. Como v(2) > O, la roca se desplaza hacia arriba (s aumenta)" +
-                " en t = 2 seg, se mueve hacia abajo (s disminuye) en t = 8, ya que v(8) < O." +
+                "<center>" +
+                "$$v($RESPUESTA_B$)=$CONSTANTEA$-9.8($RESPUESTA_B$)=$RESPUESTA_G$ \\frac{m}{s}$$<br/>" +
+                "$$v($RESPUESTA_C$)=$CONSTANTEA$-9.8($RESPUESTA_C$)=$RESPUESTA_H$ \\frac{m}{s}$$</center>" +
+                "En ambos instantes, la rapidez de la roca es $$ $RESPUESTA_G$ \\frac{m}{s} $$." +
+                " Como $$v($RESPUESTA_B$) > 0$$, la roca se desplaza hacia arriba (s aumenta) en t=$RESPUESTA_B$." +
+                " En t = $RESPUESTA_C$ seg, se mueve hacia abajo (s disminuye) , ya que $$v($RESPUESTA_C$) < 0$$." +
                 "</li>" +
                 "<li>En cualquier instante durante el trayecto que sigue a la explosión, la aceleración de la roca es constante" +
-                "<center>$$\\displaystyle a=\\frac{dv}{dt}=\\frac{d}{dt}({v_0-9.8t})=-9.8 \\frac{m}{s^2}$$</center>" +
+                "<center>$$\\displaystyle a=\\frac{dv}{dt}=\\frac{d}{dt}({$CONSTANTEA$-9.8t})=-9.8 \\frac{m}{s^2}$$</center>" +
                 "La aceleración siempre es hacia abajo. Conforme la roca sube, desacelera, y cuando cae acelera." +
                 "</li>" +
                 "<li>La roca choca con el suelo en el tiempo positivo $$t$$, para el cual s=0, por lo que se resuelve" +
-                "<center>$$\\displaystyle v_o t-4.9t^2=0$$<br/>$$\\displaystyle t(v_0-4.9t)=0$$<br/>$$\\displaystyle t=0, t=\\frac{v_0}{4.9}$$</center>" +
-                "En $$t=0$$, la explosión ocurrió y la roca sale lanzada hacia arriba. Regresa al suelo al cabo de tx segundos." +
+                "<center>$$\\displaystyle $CONSTANTEA$t-4.9t^2=0$$<br/>" +
+                "$$\\displaystyle t($CONSTANTEA$-4.9t)=0$$<br/>" +
+                "$$\\displaystyle t=0, t=\\frac{$CONSTANTEA$}{4.9}=$RESPUESTA_E$ $$</center>" +
+                "En $$t=0$$, la explosión ocurrió y la roca sale lanzada hacia arriba." +
+                " Regresa al suelo al cabo de $$$RESPUESTA_E$ segundos$$." +
                 "</li>" +
                 "</ol>";
 
