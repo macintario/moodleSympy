@@ -150,7 +150,7 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
                 "o $$t=$CONSTANTEC$ $$ $$seg.$$</center>" +
                 "La altura de la roca en $$t=$RESPUESTA_A$ $$ $$seg.$$ es<br/>" +
                 "<center>$$\\displaystyle s_{máx}=s($RESPUESTA_A$)=" +
-                "$CONSTANTEA$($RESPUESTA_A$)-9.8($RESPUESTA_A$)^2=$RESPUESTA_F$ $$  $$m.$$</center>" +
+                "$CONSTANTEA$($RESPUESTA_A$)-4.9($RESPUESTA_A$)^2=$RESPUESTA_F$ $$  $$m.$$</center>" +
                 " </li>" +
                 "<li>Para determinar la velocidad de la roca a $$ $CONSTANTEB$ m$$, en el ascenso y " +
                 "luego el descenso, primero determinamos los valores de de $$t$$ para los cuales:<br/>" +
@@ -179,13 +179,27 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
                 "$$\\displaystyle t($CONSTANTEA$-4.9t)=0$$<br/>" +
                 "$$\\displaystyle t=0, t=\\frac{$CONSTANTEA$}{4.9}=$RESPUESTA_E$ $$</center>" +
                 "En $$t=0$$, la explosión ocurrió y la roca sale lanzada hacia arriba." +
-                " Regresa al suelo al cabo de $$$RESPUESTA_E$ segundos$$." +
+                " Regresa al suelo al cabo de $$$RESPUESTA_E$ $$segundos." +
                 "</li>" +
                 "</ol>";
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
 
-
+        reactivo = reactivo.replace("\\frac{d}{dx}\\left($EXPRESION$ \\right)"
+                ,"</strong></span>Respuesta a)<br>" +
+                        "<span style=\"color: #0000ff; font-size:x-large;\"><strong>" +
+                        " \\frac{d}{dt}\\left($EXPRESION$ \\right)=0<br>" +
+                        "\\s=$EXPRESION$, t=$RESPUESTA_A$ <br>" +
+                        "</strong></span>Respuesta b)<br> <span style=\"color: #0000ff; font-size:x-large;\"><strong>" +
+                        "  $EXPRESION$=$CONSTANTEB$<br>" +
+                        "V_1=$CONSTANTEA$-9.8t, t=$RESPUESTA_B$ <br>" +
+                        "V_2=$CONSTANTEA$-9.8t, t=$RESPUESTA_C$ <br>" +
+                        "</strong></span>Respuesta c)<br> <span style=\"color: #0000ff; font-size:x-large;\"><strong>" +
+                        "\\frac{d}{dt}\\left($CONSTANTEA$-9.8t\\right)<br>" +
+                        "</strong></span>Respuesta d)<br> <span style=\"color: #0000ff; font-size:x-large;\"><strong>" +
+                        "$EXPRESION$=0");
+        reactivo = reactivo.replace("La derivada de la función $$f(x)$$ es","Para cada parte de la pregunta");
+        reactivo = reactivo.replace("$EXPRESION$","$CONSTANTEA$t-4.9t^2");
 
         reactivo = reactivo.replace("$CONSTANTEA$", constanteA.toString());
         reactivo = reactivo.replace("$CONSTANTEB$", constanteB.toString());
@@ -216,7 +230,6 @@ public class GeneradorReactivo_MRUA_21feb2020 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
         reactivo = reactivo.replace("$tolerancia$", "0.1");
         reactivo = reactivo.replace("1x", "x");
-
         //Concatenando el separador de reactivos
         reactivo = reactivo.concat(SEPARADOR_REACTIVOS);
         return reactivo;
