@@ -45,7 +45,7 @@ public class GeneradorReactivo_161111 implements GeneradorReactivoCloze {
     
     /**
      * El texto, símbolo o caracter que separará cada reactivo generado en el
-     * archivo de salida..
+     * archivo de salida.
      */
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 

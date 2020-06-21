@@ -11,20 +11,61 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * solucionaSimbolico genera scripts en python para hacer derivación simbolica usando
- * la biblioteca SymPy (https://www.sympy.org/)
- * Se usa Python3 y al parecer puede funcionar con Python2
- * Para poder leer las expresiones en LaTex es necesario instalar (pip o conda) antlr4
- * $ pip3 install antlr4-python3-runtime
- * o
- * $ conda install --channel=conda-forge antlr-python-runtime
+ * Genera scripts Python para hacer derivación simbolica usando
+ * la biblioteca SymPy (https://www.sympy.org/).
+ * Véase https://www.sympygamma.com/ para una demostración interactiva.
+ * Se usa Python3.
+ * Para poder leer las expresiones en LaTex es necesario instalar (pip o conda) antlr4 <p>
+ * $ pip3 install antlr4-python3-runtime <p>
+ * o <p>
+ * $ conda install --channel=conda-forge antlr-python-runtime <p>
  * <p>
- * Habría que explorar si las bibliotecas necesarias se pueden usar con jython y evitar la salida a shell
+ * Nota: Averiguar si las bibliotecas necesarias se pueden usar con jython y evitar la salida a shell
  *
- * @author: Iván Gutierrez
+ * @author Iván Gutiérrez
  */
 
 public class solucionaSimbolico {
+    /**
+     * Licencia BSD
+     */
+    public static final String LICENSE = "Copyright (c) 2008-2020 SymPy Development Team\n" +
+            "\n" +
+            "All rights reserved.\n" +
+            "\n" +
+            "Redistribution and use in source and binary forms, with or without\n" +
+            "modification, are permitted provided that the following conditions are met:\n" +
+            "\n" +
+            "  a. Redistributions of source code must retain the above copyright notice,\n" +
+            "     this list of conditions and the following disclaimer.\n" +
+            "  b. Redistributions in binary form must reproduce the above copyright\n" +
+            "     notice, this list of conditions and the following disclaimer in the\n" +
+            "     documentation and/or other materials provided with the distribution.\n" +
+            "  c. Neither the name of the SymPy nor the names of its contributors\n" +
+            "     may be used to endorse or promote products derived from this software\n" +
+            "     without specific prior written permission.\n" +
+            "\n" +
+            "\n" +
+            "THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n" +
+            "AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n" +
+            "IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\n" +
+            "ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR\n" +
+            "ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\n" +
+            "DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\n" +
+            "SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\n" +
+            "CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT\n" +
+            "LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY\n" +
+            "OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH\n" +
+            "DAMAGE.";
+    /**
+     * Variable con scriptlet Python que deriva la expresión paso a paso <p>
+     * Basado en: https://github.com/sympy/sympy_gamma/blob/master/app/logic/diffsteps.py <p></p>
+     * Se tradujeron los mensajes al español. <p>
+     * La función acomodaNotacion de Python se asegura de colocar paréntesis en la notación
+     * de las derivadas, evitando ambigüedad. <p>
+     * Se debería actualizar el código desde web y hacer automática la traducción
+     * @author Iván Gutierrez
+     */
     private static final String DERIVADOR = "import sympy\n" +
             "import collections\n" +
             "\n" +
@@ -748,6 +789,7 @@ public class solucionaSimbolico {
             "    return a.finalize()\n" +
             "\n" +
             "\n" +
+            "\n" +
             "def acomodaNotacion(expresion):\n" +
             "    # parche para notación\n" +
             "    expresion = expresion.replace(\"\\\\frac{d}{d x} f{\\\\left(x \\\\right)} g{\\\\left(x \\\\right)}\",\n" +
@@ -764,18 +806,43 @@ public class solucionaSimbolico {
             "    return expresion\n" +
             "\n"+
             "\n" ;
+    /**
+     * Contiene el punto de entrada del script de Python para procesar la expresión
+     * 1.- Abre un archivo de texto para guardar la salida <p>
+     * 2.- Define "x" como un símbolo para poder derivar expresiones respecto a ella. <p>
+     * 3.- Se convierte la expresión en LaTeX an una expresión Sympy, definiendo "pi"
+     * como un símbolo reconocible <p>
+     * Se debe poder definir como símbolo otra variable diferente de "x" , como "t" por ejemplo
+     * @author Iván Gutierrez
+     *
+     */
     private static final String PARSER =                 "##MAIN##\n" +
             "\n" +
             "salida = open(\"/tmp/solucion_$UUID$.txt\",\"w\")\n" +
             "x = symbols('x')\n" +
             "expr = parse_latex(r\"$EXPRESION$\").subs({Symbol('pi'): pi})\n";
-
+    /**
+     * Escribe en el archivo de salida, abierto en el fragmento PARSER, el problema
+     * y la solución en html/MathJax invocando print_html_steps contenida en el fragmento
+     * DERIVADOR
+     * <p>
+     * acomodaNotacion pone paréntesis explícitos para evitar ambigüedades en expresiones
+     * @author Iván Gutiérrez
+     */
     private static final String SOLVER =
                     "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr,x)))\n" +
                             "solucion = print_html_steps(expr, x)\n" +
                             "solucion=acomodaNotacion(solucion)\n"+
                             "salida.write(solucion)\n" ;
-
+    /**
+     * Scriptlet para obtener la tangente a una curva en un punto
+     * <p>
+     * 1.-Se deriva la expresión, como en el scriptlet del SOLVER,
+     * escribiendo el procedimiento en el archivo de salida.
+     * <p>
+     * 2.-Se evalúa la derivada en el punto solicitado y se escribe la solución.
+     * @author Iván Gutiérrez
+     */
     private static final String SOLVER_RECTA_TANGENTE =
                        "x0 = $X0$\n"
                      +"salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr, x)))\n"
@@ -797,6 +864,14 @@ public class solucionaSimbolico {
                      +"solucion=solucion.replace(\"+-\",\"-\")\n"
                      +"salida.write(solucion)\n"
             ;
+    /**
+     * Scriplet para obtener la tangente horizontal.<p>
+     * 1. Se deriva la expresión. <p>
+     * 2. Su iguala con cero y se resuelve. <p>
+     * 3. Con las soluciones se sustituye en la ecuación original para encontrar
+     * los puntos.<p>
+     * @author Iván Gutiérrez
+     */
     private static final String SOLVER_TANGENTE_HORIZONTAL =
             "salida.write(\"Obtener: $$%s$$<br><br>\" % latex(Derivative(expr, x)))\n" +
                     "solucion = print_html_steps(expr, x)\n" +
@@ -819,24 +894,38 @@ public class solucionaSimbolico {
                     "\n" +
                     "salida.write(solucion)\n"
             ;
-
+    /**
+     * Scriptlet de Python para efectuar derivadas sucesivas.
+     * Se concatena sucesivamente para obtener derivadas de mayor orden
+     * @author Iván Gutiérrez
+     */
     private static final String DIFF_STEP =
                             "derivada = Derivative(expr)\n"+
                             "derivada = factor(derivada.doit())\n"+
                             "salida.write(\"<br/>Siguiente derivada<br/>Obtener: $$%s$$<br><br>\" % latex(Derivative(derivada,x)))\n" +
-                                    "solucion = print_html_steps(derivada, x)\n" +
-                                    "solucion=acomodaNotacion(solucion)\n"+
-                                    "expr = derivada\n" +
+                            "solucion = print_html_steps(derivada, x)\n" +
+                            "solucion=acomodaNotacion(solucion)\n"+
+                            "expr = derivada\n" +
                             "salida.write(solucion)\n" ;
+    /**
+     * Cierra el archivo en el que se escribe la salida.
+     * Debe ser el último elemento que se concatena para
+     * armar un script con los scriptlets previos
+     * @author Iván Gutiérrez
+     */
     private static final String CLOSER      =                      "salida.close()\n";
 
 
     /**
-     * ejecutaPython recibe un script en python, lo ejecuta y regresa la salida de la ejecución
+     * Recibe un script en python, lo ejecuta y regresa la salida de la ejecución.
+     * Está pensado para un ambiente Linux, escribe y lee de /tmp.
+     * Asume que Python3 y sus bibliotecas están instalados.
+     * Usa randomUUID para evitar colisiones si se ejecuta en forma simultanea
+     * con otros generadores del proyecto.
      *
-     * @param code Script en python para ejecutar.
-     * @return cadena con el resultado de la ejecución.
-     * @author: Iván Gutierrez
+     * @param code String con script en Python para ejecutar.
+     * @return String con el resultado de la ejecución.
+     * @author Iván Gutierrez
      */
     private static String ejecutaPython(String code) {
         String uuid = String.valueOf(UUID.randomUUID());
@@ -885,13 +974,14 @@ public class solucionaSimbolico {
     }
 
     /**
-     * Incremento hace derivación simbólica de la expresión usando el límite que tiende a cero del incremento
+     * Hace derivación simbólica de la expresión usando el límite que tiende a cero del incremento
      *
      * @param expresion cadena en LaTex con expresión para derivar
      * @return cadena con el proceso de derivación usando el método del incremento que tiende a cero
      * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.2"
+     * @author Iván Gutiérrez
      */
-    public static String Incremento(String expresion) {
+    public static String incremento(String expresion) {
         String PLANTILLA_SYMPY =
                 "from sympy import *\n" +
                         "from sympy.parsing.latex import parse_latex\n" +
@@ -916,12 +1006,13 @@ public class solucionaSimbolico {
     }
 
     /**
-     * solucionaSimbolicoConjugados deriva simbólicamente expresiones algebráicas en LaTex usando el método de limite que tiende a cero y
-     * empeando además la multiplicación por el conjugado del incremento para eliminar la ideterminación
+     * Deriva simbólicamente expresiones algebráicas en LaTex usando el método de limite que tiende a cero y
+     * empleando además la multiplicación por el conjugado del incremento para eliminar la ideterminación
      *
      * @param expresion cadena en LaTex con expresión para derivar
      * @return cadena con el proceso de derivación usando el método del incremento que tiende a cero
      * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.2"
+     * @author Iván Gutiérrez
      */
     public static String solucionaSimbolicoConjugados(String expresion) {
         String PLANTILLA_SYMPY =
@@ -960,13 +1051,16 @@ public class solucionaSimbolico {
     }
 
     /**
-     * reglaCadena deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
-     * se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x)
+     * Deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
+     * se escoge una variable de sustitucion \f$u\f$
+     * y se ponen las expresiones en términos de \f$f(u)\f$ y \f$u=g(x)\f$
      *
      * @param fu función de la variable de sustitución  (u)
      * @param gx función de la variable original (x)
      * @return cadena con el proceso de derivación usando la regla de la cadena
      * @see "Cálculo de una Variable, Thomas 12a. Edición cap 3.6"
+     * @author Iván Gutiérrez
+     * @deprecated derivaSimbolico puede sustituir a esta función.
      */
 
     public static String reglaCadena(String fu, String gx) {
@@ -1002,7 +1096,7 @@ public class solucionaSimbolico {
     }
 
     /**
-     * reglaCadenaNoCancel deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
+     * Deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena
      * se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x).
      * A diferencia del método reglaCadena evita una simplificación al final
      *
@@ -1010,6 +1104,7 @@ public class solucionaSimbolico {
      * @param gx función de la variable original (x)
      * @return cadena con el proceso de derivación usando la regla de la cadena
      * @see class reglaCadena
+     * @deprecated derivaSimbolico puede sustituir a esta función.
      */
 
     public static String reglaCadenaNoCancel(String fu, String gx) {
@@ -1054,6 +1149,8 @@ public class solucionaSimbolico {
      * @param gx función de la variable original (x)
      * @return cadena con el proceso de derivación usando la regla de la cadena
      * @see class reglaCadena
+     * @author Iván Gutiérrez
+     * @deprecated derivaSimbolico puede sustituir a esta función.
      */
     public static String reglaCadenaTrig(String fu, String gx) {
 
@@ -1089,16 +1186,20 @@ public class solucionaSimbolico {
     }
 
     /**
-     * sumaReglaCadena deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena para una suma
-     * de dos sumandos.
+     * Deriva simbólicamente expresiones algebráicas en LaTex usando la regla de la cadena para una suma
+     * de dos productos.
      * Se escoge una variable de sustitucion "u" y se ponen las expresiones en términos de f(u) y u(x)=g(x) para el primer sumando.
      * Se escoge una variable de sustitucion "v" y se ponen las expresiones en términos de h(v) y v(x)=j(x) para el segundo sumando.
      * El método muestra los pasos de derivación con la regla de la cadena para cada sumando y efectúa la suma sibólica
      *
      * @param fu función de la variable de sustitución  (u)
      * @param gx función de la variable original (x)
+     * @param hv función de la variable de sustitución  (u)
+     * @param jx función de la variable original (x)
      * @return cadena con el proceso de derivación usando la regla de la cadena
      * @see class reglaCadena
+     * @author Iván Gutiérrez
+     * @deprecated derivaSimbolico puede sustituir a esta función.
      */
     public static String sumaReglaCadena(String fu, String gx, String hv, String jx) {
         String PLANTILLA_SYMPY = "from sympy import *\n" +
@@ -1146,13 +1247,15 @@ public class solucionaSimbolico {
     }
 
     /**
-     *  sumaProductosCadena deriva simbólicamente de la suma de dos productos
-     *  de la forma y = uv + wz.
+     *  Deriva simbólicamente de la suma de dos productos
+     *  de la forma \f$y = uv + wz\f$.
      * @param u primer factor del primer sumando como función de x
-     * @param v
-     * @param w
-     * @param z
-     * @return
+     * @param v segundo factor del primer sumando como función de x
+     * @param w primer factor del segundo sumando como función de x
+     * @param z segundo factor del segundo sumando como función de x
+     * @return String con la derivada.
+     * @deprecated derivaSimbolico puede sustituir a esta función.
+     * @author Iván Gutiérrez
      */
     public static String sumaProductosCadena(String u, String v, String w, String z){
         String PLANTILLA_SYMPY = "from sympy import *\n" +
@@ -1197,6 +1300,19 @@ public class solucionaSimbolico {
         String solucion = ejecutaPython(script);
         return solucion;
     }
+
+    /**
+     *  Deriva simbólicamente la suma de dos protencias
+     *  de la forma \f$y = au^n+v^m\f$.
+     * @param a coeficiente del primer sumando como función de x
+     * @param ux segundo factor del primer sumando como función de x
+     * @param n potencia del primer sumando
+     * @param vx segundo sumando como función de x
+     * @param m potencia del segundo sumando como función de x
+     * @return String con la derivada.
+     * @deprecated derivaSimbolico puede sustituir a esta función.
+     * @author Iván Gutiérrez
+     */
 
     public static String sumaPotenciasCadena(String a, String ux, String n, String vx, String m){
         String PLANTILLA_SYMPY = "from sympy import *\n" +
@@ -1255,6 +1371,17 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     *  Deriva simbólicamente el producto de dos protencias
+     *  de la forma \f$y = u^n*v^m\f$
+     * @param ux primer factor como función de x
+     * @param n potencia del primer factor
+     * @param vx segundo factor como función de x
+     * @param m potencia del segundo sumando como función de x
+     * @return String con la derivada.
+     * @deprecated derivaSimbolico puede sustituir a esta función.
+     * @author Iván Gutiérrez
+     */
     public static String productoPotenciasCadena(String ux, String n, String vx, String m){
         String PLANTILLA_SYMPY = "from sympy import *\n" +
                 "from sympy.parsing.latex import parse_latex\n" +
@@ -1308,18 +1435,51 @@ public class solucionaSimbolico {
         return solucion;
     }
 
+    /**
+     * Deriva funciones de "x", regresa la derivación paso a paso.<p>
+     * Construye un script Python con los scriptlets DERIVADOR,PARSER,SOLVER y CLOSER.<p>
+     * Sustituye en el script la expresión en LaTeX pasada como parámetro.<p>
+     * Ejecuta el script. <p>
+     * Regresa la solución en HTML. <p>
+     * @param expresion String en LaTeX a derivar
+     * @return String con solución paso a paso en HTML
+     * @author Iván Gutiérrez
+     */
     public static String derivaSimbolico(String expresion){
         String script = DERIVADOR+PARSER+SOLVER+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
         String solucion = ejecutaPython(script);
         return solucion;
     }
+
+    /**
+     * Deriva funciones de "x", regresa la derivación paso a paso.<p>
+     * Construye un script Python con los scriptlets DERIVADOR,PARSER,SOLVER y CLOSER.<p>
+     * Sustituye en el script la expresión en LaTeX pasada como parámetro.<p>
+     * Ejecuta el script. <p>
+     * Regresa la solución en HTML. <p>
+     * @param expresion String en LaTeX a derivar
+     * @return String con solución paso a paso en HTML
+     * @author Iván Gutiérrez
+     */
     public static String derivaSimbolicoSegunda(String expresion){
         String script = DERIVADOR+PARSER+SOLVER+DIFF_STEP+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
         String solucion = ejecutaPython(script);
         return solucion;
     }
+    /**
+     * Encuentra la recta tangente a funciones \f$f(x)\f$ en un punto \f$x_0\f$<p>
+     * Regresa la derivación paso a paso y la ecuación de la recta.<p>
+     * Construye un script Python con los scriptlets DERIVADOR,PARSER,SOLVER_RECTA_TANGENTE y CLOSER.<p>
+     * Sustituye en el script la expresión en LaTeX pasada como parámetro.<p>
+     * Ejecuta el script. <p>
+     * Regresa la solución en HTML. <p>
+     * @param expresion String en LaTeX a derivar
+     * @param x0 abscisa del punto de tangencia
+     * @return String con solución paso a paso en HTML
+     * @author Iván Gutiérrez
+     */
     public static String rectaTangente(String expresion, Integer x0){
         String script = DERIVADOR+PARSER+SOLVER_RECTA_TANGENTE+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
@@ -1327,12 +1487,32 @@ public class solucionaSimbolico {
         String solucion = ejecutaPython(script);
         return solucion;
     }
+
+    /**
+     * Encuentra las rectas tangentes horizontales \f$f(x)\f$<p>
+     * Regresa la derivación paso a paso y la ecuación de la recta.<p>
+     * Construye un script Python con los scriptlets DERIVADOR,PARSER,SOLVER_TANGENTE_HORIZONTAL y CLOSER.<p>
+     * Sustituye en el script la expresión en LaTeX pasada como parámetro.<p>
+     * Ejecuta el script. <p>
+     * Regresa la solución en HTML. <p>
+     * @param expresion String con función en LaTeX
+     * @return String en HTML con la solución paso a paso de la derivada
+     * y las ecuaciones de las rectas horizontales
+     * @author Iván Gutiérrez
+     */
     public static String tangentesHorizontales(String expresion){
         String script = DERIVADOR+PARSER+SOLVER_TANGENTE_HORIZONTAL+CLOSER;
         script = script.replace("$EXPRESION$", expresion);
         String solucion = ejecutaPython(script);
         return solucion;
     }
+
+    /**
+     * Simplifica algebráicamente la expresión pasada como parámetro.
+     * @param expresion  String expresión algebráica en LaTeX a simplificar.
+     * @return String expresion simplificada en LaTeX.
+     * @author Iván Gutiérrez
+     */
     public static String simplifica(String expresion){
         String PLANTILLA_SYMPY =
                 "from sympy import *\n" +
