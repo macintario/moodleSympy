@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="adeac5e6-5b0b-4d3e-a549-52ba1c401fa5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1ei3pU7dzfuDx4c2cHQ4rs02wzN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="GeneradorReactivo_141271" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.uam.generadores.GeneradorReactivo_141271" />
+      <module name="moodleSympy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.uam.generadores.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GeneradorReactivo_141271" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="adeac5e6-5b0b-4d3e-a549-52ba1c401fa5" name="Default Changelist" comment="" />
+      <created>1594790768132</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594790768132</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Limpiando para version publica">
+      <created>1594791286988</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594791286988</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Limpieza de html auxiliar">
+      <created>1594791885343</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594791885343</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Limpiando para version publica" />
+    <MESSAGE value="Limpieza de html auxiliar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Limpieza de html auxiliar" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="181" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1594791885156">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="181" y="27" width="912" height="741" key="CommitChangelistDialog2/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791885156" />
+    <state x="106" y="88" width="1052" height="629" key="DiffContextDialog" timestamp="1594791368442">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="106" y="88" width="1052" height="629" key="DiffContextDialog/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791368442" />
+    <state width="1138" height="171" key="GridCell.Tab.0.bottom" timestamp="1594791954711">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state width="1138" height="171" key="GridCell.Tab.0.bottom/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954711" />
+    <state width="1138" height="171" key="GridCell.Tab.0.center" timestamp="1594791954710">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state width="1138" height="171" key="GridCell.Tab.0.center/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
+    <state width="1138" height="171" key="GridCell.Tab.0.left" timestamp="1594791954710">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state width="1138" height="171" key="GridCell.Tab.0.left/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
+    <state width="1138" height="171" key="GridCell.Tab.0.right" timestamp="1594791954710">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state width="1138" height="171" key="GridCell.Tab.0.right/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
+    <state x="237" y="131" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1594791900941">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="237" y="131" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791900941" />
+    <state x="312" y="183" width="650" height="430" key="git4idea.merge.GitPullDialog" timestamp="1594791535683">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="312" y="183" width="650" height="430" key="git4idea.merge.GitPullDialog/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791535683" />
+    <state x="388" y="257" width="497" height="282" key="git4idea.rebase.GitRebaseDialog" timestamp="1594791147702">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="388" y="257" width="497" height="282" key="git4idea.rebase.GitRebaseDialog/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791147702" />
+    <state x="378" y="295" width="518" height="206" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1594791516072">
+      <screen x="50" y="27" width="1316" height="741" />
+    </state>
+    <state x="378" y="295" width="518" height="206" key="git4idea.remote.GitConfigureRemotesDialog/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791516072" />
+  </component>
+</project>
