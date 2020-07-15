@@ -124,8 +124,6 @@ public class GeneradorReactivo_Thomas_3_3ej17 implements GeneradorReactivoCloze 
         Integer respuestaP = constanteC;
         //Checar fracción reductible respuestaE y respuestaJ
         Integer divisor = maximoComunDivisor(respuestaA, respuestaC);
-        //respuestaA /= divisor;
-        //respuestaC /= divisor;
 
         String parVariables = DatosReactivos.obtenerParesVariables();
         String variableIndependiente = parVariables.substring(0, 1);
