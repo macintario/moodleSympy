@@ -2,71 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adeac5e6-5b0b-4d3e-a549-52ba1c401fa5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_141271.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_161111.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_16538.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_211121.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_MRUA_21feb2020.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_2x10.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_2x12.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej13.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej14.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej15.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej16.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej18.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej19.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej20.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej21.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej22.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej23.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej24.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej25.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej26.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej27.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej28.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej33.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej34.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej35.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej36.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej37.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej38.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej39.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej40.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_4ej1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej19.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej20.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej21.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej22.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej23.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej24.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej25.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej26.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej27.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej28.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej29.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej30.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej31.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej32.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej33.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej34.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej35.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej36.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej37.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej38.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej39.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej40.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej41.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej42.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej43.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej44.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej45.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej46.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_6ej47.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_cubica_21feb2020.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_hiperbola_21feb2020.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_parabola_21feb2020.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_tangentesHorizontales_21feb2020.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej17.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_cociente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +30,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
-  <component name="RunManager" selected="Application.GeneradorReactivo_Thomas_3_3ej17">
+  <component name="RunManager" selected="Application.GeneradorReactivo_cociente">
     <configuration name="GeneradorReactivo_141271" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.uam.generadores.GeneradorReactivo_141271" />
       <module name="moodleSympy" />
@@ -106,8 +44,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GeneradorReactivo_Thomas_3_3ej17" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.uam.generadores.GeneradorReactivo_Thomas_3_3ej17" />
+    <configuration name="GeneradorReactivo_cociente" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.uam.generadores.GeneradorReactivo_cociente" />
       <module name="moodleSympy" />
       <extension name="coverage">
         <pattern>
@@ -121,7 +59,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GeneradorReactivo_Thomas_3_3ej17" />
+        <item itemvalue="Application.GeneradorReactivo_cociente" />
         <item itemvalue="Application.GeneradorReactivo_141271" />
       </list>
     </recent_temporary>
@@ -158,47 +96,56 @@
       <option name="project" value="LOCAL" />
       <updated>1594832925517</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ejemplo simple">
+      <created>1594833994061</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594833994061</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Limpiando para version publica" />
     <MESSAGE value="Limpieza de html auxiliar" />
     <MESSAGE value="Archivo de proyecto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archivo de proyecto" />
+    <MESSAGE value="Ejemplo simple" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ejemplo simple" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2059" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594833747633">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2059" y="289" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833747633" />
-    <state x="181" y="27" width="912" height="741" key="CommitChangelistDialog2" timestamp="1594832923127">
-      <screen x="50" y="27" width="1316" height="741" />
+    <state x="1557" y="0" width="912" height="741" key="CommitChangelistDialog2" timestamp="1594833993719">
+      <screen x="1366" y="0" width="1920" height="1080" />
     </state>
+    <state x="1557" y="0" key="CommitChangelistDialog2/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833993719" />
     <state x="181" y="27" width="912" height="741" key="CommitChangelistDialog2/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594832923127" />
     <state x="106" y="88" width="1052" height="629" key="DiffContextDialog" timestamp="1594791368442">
       <screen x="50" y="27" width="1316" height="741" />
     </state>
     <state x="106" y="88" width="1052" height="629" key="DiffContextDialog/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791368442" />
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1594833748037">
+    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1594835576215">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833748037" />
+    <state width="1874" height="351" key="GridCell.Tab.0.bottom/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594835576215" />
     <state width="1138" height="171" key="GridCell.Tab.0.bottom/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954711" />
-    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1594833748036">
+    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1594835576214">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.center/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833748036" />
+    <state width="1874" height="351" key="GridCell.Tab.0.center/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594835576214" />
     <state width="1138" height="171" key="GridCell.Tab.0.center/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
-    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1594833748036">
+    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1594835576214">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.left/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833748036" />
+    <state width="1874" height="351" key="GridCell.Tab.0.left/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594835576214" />
     <state width="1138" height="171" key="GridCell.Tab.0.left/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
-    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1594833748036">
+    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1594835576215">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.right/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594833748036" />
+    <state width="1874" height="351" key="GridCell.Tab.0.right/50.27.1316.741/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594835576215" />
     <state width="1138" height="171" key="GridCell.Tab.0.right/50.27.1316.741/1366.0.1920.1080@50.27.1316.741" timestamp="1594791954710" />
     <state x="237" y="131" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1594791900941">
       <screen x="50" y="27" width="1316" height="741" />
@@ -221,9 +168,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_Thomas_3_3ej17.java</url>
-          <line>169</line>
+          <url>file://$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_cociente.java</url>
+          <line>168</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/uam/generadores/GeneradorReactivo_cociente.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/uam/auxiliar/solucionaSimbolico.java</url>
+          <line>1450</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

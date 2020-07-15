@@ -15,18 +15,18 @@ import static com.uam.constantes.Constantes.XML_PREFIJO;
 import static com.uam.constantes.Constantes.XML_SUFIJO;
 import static com.uam.utilidades.Utilidades.maximoComunDivisor;
 
-public class GeneradorReactivo_Thomas_3_3ej17 implements GeneradorReactivoCloze {
+public class GeneradorReactivo_cociente implements GeneradorReactivoCloze {
     /**
      * El número de dígitos para el número de reactivo que se pondrá como
      * comentario del reactivo. e.g. si el número de posiciones es 3 entonces el
      * comentario que tendrá el primer reactivo será
-     * "<!--Reactivo Thomas_3_3x17_000-->"
+     * "<!--Reactivo cociente_000-->"
      */
     private static final int POSICIONES_CONTADOR_REACTIVO = 3;
     /**
      * El nombre o ruta absoluta del archivo de salida.
      */
-    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_Thomas_3_3ej17.xml";
+    private static final String NOMBRE_ARCHIVO_SALIDA = "reactivos_cociente.xml";
 
     /**
      * El número de reactivos que se generarán y vaciarán al archivo de texto.
@@ -89,7 +89,7 @@ public class GeneradorReactivo_Thomas_3_3ej17 implements GeneradorReactivoCloze 
      * $COMENTARIO$ en la plantilla del reactivo.
      *
      */
-    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo Thomas_3.3_Ej_17_";
+    private static final String COMENTARIO_REACTIVO_PREFIJO = "Reactivo cociente_";
     private static final String SEPARADOR_REACTIVOS = "\r\n";
 
     @Override
@@ -163,6 +163,7 @@ public class GeneradorReactivo_Thomas_3_3ej17 implements GeneradorReactivoCloze 
         reactivo = reactivo.replace("$RESPUESTA_N$", respuestaN.toString());
         reactivo = reactivo.replace("$RESPUESTA_P$", respuestaP.toString());
 
+        /* Aquí se llama al codigo que arma la solución en Python */
         solucion = solucion+solucionaSimbolico.derivaSimbolico(expresion);
 
         reactivo = reactivo.replace("$SOLUCION$", solucion);
@@ -173,7 +174,7 @@ public class GeneradorReactivo_Thomas_3_3ej17 implements GeneradorReactivoCloze 
     }
 
     public static void main(String[] args) {
-        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_Thomas_3_3ej17());
+        EjecutadorGeneradorXML.generarReactivos(NOMBRE_ARCHIVO_SALIDA, NUMERO_DE_REACTIVOS, new GeneradorReactivo_cociente());
     }
 
 
