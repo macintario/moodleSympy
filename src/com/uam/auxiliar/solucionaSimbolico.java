@@ -866,10 +866,10 @@ public class solucionaSimbolico {
             ;
     /**
      * Scriplet para obtener la tangente horizontal.<p>
-     * 1. Se deriva la expresión. <p>
-     * 2. Su iguala con cero y se resuelve. <p>
+     * 1. Se deriva la expresión.
+     * 2. Su iguala con cero y se resuelve.
      * 3. Con las soluciones se sustituye en la ecuación original para encontrar
-     * los puntos.<p>
+     * los puntos.
      * @author Iván Gutiérrez
      */
     private static final String SOLVER_TANGENTE_HORIZONTAL =
